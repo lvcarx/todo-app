@@ -73,6 +73,9 @@ document.addEventListener('keyup', function(event) {
     if (event.keyCode === 13) {
         if (boxvalue.length > 1) {  
             createList();    
+        } else {
+            console.log('notice');
+
         }
     }
 
