@@ -74,8 +74,8 @@ document.addEventListener('keyup', function(event) {
         if (boxvalue.length > 1) {  
             createList();    
         } else {
-            console.log('notice');
-
+            const errorNotice = document.getElementById('errorNotice');
+            errorNotice.textContent = "You have to write something!";
         }
     }
 
