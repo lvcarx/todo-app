@@ -5,5 +5,10 @@ Geplante Features:
 -Accountfunktion
 -Einstellungen
 -Designverbesserungen (in work)
--service workers
+-service workers (should work, has to be tested)
 -drag & drop (works)
+-
+
+Known Bugs:
+
+-leerer Eintrag kann eingegeben werden
