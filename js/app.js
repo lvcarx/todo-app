@@ -1,6 +1,15 @@
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker
+    .register('/sw.js')
+    .catch(function(err) {
+      console.error(err);
+    });
+  }
+
 let counter = 1;
 var element = document.getElementById("todoItems");
 const form = document.getElementById("form");
+
 
 if (localStorage.getItem("task:1") === null) {
     counter = localStorage.setItem('counter', JSON.stringify(counter));
@@ -14,9 +23,7 @@ document.addEventListener('keyup', function(event) {
         localStorage.getItem('counter', JSON.stringify(counter));
         counter += 1;
         localStorage.setItem('counter', JSON.stringify(counter));
-        console.log(counter);
         form.reset();
-
     }
 
 });
@@ -33,7 +40,6 @@ function setItems() {
   items.push(boxvalue);  
   localStorage.setItem('task:' + counter, JSON.stringify(items));
   items = [];
-
   return false; 
 
 }
@@ -80,7 +86,6 @@ function createInitialList() {
         var para = document.createElement("li");
         para.classList.add("listElement", key);
         para.setAttribute("onclick", "removeListItem(this)");
-        para.setAttribute("draggable", "true");
         var node = document.createTextNode(value);
         para.appendChild(node);
         element.appendChild(para);
@@ -94,7 +99,19 @@ function createInitialList() {
 
 window.onload = createInitialList;
 
+// dynamic advice wrapper 
 
+const advice = document.getElementById("advice");
+
+if (counter > 1) {
+
+    advice.textContent = "click on item to remove it";
+
+} else {
+
+    advice.textContent = "enter items";
+
+}
 
 
 // remove item functionality

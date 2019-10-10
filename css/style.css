@@ -33,6 +33,14 @@ h1 {
 
 }
 
+#content #reset {
+
+    padding: 8px 20px;
+    background: #0480ff;
+    color: #fff;
+
+}
+
 #content input {
 
     width: 90%;
@@ -42,7 +50,14 @@ h1 {
 
 #content .itemWrapper {
 
-    text-align: left
+    text-align: left;
+    margin-top: 20px;
+
+}
+
+#content .itemWrapper ul {
+
+    padding: 0;
 
 }
 
@@ -51,6 +66,8 @@ h1 {
     list-style: none;
     margin: 8px;
     font-size: 17px;
+    background: #fff;
+    padding: 7px;
 
 }
 
