@@ -33,17 +33,22 @@
 <div id="content">
 <form id="form" onsubmit="return setItems()">
     <p>Please insert the items</p>
-    <input type="text" id="box">
+    <div class="inputWrapper">
+        <p id="errorNotice"></p>
+        <input type="text" id="box" placeholder="type here...">
+        <input type="button" id="submit" value="submit">
+    </div>
 </form>
 
-<a id="reset">Reset all items</a>      
+    
 
 <div class="itemWrapper">
     <ul id="todoItems"></ul>
 </div>
 <p id="advice"></p>
+<a id="reset">Reset all items</a> 
 </div>
-
+ 
 
 <footer>
 <a href=""></a>

@@ -5,5 +5,11 @@ Geplante Features:
 -Accountfunktion
 -Einstellungen
 -Designverbesserungen (in work)
--service workers
+-service workers (should work, has to be tested)
 -drag & drop (works)
+-submit button (in work)
+-rückmeldung wenn leeres eingabefeld
+
+Known Bugs:
+
+-leerer Eintrag kann eingegeben werden
