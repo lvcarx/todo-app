@@ -17,6 +17,9 @@ if (localStorage.getItem("task:1") === null) {
 
 counter = localStorage.getItem('counter', JSON.stringify(counter));
 
+
+// increase counter
+
 document.addEventListener('keyup', function(event) {
 
     if (event.keyCode === 13) {
@@ -35,12 +38,17 @@ var input = document.getElementById("box");
    
 function setItems() {
 
-  localStorage.setItem('task:' + counter, JSON.stringify(items));
   boxvalue = document.getElementById('box').value;
-  items.push(boxvalue);  
-  localStorage.setItem('task:' + counter, JSON.stringify(items));
-  items = [];
-  return false; 
+
+  if (boxvalue.length > 1) {
+
+    localStorage.setItem('task:' + counter, JSON.stringify(items));
+    items.push(boxvalue);  
+    localStorage.setItem('task:' + counter, JSON.stringify(items));
+    items = [];
+    return false; 
+
+  }
 
 }
 
@@ -63,7 +71,9 @@ function createList() {
 document.addEventListener('keyup', function(event) {
 
     if (event.keyCode === 13) {
-        createList();    
+        if (boxvalue.length > 1) {  
+            createList();    
+        }
     }
 
 });
