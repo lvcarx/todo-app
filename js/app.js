@@ -1,7 +1,3 @@
-
-
-
-
 let counter = 1;
 var element = document.getElementById("todoItems");
 const form = document.getElementById("form");
@@ -47,6 +43,7 @@ function createList() {
     var tasks = JSON.parse(window.localStorage.getItem('task:' + (counter - 1)));
     var para = document.createElement("li");
     para.className = "listElement" + counter;
+    para.setAttribute("onclick", "removeListItem(this)");
     var node = document.createTextNode(tasks);
     para.appendChild(node);
     element.appendChild(para);
@@ -81,14 +78,12 @@ function createInitialList() {
         if (key !== 'counter') {
 
         var para = document.createElement("li");
-        para.className = "listElement";
+        para.classList.add("listElement", key);
+        para.setAttribute("onclick", "removeListItem(this)");
+        para.setAttribute("draggable", "true");
         var node = document.createTextNode(value);
         para.appendChild(node);
         element.appendChild(para);
-
-        var para2 = document.createElement("a");
-        para.appendChild(para2);
-        para2.className = "test";
 
 
     }
@@ -99,30 +94,29 @@ function createInitialList() {
 
 window.onload = createInitialList;
 
-const resetButton = document.getElementById('reset');
+
 
 
 // remove item functionality
 
-document.querySelectorAll(".listElement").forEach(item => {
-    item.addEventListener('click', event => {
-      item.classList.add('opened');
-    })
-});
+function removeListItem(obj) {
 
+    console.log(obj.classList[1]);
+    localStorage.removeItem(obj.classList[1]);
 
-function addClassName() {
-
-    listEl.classList.add("test");
+    document.getElementById("todoItems").addEventListener("click",function(e) {
+        var tgt = e.target;
+        if (tgt.tagName.toUpperCase() == "LI") {
+          tgt.parentNode.removeChild(tgt); // or tgt.remove();
+        }
+      });
 
 }
 
-const listEl = document.querySelector(".listElement").addEventListener("click", addClassName, false);
-
-
-
 
 // reset functionality
+
+const resetButton = document.getElementById('reset');
 
 function resetItems() {
 
@@ -133,3 +127,10 @@ function resetItems() {
 }
 
 resetButton.addEventListener("click", resetItems, false);
+
+
+
+
+ var el = document.getElementById('todoItems');
+ var sortable = Sortable.create(el);
+
