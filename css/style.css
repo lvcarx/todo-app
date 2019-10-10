@@ -41,12 +41,26 @@ h1 {
 
 }
 
-#content input {
+#content .inputWrapper {
 
-    width: 90%;
+    overflow: auto;
+    margin: 8px;
 
 }
 
+#content .inputWrapper input[type="text"] {
+
+    width: 70%;
+    float: left;
+
+}
+
+#content .inputWrapper input[type="button"] {
+
+    width: 25%;
+    float: right;
+
+}
 
 #content .itemWrapper {
 
