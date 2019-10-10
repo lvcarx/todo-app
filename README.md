@@ -7,7 +7,8 @@ Geplante Features:
 -Designverbesserungen (in work)
 -service workers (should work, has to be tested)
 -drag & drop (works)
--
+-submit button (in work)
+-rückmeldung wenn leeres eingabefeld
 
 Known Bugs:
 
