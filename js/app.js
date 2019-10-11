@@ -4,7 +4,7 @@
     .catch(function(err) {
       console.error(err);
     });
-  }
+  } 
 
 let counter = 1;
 var element = document.getElementById("todoItems");
@@ -210,3 +210,4 @@ var sortable = new Sortable(el, {
 	animation: 150,
 
 });
+
