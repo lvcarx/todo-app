@@ -2,7 +2,10 @@ const cachedFiles = [
     '/',
     '/index.html',
     'js/app.js',
-    'css/style.css',
+    'js/userInformation.js',
+    'data/userInformation.json',
+    'img/profile.jpg',
+    'css/style.css'
   ];
 
 self.addEventListener('install', function(e) {

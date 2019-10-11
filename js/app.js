@@ -1,14 +1,16 @@
-if ('serviceWorker' in navigator) {
+ if ('serviceWorker' in navigator) {
     navigator.serviceWorker
     .register('/sw.js')
     .catch(function(err) {
       console.error(err);
     });
-  }
+  } 
 
 let counter = 1;
 var element = document.getElementById("todoItems");
 const form = document.getElementById("form");
+const submitButton = document.getElementById('submit');
+var input = document.getElementById("box");
 
 
 if (localStorage.getItem("task:1") === null) {
@@ -18,23 +20,41 @@ if (localStorage.getItem("task:1") === null) {
 counter = localStorage.getItem('counter', JSON.stringify(counter));
 
 
-// increase counter
 
-document.addEventListener('keyup', function(event) {
 
-    if (event.keyCode === 13) {
+// increase counter function
+
+function increaseCounteronenter() {
+
+    if (event.keyCode === 13 ) {
         localStorage.getItem('counter', JSON.stringify(counter));
         counter += 1;
         localStorage.setItem('counter', JSON.stringify(counter));
         form.reset();
     }
 
-});
+}
+
+function increaseCounteronclick() {
+
+        localStorage.getItem('counter', JSON.stringify(counter));
+        counter += 1;
+        localStorage.setItem('counter', JSON.stringify(counter));
+        form.reset();
+    
+}
+
+// increase counter
+
+document.addEventListener('keyup', increaseCounteronenter, false);
+submitButton.addEventListener('click', increaseCounteronclick, false);
+
+
+
 
 counter = JSON.parse(window.localStorage.getItem('counter'));
 
 let items = [];
-var input = document.getElementById("box");
    
 function setItems() {
 
@@ -68,7 +88,11 @@ function createList() {
 
 }
 
-document.addEventListener('keyup', function(event) {
+
+
+// function to add items to list on enter
+
+function addItemsToListonenter() {
 
     if (event.keyCode === 13) {
         if (boxvalue.length > 1) {  
@@ -79,7 +103,26 @@ document.addEventListener('keyup', function(event) {
         }
     }
 
-});
+}
+
+// function to add items to list on click
+
+function addItemsToListonclick() {
+
+        if (boxvalue.length > 1) {  
+            createList();    
+        } else {
+            const errorNotice = document.getElementById('errorNotice');
+            errorNotice.textContent = "You have to write something!";
+        }
+
+}
+
+document.addEventListener('keyup', addItemsToListonenter, false);
+submitButton.addEventListener('click', addItemsToListonclick, false);
+
+
+
 
 function createInitialList() {
 
@@ -160,7 +203,11 @@ resetButton.addEventListener("click", resetItems, false);
 
 
 
+// SORTABLE JS config
 
- var el = document.getElementById('todoItems');
- var sortable = Sortable.create(el);
+var el = document.getElementById('todoItems');
+var sortable = new Sortable(el, {
+	animation: 150,
+
+});
 

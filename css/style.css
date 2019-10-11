@@ -85,6 +85,12 @@ h1 {
 
 }
 
+.sortable-ghost {
+
+    background: #000 !important;
+
+} 
+
 footer {
 
     text-align: center;

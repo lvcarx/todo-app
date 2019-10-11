@@ -9,6 +9,7 @@ Geplante Features:
 -drag & drop (works)
 -submit button (in work)
 -rückmeldung wenn leeres eingabefeld
+-Darkmode
 
 Known Bugs:
 
