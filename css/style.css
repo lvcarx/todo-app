@@ -9,7 +9,14 @@
 body {
 
     font-family: 'Noto Sans', sans-serif;
+    background: #f9f9f9;
 
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+       background-color: #000 !important;
+   }
 }
 
 h1 {
@@ -27,7 +34,13 @@ h1 {
     margin: 50px auto;
     width: 70%;
     max-width: 700px;
-    background: #f2f2f2;
+    background: #fff;
+    border-radius: 4px;
+
+    -webkit-box-shadow: 0px 3px 40px 0px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0px 3px 40px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 4px 15px 0px rgba(0,0,0,0.12);
+
     padding: 30px 0;
     border: 5px;
 
@@ -36,8 +49,31 @@ h1 {
 #content #reset {
 
     padding: 8px 20px;
-    background: #0480ff;
+    background: #e62525;
+    font-weight: 700;
+    font-size: 14px;
     color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+}
+
+#content #reset:hover {
+
+    background: #d42020;
+
+}
+
+#content #reset:before {
+
+    content: "";
+    background: url(/img/trash-white.svg);
+    height: 20px;
+    width: 20px;
+    margin: 0 5px -4px 0;
+    background-size: cover;
+    display: inline-block;
 
 }
 
@@ -52,13 +88,29 @@ h1 {
 
     width: 70%;
     float: left;
+    border: 2px solid #e4e4e4;
+    padding: 5px 3px;
 
 }
 
 #content .inputWrapper input[type="button"] {
 
-    width: 25%;
+    min-width: 20%;
     float: right;
+    padding: 8px 10px;
+    background: #305dff;
+    color: #fff;
+    border: none;
+    font-weight: 700;
+    font-size: 14px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+
+}
+
+#content .inputWrapper input[type="button"]:hover {
+
+    background: #284fda;
 
 }
 
@@ -80,19 +132,47 @@ h1 {
     list-style: none;
     margin: 8px;
     font-size: 17px;
-    background: #fff;
+    background: #f5f5f5;
+    border-radius: 5px;
     padding: 7px;
+    cursor: pointer;
 
 }
 
 .sortable-ghost {
 
-    background: #000 !important;
+    background: rgb(199, 199, 199) !important;
 
 } 
 
 footer {
 
     text-align: center;
+
+}
+
+/* USER INFORMATION */
+
+.userInformation {
+
+    position: absolute;
+    top: 0;
+    right: 0;
+
+}
+
+.userInformation .profilePictureWrapper {
+
+    height: 80px;
+    width: 80px;
+    display: block;
+    overflow: hidden;
+    border-radius: 50%;
+
+}
+
+.userInformation img {
+
+    max-width: 100px;
 
 }
