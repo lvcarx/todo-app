@@ -23,7 +23,9 @@
 <h1>ToDo App</h1>
 
 <div class="userInformation">
-<span id="name"></span>
+<div class="profilePictureWrapper"><img id="profilePicture"></div>
+<p id="nameField"></p>
+<p id="mailField"></p>
 <span id="role"></span>
 </div>
 
@@ -36,7 +38,7 @@
     <div class="inputWrapper">
         <p id="errorNotice"></p>
         <input type="text" id="box" placeholder="type here...">
-        <input type="button" id="submit" value="submit" onclick="return setItems()">
+        <input type="button" id="submit" value="Add to list" onclick="return setItems()">
     </div>
 </form>
 
@@ -46,7 +48,7 @@
     <ul id="todoItems"></ul>
 </div>
 <p id="advice"></p>
-<a id="reset">Reset all items</a> 
+<a id="reset">Delete all items</a> 
 </div>
  
 

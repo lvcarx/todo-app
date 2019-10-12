@@ -1,4 +1,11 @@
-Geplante Features:
+# ToDo Manager
+
+## How it works
+
+
+
+
+## Planned Features:
 
 -Löschen von einzelnen Einträgen (works, buggy)
 -Priorisierung von Einträgen
@@ -10,6 +17,7 @@ Geplante Features:
 -submit button (in work)
 -rückmeldung wenn leeres eingabefeld
 -Darkmode
+-Benachrichtigungen
 
 Known Bugs:
 
