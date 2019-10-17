@@ -14,8 +14,8 @@
 <script src="http://SortableJS.github.io/Sortable/Sortable.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700&display=swap" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
 </head>
 
 
@@ -29,8 +29,14 @@
 <span id="role"></span>
 </div>
 
-<div id="settings"></div>
+<div id="settings">
+<img src="/img/settings-2.svg">    
+</div>
 
+<div class="modal" id="settingsModal">
+    <h2>Settings</h2>
+    <a class="" id="darkModeToggle">Dark Mode</a>
+</div>
 
 <div id="content">
 <form id="form" onsubmit="return setItems()">
@@ -63,3 +69,4 @@
 <script type="text/javascript" src="data/userInformation.json"></script>
 <script type="text/javascript" src="js/app.js"></script>
 <script type="text/javascript" src="js/userInformation.js"></script>
+<script type="text/javascript" src="js/settings.js"></script>
