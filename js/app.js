@@ -211,3 +211,69 @@ var sortable = new Sortable(el, {
 
 });
 
+
+// settings modal
+
+const modal = document.getElementsByClassName('modal');
+
+for (var i = 0; i < modal.length; i++) {
+
+    const createCloseModal = document.createElement("a");
+    const closeImg = document.createElement("img");
+    closeImg.setAttribute("src", "/img/close.svg");
+    closeImg.setAttribute("id", "close");
+    closeImg.setAttribute("onclick", "closeModal()");
+    createCloseModal.classList.add('close');
+    modal[i].appendChild(createCloseModal);
+    createCloseModal.appendChild(closeImg)
+
+}
+
+// settings modal toggle
+
+
+function openFunction(item) {
+
+    item.classList.add('opened');
+
+}
+
+/* function closeFunction(item) {
+
+    item.classList.remove('opened');
+
+} */
+
+function openModal() {
+
+    const settingsModal = document.getElementById('settingsModal'); 
+    settingsModal.addEventListener('click', openFunction(settingsModal), false)
+
+}
+
+
+
+function closeModal() {
+
+    const modal = document.getElementsByClassName('modal');
+
+    for (var i = 0; i < modal.length; i++) {
+
+        modal[i].classList.remove('opened');
+
+    }
+
+}
+
+// actual toggles
+
+// open
+
+const settings = document.getElementById('settings');
+settings.addEventListener('click', openModal, false);
+
+// close
+
+const test = document.getElementById('close');
+test.addEventListener('click', closeModal, false);
+
