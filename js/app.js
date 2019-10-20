@@ -199,7 +199,21 @@ function resetItems() {
 
 }
 
+
 resetButton.addEventListener("click", resetItems, false);
+
+
+// reset modal
+
+function openDeleteModal() {
+
+    const deleteModal = document.getElementById('deleteModal'); 
+    deleteModal.addEventListener('click', openFunction(deleteModal), false)
+
+}
+
+const openResetModal = document.getElementById('openResetModal');
+openResetModal.addEventListener('click', openDeleteModal, false);
 
 
 
