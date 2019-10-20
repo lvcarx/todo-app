@@ -38,6 +38,12 @@
     <a class="" id="darkModeToggle">Dark Mode</a>
 </div>
 
+<div class="modal" id="deleteModal">
+    <h2>Do you really want to delete all items?</h2>
+    <a class="" id="">no</a>
+    <a class="" id="reset">yes</a>
+</div>
+
 <div id="content">
 <form id="form" onsubmit="return setItems()">
     <p>Please insert the items</p>
@@ -54,7 +60,7 @@
     <ul id="todoItems"></ul>
 </div>
 <p id="advice"></p>
-<a id="reset">Delete all items</a> 
+<a class="resetButton" id="openResetModal">Delete all items</a> 
 </div>
  
 
