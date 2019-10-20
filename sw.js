@@ -2,6 +2,7 @@ const cachedFiles = [
     '/',
     '/index.html',
     'js/app.js',
+    'js/settings.js',
     'js/userInformation.js',
     'data/userInformation.json',
     'img/profile.jpg',
