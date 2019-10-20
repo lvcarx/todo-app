@@ -2,6 +2,7 @@ const cachedFiles = [
     '/',
     '/index.html',
     'js/app.js',
+    'js/settings.js',
     'js/userInformation.js',
     'data/userInformation.json',
     'img/profile.jpg',
@@ -20,7 +21,7 @@ self.addEventListener('fetch', function(e) {
     e.respondWith(
         caches.match(e.request).then(function(response) {
             if (response) {
-                console.log('Found', e.request, 'in cache');
+                // console.log('Found', e.request, 'in cache');
                 return response;
             }
             else {
