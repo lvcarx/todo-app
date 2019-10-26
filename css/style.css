@@ -51,7 +51,15 @@ body.dark #content .inputWrapper input[type="text"] {
 
     border: 2px solid #707070;
     background: #333333;
-    
+    transition: all 0.2s ease;
+
+}
+
+body.dark #content .inputWrapper input[type="text"]:focus {
+
+    border: 2px solid #ffffff;
+    outline: none;
+
 }
 
 body.dark #content .itemWrapper {
@@ -60,7 +68,20 @@ body.dark #content .itemWrapper {
 
 }
 
+#settings {
 
+    background: url(/img/settings-2.svg);
+    background-repeat: no-repeat;
+    height: 30px;
+    width: 30px;
+
+}
+
+body.dark #settings {
+
+    background: url(/img/settings-light.svg);
+    
+}
 
 @media (prefers-color-scheme: light) {
     body {
@@ -120,6 +141,12 @@ h1 {
 
 }
 
+body.dark .modal {
+
+    background: #202020;
+
+}
+
 .modal.opened {
 
     visibility: visible;
@@ -127,12 +154,27 @@ h1 {
 
 }
 
+.modal h2 {
+
+    display: inline-block;
+
+}
+
 .close {
 
+    margin-block-start: 0.83em;
     width: 30px;
     height: 30px;
     display: block;
     float: right;
+    background: url(/img/close.svg);
+    cursor: pointer;
+
+}
+
+.dark .close {
+
+    background: url(/img/close-light.svg);
 
 }
 
@@ -201,6 +243,14 @@ h1 {
     padding: 8px 7px;
     font-size: 17px;
     border-radius: 5px;
+    transition: all 0.2s ease;
+
+}
+
+#content .inputWrapper input[type="text"]:focus {
+
+    border: 2px solid #cecece;
+    outline: none;
 
 }
 
@@ -229,7 +279,7 @@ h1 {
 #content .itemWrapper {
 
     text-align: left;
-    margin-top: 20px;
+    margin-top: 40px;
     padding-bottom: 25px;
     margin-bottom: 25px;
     border-bottom: 2px solid #f2f2f2;
@@ -254,6 +304,32 @@ h1 {
 
 }
 
+#content .itemWrapper ul li.favoriteItem {
+
+    background: #305dff;
+
+}
+
+#content .itemWrapper ul li a.textWrapper {
+
+    display: block;
+    margin-bottom: 25px;
+    font-weight: 600;
+
+}
+
+#content .itemWrapper ul li a.button {
+
+    background: #e8e8e8;
+    padding: 10px;
+    border-radius: 5px;
+    display: inline-block;
+    width: 45%;
+    margin: 0 2.5%;
+    text-align: center;
+
+}
+
 .sortable-ghost {
 
     background: rgb(199, 199, 199) !important;
@@ -273,6 +349,8 @@ footer {
     position: absolute;
     top: 0;
     right: 0;
+    text-align: right;
+    padding: 20px;
 
 }
 
@@ -283,11 +361,27 @@ footer {
     display: block;
     overflow: hidden;
     border-radius: 50%;
+    float: right;
+
+}
+
+.userInformation .profileText {
+
+    display: block;
+    float: left;
+    line-height: 80px;
+    margin: 0 15px 0 0;
+
+}
+
+.userInformation .profileText p {
+
+    display: inline;
 
 }
 
 .userInformation img {
 
-    max-width: 100px;
+    max-width: 80px;
 
 }
