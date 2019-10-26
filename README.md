@@ -18,7 +18,11 @@
 - rückmeldung wenn leeres eingabefeld
 - Darkmode (own toggle)
 - Benachrichtigungen
-- 
+- right click
+- favorite feature
+- updating user information
+- login screen
+
 
 Known Bugs:
 
