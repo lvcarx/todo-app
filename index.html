@@ -24,24 +24,33 @@
 
 <div class="userInformation">
 <div class="profilePictureWrapper"><img id="profilePicture"></div>
-<p id="nameField"></p>
-<p id="mailField"></p>
-<span id="role"></span>
+<div class="profileText">
+    <p>Eingeloggt als: </p><p id="nameField"></p>
+    <!-- <p id="mailField"></p> -->
+    <span id="role"></span>
+</div>
 </div>
 
 <div id="settings">
-<img src="/img/settings-2.svg">    
+<!-- <img src="/img/settings-2.svg">     -->
 </div>
 
 <div class="modal" id="settingsModal">
     <h2>Settings</h2>
-    <a class="" id="darkModeToggle">Dark Mode</a>
+    <div class="content">
+        <h3>User information</h3>
+        <input placeholder="Username" type="text">
+
+        <a class="" id="darkModeToggle">Dark Mode</a>
+    </div>
 </div>
 
 <div class="modal" id="deleteModal">
     <h2>Do you really want to delete all items?</h2>
-    <a class="" id="">no</a>
-    <a class="" id="reset">yes</a>
+    <div class="content">
+        <a class="" id="">no</a>
+        <a class="" id="reset">yes</a>
+    </div>
 </div>
 
 <div id="content">

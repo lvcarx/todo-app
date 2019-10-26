@@ -79,12 +79,33 @@ function createList() {
     para.className = "listElement" + counter;
     para.setAttribute("onclick", "removeListItem(this)");
     var node = document.createTextNode(tasks);
-    para.appendChild(node);
-    element.appendChild(para);
     
-    var para2 = document.createElement("a");
-    para.appendChild(para2);
-    para2.className = "test" + counter;
+    const textWrapper = document.createElement("a");
+    textWrapper.setAttribute("class", "textWrapper");
+
+    const handleButtons = document.createElement("a");
+        handleButtons.innerText = "Handle";
+        handleButtons.setAttribute("class", "handle");
+
+    const deleteButtons = document.createElement("a");
+    deleteButtons.innerText = "Delete";
+    deleteButtons.setAttribute("id", "delete");
+    deleteButtons.setAttribute("class", "button delete");
+
+    const favoriteButtons = document.createElement("a");
+    favoriteButtons.innerText = "Favorite";
+    favoriteButtons.setAttribute("id", "favorite");
+    favoriteButtons.setAttribute("onclick", "addFavorite()");
+    favoriteButtons.setAttribute("class", "button favoriteButton");
+    favoriteButtons.setAttribute("onclick", "favoriteListItem(this)");
+
+    para.appendChild(textWrapper);
+    textWrapper.appendChild(node);
+    para.appendChild(deleteButtons);
+    para.appendChild(favoriteButtons);
+    para.appendChild(handleButtons);
+    // para.appendChild(node);
+    element.appendChild(para);
 
 }
 
@@ -141,9 +162,39 @@ function createInitialList() {
 
         var para = document.createElement("li");
         para.classList.add("listElement", key);
-        para.setAttribute("onclick", "removeListItem(this)");
+        // para.setAttribute("onclick", "removeListItem(this)");
         var node = document.createTextNode(value);
-        para.appendChild(node);
+        // para.appendChild(node);
+        // element.appendChild(para);
+
+        const textWrapper = document.createElement("a");
+        textWrapper.setAttribute("class", "textWrapper");
+    
+        const handleButtons = document.createElement("a");
+        handleButtons.innerText = "Handle";
+        handleButtons.setAttribute("class", "handle");
+        
+
+        const deleteButtons = document.createElement("a");
+        deleteButtons.innerText = "Delete";
+        deleteButtons.setAttribute("id", "delete");
+        deleteButtons.setAttribute("class", "button delete");
+        deleteButtons.setAttribute("onclick", "removeListItem(this)");
+    
+        const favoriteButtons = document.createElement("a");
+        favoriteButtons.innerText = "Favorite";
+        favoriteButtons.setAttribute("id", "favorite");
+        favoriteButtons.setAttribute("onclick", "addFavorite()");
+        favoriteButtons.setAttribute("class", "button favoriteButton");
+        favoriteButtons.setAttribute("onclick", "favoriteListItem(this)");
+        
+
+        para.appendChild(textWrapper);
+        textWrapper.appendChild(node);
+        para.appendChild(deleteButtons);
+        para.appendChild(favoriteButtons);
+        para.appendChild(handleButtons);
+        // para.appendChild(node);
         element.appendChild(para);
 
 
@@ -154,6 +205,31 @@ function createInitialList() {
 }
 
 window.onload = createInitialList;
+
+
+
+// FAVORITE Function
+
+function addFavorite() {
+
+    console.log('test');
+
+
+
+  
+}
+
+
+const favoriteButtons = document.getElementsByClassName("favoriteButton");
+
+for (var i = 0; i < favoriteButtons.length; i++) {
+
+    favoriteButtons[i].addEventListener('click', function (event) {
+		console.log('clicked');
+	}, false);
+
+}
+
 
 // dynamic advice wrapper 
 
@@ -172,19 +248,37 @@ if (counter > 1) {
 
 // remove item functionality
 
+
+
 function removeListItem(obj) {
-
-    console.log(obj.classList[1]);
-    localStorage.removeItem(obj.classList[1]);
-
+ 
     document.getElementById("todoItems").addEventListener("click",function(e) {
-        var tgt = e.target;
-        if (tgt.tagName.toUpperCase() == "LI") {
-          tgt.parentNode.removeChild(tgt); // or tgt.remove();
+        let tgt = e.target;
+    
+        if (tgt.id.toUpperCase() == "DELETE") {
+          tgt.parentElement.remove(); // or tgt.remove();
+          localStorage.removeItem(obj.classList[1]);
         }
       });
 
 }
+
+// favorite item functionality 
+
+function favoriteListItem(obj) {
+ 
+    document.getElementById("todoItems").addEventListener("click",function(e) {
+        let tgt = e.target;
+    
+        if (tgt.id.toUpperCase() == "FAVORITE") {
+          tgt.parentElement.classList.toggle('favoriteItem'); // or tgt.remove();
+          // localStorage.removeItem(obj.classList[1]);
+        }
+      });
+
+}
+
+
 
 
 // reset functionality
@@ -222,7 +316,7 @@ openResetModal.addEventListener('click', openDeleteModal, false);
 var el = document.getElementById('todoItems');
 var sortable = new Sortable(el, {
 	animation: 150,
-
+    handle: '.handle', // handle's class
 });
 
 
@@ -233,13 +327,13 @@ const modal = document.getElementsByClassName('modal');
 for (var i = 0; i < modal.length; i++) {
 
     const createCloseModal = document.createElement("a");
-    const closeImg = document.createElement("img");
-    closeImg.setAttribute("src", "/img/close.svg");
-    closeImg.setAttribute("id", "close");
-    closeImg.setAttribute("onclick", "closeModal()");
+    // const closeImg = document.createElement("img");
+    // closeImg.setAttribute("src", "/img/close.svg");
+    createCloseModal.setAttribute("id", "close");
+    createCloseModal.setAttribute("onclick", "closeModal()");
     createCloseModal.classList.add('close');
-    modal[i].appendChild(createCloseModal);
-    createCloseModal.appendChild(closeImg)
+    modal[i].prepend(createCloseModal);
+    // createCloseModal.appendChild(closeImg)
 
 }
 
@@ -291,3 +385,25 @@ settings.addEventListener('click', openModal, false);
 const test = document.getElementById('close');
 test.addEventListener('click', closeModal, false);
 
+
+
+
+
+
+// right click
+
+/* 
+
+if (document.addEventListener) {
+    document.addEventListener('contextmenu', function(e) {
+      alert("You've tried to open context menu"); //here you draw your own menu
+      e.preventDefault();
+    }, false);
+  } else {
+    document.attachEvent('oncontextmenu', function() {
+      alert("You've tried to open context menu");
+      window.event.returnValue = false;
+    });
+  }
+
+*/
