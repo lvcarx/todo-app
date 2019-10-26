@@ -9,11 +9,15 @@ userNameHTML.appendChild(userNode);
 
 // E-Mail
 
+/*
+
 const userMail = JSON.parse(user);
 const userMailHTML = document.getElementById('mailField');
 
 const mailNode = document.createTextNode(userMail[0].mail);
 userMailHTML.appendChild(mailNode);
+
+*/
 
 // profile picture
 
