@@ -14,14 +14,15 @@
 <script src="http://SortableJS.github.io/Sortable/Sortable.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700&display=swap" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
+<link rel="shortcut icon" type="image/x-icon" href="/img/favicon.png">
 <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
 </head>
 
 
 <body>
-<h1>ToDo App</h1>
-
+<!-- <h1>ToDo App</h1> -->
+<img src="/img/logo2.svg" class="logo">
 <div class="userInformation">
 <div class="profilePictureWrapper"><img id="profilePicture"></div>
 <div class="profileText">
@@ -39,9 +40,18 @@
     <h2>Settings</h2>
     <div class="content">
         <h3>User information</h3>
-        <input placeholder="Username" type="text">
+        <form id="form">
+            <input placeholder="Username" id="userName" type="text">
+            <input placeholder="E-Mail" id="userName" type="text">
+            
+            <a onclick="updateUserCount()">Save changes</a>
+        </form>
+        
 
+        <a href="">Delete all User Information</a>
+        <h3>Appearance</h3>
         <a class="" id="darkModeToggle">Dark Mode</a>
+
     </div>
 </div>
 
@@ -74,8 +84,11 @@
  
 
 <footer>
-<a href=""></a>
+<a href="/features.html">Was kann diese App?</a>
+
+
 <a href="https://reichmann.digital">Made with ❤️ by reichmann.digital</a>
+
 
 
 </footer>
