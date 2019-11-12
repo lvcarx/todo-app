@@ -1,11 +1,21 @@
 
 // Username
 
-const userName = JSON.parse(user);
-const userNameHTML = document.getElementById('nameField');
+// const userName = JSON.parse(user);
 
-const userNode = document.createTextNode(userName[0].name);
-userNameHTML.appendChild(userNode);
+// let userName;
+
+function updateUserCount() {
+
+    const userNameHTML = document.getElementById('nameField');
+    //let userName = "Luca Reichmann";
+    let userName = document.getElementById("userName").value;
+    const userNode = document.createTextNode(userName);
+    userNameHTML.appendChild(userNode);
+    
+}
+
+
 
 // E-Mail
 

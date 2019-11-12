@@ -19,7 +19,7 @@
 - Darkmode (own toggle)
 - Benachrichtigungen
 - right click
-- favorite feature
+- favorite feature // implemented
 - updating user information
 - login screen
 

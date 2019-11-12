@@ -11,7 +11,7 @@ var element = document.getElementById("todoItems");
 const form = document.getElementById("form");
 const submitButton = document.getElementById('submit');
 var input = document.getElementById("box");
-
+const actionAreaSwitcher = document.getElementsByClassName("actionArea");
 
 if (localStorage.getItem("task:1") === null) {
     counter = localStorage.setItem('counter', JSON.stringify(counter));
@@ -77,35 +77,53 @@ function createList() {
     var tasks = JSON.parse(window.localStorage.getItem('task:' + (counter - 1)));
     var para = document.createElement("li");
     para.className = "listElement" + counter;
-    para.setAttribute("onclick", "removeListItem(this)");
+    
     var node = document.createTextNode(tasks);
     
-    const textWrapper = document.createElement("a");
-    textWrapper.setAttribute("class", "textWrapper");
 
-    const handleButtons = document.createElement("a");
-        handleButtons.innerText = "Handle";
+
+        const textWrapper = document.createElement("a");
+        textWrapper.setAttribute("class", "textWrapper");
+    
+        const edit = document.createElement("a");
+        edit.innerText = "Edit";
+        edit.setAttribute("class", "edit");  
+        edit.setAttribute("id", "edit"); 
+        edit.setAttribute("onclick", "focuseItem(this)");
+
+        const actionArea  = document.createElement("a");
+        actionArea.setAttribute("class", "actionArea");   
+        actionArea.setAttribute("id", "actionArea");  
+
+        const handleButtons = document.createElement("a");
         handleButtons.setAttribute("class", "handle");
+        
 
-    const deleteButtons = document.createElement("a");
-    deleteButtons.innerText = "Delete";
-    deleteButtons.setAttribute("id", "delete");
-    deleteButtons.setAttribute("class", "button delete");
+        const deleteButtons = document.createElement("a");
+        deleteButtons.innerText = "Delete";
+        deleteButtons.setAttribute("id", "delete");
+        deleteButtons.setAttribute("class", "button delete");
+        deleteButtons.setAttribute("onclick", "removeListItem(this)");
+    
+        const favoriteButtons = document.createElement("a");
+        favoriteButtons.innerText = "Favorite";
+        favoriteButtons.setAttribute("id", "favorite");
+        favoriteButtons.setAttribute("onclick", "addFavorite()");
+        favoriteButtons.setAttribute("class", "button favoriteButton");
+        favoriteButtons.setAttribute("onclick", "favoriteListItem(this)");
+        
 
-    const favoriteButtons = document.createElement("a");
-    favoriteButtons.innerText = "Favorite";
-    favoriteButtons.setAttribute("id", "favorite");
-    favoriteButtons.setAttribute("onclick", "addFavorite()");
-    favoriteButtons.setAttribute("class", "button favoriteButton");
-    favoriteButtons.setAttribute("onclick", "favoriteListItem(this)");
+        para.appendChild(textWrapper);
+        para.appendChild(edit);
+        textWrapper.appendChild(node);
+        para.appendChild(actionArea);
+        actionArea.appendChild(handleButtons);
+        actionArea.appendChild(deleteButtons);
+        actionArea.appendChild(favoriteButtons);
+        
+        // para.appendChild(node);
+        element.appendChild(para);
 
-    para.appendChild(textWrapper);
-    textWrapper.appendChild(node);
-    para.appendChild(deleteButtons);
-    para.appendChild(favoriteButtons);
-    para.appendChild(handleButtons);
-    // para.appendChild(node);
-    element.appendChild(para);
 
 }
 
@@ -162,7 +180,7 @@ function createInitialList() {
 
         var para = document.createElement("li");
         para.classList.add("listElement", key);
-        // para.setAttribute("onclick", "removeListItem(this)");
+        
         var node = document.createTextNode(value);
         // para.appendChild(node);
         // element.appendChild(para);
@@ -170,8 +188,17 @@ function createInitialList() {
         const textWrapper = document.createElement("a");
         textWrapper.setAttribute("class", "textWrapper");
     
+        const edit = document.createElement("a");
+        edit.innerText = "Edit";
+        edit.setAttribute("class", "edit");  
+        edit.setAttribute("id", "edit"); 
+        edit.setAttribute("onclick", "focuseItem(this)");
+
+        const actionArea  = document.createElement("a");
+        actionArea.setAttribute("class", "actionArea");   
+        actionArea.setAttribute("id", "actionArea");  
+
         const handleButtons = document.createElement("a");
-        handleButtons.innerText = "Handle";
         handleButtons.setAttribute("class", "handle");
         
 
@@ -190,10 +217,13 @@ function createInitialList() {
         
 
         para.appendChild(textWrapper);
+        para.appendChild(edit);
         textWrapper.appendChild(node);
-        para.appendChild(deleteButtons);
-        para.appendChild(favoriteButtons);
-        para.appendChild(handleButtons);
+        para.appendChild(actionArea);
+        actionArea.appendChild(handleButtons);
+        actionArea.appendChild(deleteButtons);
+        actionArea.appendChild(favoriteButtons);
+        
         // para.appendChild(node);
         element.appendChild(para);
 
@@ -246,40 +276,36 @@ if (counter > 1) {
 }
 
 
+// actionArea
+for (var i = 0; i < actionAreaSwitcher.length; i++) {
+
+    actionAreaSwitcher[i].addEventListener("click", function(event) {
+
+        console.log('test');
+        actionAreaSwitcher[i].classList.add("test");
+
+    }, false);
+
+}   
+
 // remove item functionality
 
-
-
 function removeListItem(obj) {
- 
-    document.getElementById("todoItems").addEventListener("click",function(e) {
-        let tgt = e.target;
-    
-        if (tgt.id.toUpperCase() == "DELETE") {
-          tgt.parentElement.remove(); // or tgt.remove();
-          localStorage.removeItem(obj.classList[1]);
-        }
-      });
+    obj.parentNode.parentNode.remove();
+    localStorage.removeItem(obj.parentNode.parentNode.classList[1]);
+}
 
+function focuseItem(obj) {
+    obj.parentNode.classList.toggle('opened'); 
 }
 
 // favorite item functionality 
 
+
+
 function favoriteListItem(obj) {
- 
-    document.getElementById("todoItems").addEventListener("click",function(e) {
-        let tgt = e.target;
-    
-        if (tgt.id.toUpperCase() == "FAVORITE") {
-          tgt.parentElement.classList.toggle('favoriteItem'); // or tgt.remove();
-          // localStorage.removeItem(obj.classList[1]);
-        }
-      });
-
+    obj.parentNode.parentNode.classList.toggle('favoriteItem'); 
 }
-
-
-
 
 // reset functionality
 
