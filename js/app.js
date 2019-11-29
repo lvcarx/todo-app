@@ -203,13 +203,13 @@ function createInitialList() {
         
 
         const deleteButtons = document.createElement("a");
-        deleteButtons.innerText = "Delete";
+        //deleteButtons.innerText = "Delete";
         deleteButtons.setAttribute("id", "delete");
         deleteButtons.setAttribute("class", "button delete");
         deleteButtons.setAttribute("onclick", "removeListItem(this)");
     
         const favoriteButtons = document.createElement("a");
-        favoriteButtons.innerText = "Favorite";
+        // favoriteButtons.innerText = "Favorite";
         favoriteButtons.setAttribute("id", "favorite");
         favoriteButtons.setAttribute("onclick", "addFavorite()");
         favoriteButtons.setAttribute("class", "button favoriteButton");
@@ -263,7 +263,7 @@ for (var i = 0; i < favoriteButtons.length; i++) {
 
 // dynamic advice wrapper 
 
-const advice = document.getElementById("advice");
+/**const advice = document.getElementById("advice");
 
 if (counter > 1) {
 
@@ -274,7 +274,7 @@ if (counter > 1) {
     advice.textContent = "enter items";
 
 }
-
+*/
 
 // actionArea
 for (var i = 0; i < actionAreaSwitcher.length; i++) {
