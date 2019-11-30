@@ -373,16 +373,38 @@ body.dark .modal {
     border: 1px solid #e8e8e8;
     border-radius: 5px;
     padding: 13px;
+    height: auto;
+    max-height: 160px;
     cursor: pointer;
     position: relative;
     transition: all 0.3s ease;
 
 }
 
+#content .itemWrapper ul li.removed {
+
+   max-height: 0;
+   height: auto;
+   visibility: hidden;
+   opacity: 0;
+
+}
+
+#content .itemWrapper ul li .check {
+
+    width: 23px;
+    height: 23px;
+    border-radius: 50%;
+    border: 2px solid #364684;
+    display: inline-block;
+    margin-right: 15px;
+    float: left;
+
+}
+
 #content .itemWrapper ul li .edit {
 
     position: absolute;
-    top: 7px;
     right: 7px;
     transition: all 0.3s ease;
 
@@ -466,7 +488,7 @@ body.dark #content .itemWrapper ul li .handle:after {
 
 #content .itemWrapper ul li a.textWrapper {
 
-    display: block;
+    display: inline-block;
     /* margin-bottom: 25px; */ 
     font-weight: 600;
 
