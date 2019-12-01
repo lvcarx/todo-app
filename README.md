@@ -22,6 +22,9 @@
 - favorite feature // implemented
 - updating user information
 - login screen
+- more personaliszation
+- Today/Pending/General sections
+- Modal when deleting items
 
 
 Known Bugs:

@@ -200,24 +200,30 @@ function createInitialList() {
 
         const handleButtons = document.createElement("a");
         handleButtons.setAttribute("class", "handle");
-        
+
+        const checkButton = document.createElement("a");
+        //deleteButtons.innerText = "Delete";
+        checkButton.setAttribute("id", "check");
+        checkButton.setAttribute("class", "check");
+        checkButton.setAttribute("onclick", "checkListItem(this)");        
 
         const deleteButtons = document.createElement("a");
-        deleteButtons.innerText = "Delete";
+        //deleteButtons.innerText = "Delete";
         deleteButtons.setAttribute("id", "delete");
         deleteButtons.setAttribute("class", "button delete");
         deleteButtons.setAttribute("onclick", "removeListItem(this)");
     
         const favoriteButtons = document.createElement("a");
-        favoriteButtons.innerText = "Favorite";
+        // favoriteButtons.innerText = "Favorite";
         favoriteButtons.setAttribute("id", "favorite");
         favoriteButtons.setAttribute("onclick", "addFavorite()");
         favoriteButtons.setAttribute("class", "button favoriteButton");
         favoriteButtons.setAttribute("onclick", "favoriteListItem(this)");
         
-
+        para.appendChild(checkButton);
         para.appendChild(textWrapper);
         para.appendChild(edit);
+        
         textWrapper.appendChild(node);
         para.appendChild(actionArea);
         actionArea.appendChild(handleButtons);
@@ -263,7 +269,7 @@ for (var i = 0; i < favoriteButtons.length; i++) {
 
 // dynamic advice wrapper 
 
-const advice = document.getElementById("advice");
+/**const advice = document.getElementById("advice");
 
 if (counter > 1) {
 
@@ -274,7 +280,7 @@ if (counter > 1) {
     advice.textContent = "enter items";
 
 }
-
+*/
 
 // actionArea
 for (var i = 0; i < actionAreaSwitcher.length; i++) {
@@ -291,8 +297,10 @@ for (var i = 0; i < actionAreaSwitcher.length; i++) {
 // remove item functionality
 
 function removeListItem(obj) {
+    
     obj.parentNode.parentNode.remove();
     localStorage.removeItem(obj.parentNode.parentNode.classList[1]);
+    
 }
 
 function focuseItem(obj) {
@@ -301,10 +309,27 @@ function focuseItem(obj) {
 
 // favorite item functionality 
 
-
-
 function favoriteListItem(obj) {
     obj.parentNode.parentNode.classList.toggle('favoriteItem'); 
+}
+
+// check item functionality
+
+var myVar;
+
+function checkListItem(obj) {
+
+    obj.parentNode.classList.add('removed');
+
+    setTimeout(function() { 
+        obj.parentNode.remove();
+        localStorage.removeItem(obj.parentNode.classList[1]);
+    }, 2000);
+
+    // myVar = setTimeout(removeListItem, 55000);
+    //obj.parentNode.parentNode.remove();
+    // localStorage.removeItem(obj.parentNode.parentNode.classList[1]);
+
 }
 
 // reset functionality

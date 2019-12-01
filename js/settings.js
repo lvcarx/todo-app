@@ -1,4 +1,5 @@
 
+
 const isDarkModeActivatedOnStart = localStorage.getItem('mode');
 
 if (isDarkModeActivatedOnStart === 'true') {
@@ -79,4 +80,102 @@ darkModeToggle.addEventListener('click', switchToDark, false);
 
 // Write Dark Settings to local storage
 
+// Color mode settings
 
+let colorTheme;
+let colorThemeStorage = localStorage.getItem('colorTheme');
+
+function loadTheme() {
+
+    if (colorThemeStorage == "blue") {
+        console.log("yeah");
+        body.classList.add('blueTheme');
+    } else if (colorThemeStorage == "green") {
+        console.log('greeny');
+        body.classList.add('greenTheme');
+    } else if (colorThemeStorage == "pink") {
+        console.log('pinki pink');
+        body.classList.add('pinkTheme');
+    }
+
+
+}
+
+loadTheme();
+
+function blueTheme() {
+
+    document.getElementById('body');
+    body.classList.add('blueTheme');
+    colorTheme = "blue";
+    localStorage.setItem('colorTheme', colorTheme);
+
+    if (body.classList.contains('greenTheme')) {
+        body.classList.remove('greenTheme');
+    } else if (body.classList.contains('pinkTheme')) {
+        body.classList.remove('pinkTheme');
+    }
+
+    console.log('blue');
+
+}
+
+
+
+function greenTheme() {
+
+    document.getElementById('body');
+    body.classList.add('greenTheme');
+    colorTheme = "green";
+    localStorage.setItem('colorTheme', colorTheme);
+
+    if (body.classList.contains('blueTheme')) {
+        body.classList.remove('blueTheme');
+    } else if (body.classList.contains('pinkTheme')) {
+        body.classList.remove('pinkTheme');
+    }
+
+    console.log('blue');
+
+}
+
+function pinkTheme() {
+
+    document.getElementById('body');
+    body.classList.add('pinkTheme');
+    colorTheme = "pink";
+    localStorage.setItem('colorTheme', colorTheme);
+
+    if (body.classList.contains('blueTheme')) {
+        body.classList.remove('blueTheme');
+    } else if (body.classList.contains('greenTheme')) {
+        body.classList.remove('greenTheme');
+    }
+
+
+    console.log('blue');
+
+}
+
+function changeTheme(event) {
+    console.log(event.target);
+    if(event.target.classList.contains("blue")) {
+      blueTheme();
+    }
+    console.log(event.target);
+    if(event.target.classList.contains("green")) {
+      greenTheme();
+    }
+    console.log(event.target);
+    if(event.target.classList.contains("pink")) {
+      pinkTheme();
+    }
+}
+
+const blueToggle = document.getElementById('blueMode');
+const greenToggle = document.getElementById('greenMode');
+const pinkToggle = document.getElementById('pinkMode');
+
+blueToggle.addEventListener('click', changeTheme, false);
+greenToggle.addEventListener('click', changeTheme, false);
+pinkToggle.addEventListener('click', changeTheme, false);

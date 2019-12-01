@@ -14,15 +14,15 @@
 <script src="http://SortableJS.github.io/Sortable/Sortable.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700&display=swap" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
-<link rel="shortcut icon" type="image/x-icon" href="/img/favicon.png">
+<link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
 <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
 </head>
 
 
-<body>
+<body id="body">
 <!-- <h1>ToDo App</h1> -->
-<img src="/img/logo2.svg" class="logo">
+<img src="img/logo3.svg" class="logo">
 <div class="userInformation">
 <div class="profilePictureWrapper"><img id="profilePicture"></div>
 <div class="profileText">
@@ -51,7 +51,12 @@
         <a href="">Delete all User Information</a>
         <h3>Appearance</h3>
         <a class="" id="darkModeToggle">Dark Mode</a>
-
+        <h4>Colors</h4>
+        <div class="colorPicker">
+            <a class="color blue" id="blueMode" onclick="blueTheme(event)"></a>
+            <a class="color green" id="greenMode" onclick="greenTheme(event)"></a>
+            <a class="color pink" id="pinkMode" onclick="pinkTheme(event)"></a>
+        </div>
     </div>
 </div>
 
@@ -65,19 +70,25 @@
 
 <div id="content">
 <form id="form" onsubmit="return setItems()">
-    <p>Please insert the items</p>
     <div class="inputWrapper">
         <p id="errorNotice"></p>
-        <input type="text" id="box" placeholder="type here...">
+        <input type="text" id="box" placeholder="Add a task">
         <input type="button" id="submit" value="Add to list" onclick="return setItems()">
     </div>
 </form>
 
     
 
-<div class="itemWrapper">
+<div class="itemWrapper todaySection">
+    <h2>Your tasks / Today</h2>
     <ul id="todoItems"></ul>
 </div>
+
+<div class="itemWrapper doneSection">
+    <h2>Your tasks / Done</h2>
+    <ul id="todoItems"></ul>
+</div>
+
 <p id="advice"></p>
 <a class="resetButton" id="openResetModal">Delete all items</a> 
 </div>
