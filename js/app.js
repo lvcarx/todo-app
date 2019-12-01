@@ -220,7 +220,7 @@ function createInitialList() {
         favoriteButtons.setAttribute("class", "button favoriteButton");
         favoriteButtons.setAttribute("onclick", "favoriteListItem(this)");
         
-        actionArea.appendChild(checkButton);
+        para.appendChild(checkButton);
         para.appendChild(textWrapper);
         para.appendChild(edit);
         
@@ -319,11 +319,11 @@ var myVar;
 
 function checkListItem(obj) {
 
-    obj.parentNode.parentNode.classList.add('removed');
+    obj.parentNode.classList.add('removed');
 
     setTimeout(function() { 
-        obj.parentNode.parentNode.remove();
-        localStorage.removeItem(obj.parentNode.parentNode.classList[1]);
+        obj.parentNode.remove();
+        localStorage.removeItem(obj.parentNode.classList[1]);
     }, 2000);
 
     // myVar = setTimeout(removeListItem, 55000);
