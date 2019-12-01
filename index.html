@@ -23,14 +23,14 @@
 <body id="body">
 <!-- <h1>ToDo App</h1> -->
 <img src="img/logo3.svg" class="logo">
-<div class="userInformation">
+<!-- <div class="userInformation">
 <div class="profilePictureWrapper"><img id="profilePicture"></div>
 <div class="profileText">
     <p>Eingeloggt als: </p><p id="nameField"></p>
-    <!-- <p id="mailField"></p> -->
+    <p id="mailField"></p> 
     <span id="role"></span>
 </div>
-</div>
+</div> -->
 
 <div id="settings">
 <!-- <img src="/img/settings-2.svg">     -->
@@ -39,7 +39,7 @@
 <div class="modal" id="settingsModal">
     <h2>Settings</h2>
     <div class="content">
-        <h3>User information</h3>
+        <!-- <h3>User information</h3>
         <form id="form">
             <input placeholder="Username" id="userName" type="text">
             <input placeholder="E-Mail" id="userName" type="text">
@@ -48,7 +48,7 @@
         </form>
         
 
-        <a href="">Delete all User Information</a>
+        <a href="">Delete all User Information</a> -->
         <h3>Appearance</h3>
         <a class="" id="darkModeToggle">Dark Mode</a>
         <h4>Colors</h4>
@@ -60,11 +60,12 @@
     </div>
 </div>
 
-<div class="modal" id="deleteModal">
+<div class="modal deleteModal" id="deleteModal">
     <h2>Do you really want to delete all items?</h2>
+    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
     <div class="content">
-        <a class="" id="">no</a>
-        <a class="" id="reset">yes</a>
+        <a class="noBtn" id="abort" onclick="abortModal(event)">abort</a>
+        <a class="yesBtn" id="reset">continue</a>
     </div>
 </div>
 
@@ -80,12 +81,12 @@
     
 
 <div class="itemWrapper todaySection">
-    <h2>Your tasks / Today</h2>
+    <h2>Today</h2>
     <ul id="todoItems"></ul>
 </div>
 
 <div class="itemWrapper doneSection">
-    <h2>Your tasks / Done</h2>
+    <h2>Pending</h2>
     <ul id="todoItems"></ul>
 </div>
 
