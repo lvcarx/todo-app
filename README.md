@@ -25,6 +25,7 @@
 - more personaliszation
 - Today/Pending/General sections
 - Modal when deleting items
+- update system
 
 
 Known Bugs:
