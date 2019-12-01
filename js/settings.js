@@ -1,4 +1,5 @@
 
+
 const isDarkModeActivatedOnStart = localStorage.getItem('mode');
 
 if (isDarkModeActivatedOnStart === 'true') {
@@ -81,10 +82,33 @@ darkModeToggle.addEventListener('click', switchToDark, false);
 
 // Color mode settings
 
+let colorTheme;
+let colorThemeStorage = localStorage.getItem('colorTheme');
+
+function loadTheme() {
+
+    if (colorThemeStorage == "blue") {
+        console.log("yeah");
+        body.classList.add('blueTheme');
+    } else if (colorThemeStorage == "green") {
+        console.log('greeny');
+        body.classList.add('greenTheme');
+    } else if (colorThemeStorage == "pink") {
+        console.log('pinki pink');
+        body.classList.add('pinkTheme');
+    }
+
+
+}
+
+loadTheme();
+
 function blueTheme() {
 
     document.getElementById('body');
     body.classList.add('blueTheme');
+    colorTheme = "blue";
+    localStorage.setItem('colorTheme', colorTheme);
 
     if (body.classList.contains('greenTheme')) {
         body.classList.remove('greenTheme');
@@ -96,10 +120,14 @@ function blueTheme() {
 
 }
 
+
+
 function greenTheme() {
 
     document.getElementById('body');
     body.classList.add('greenTheme');
+    colorTheme = "green";
+    localStorage.setItem('colorTheme', colorTheme);
 
     if (body.classList.contains('blueTheme')) {
         body.classList.remove('blueTheme');
@@ -115,6 +143,8 @@ function pinkTheme() {
 
     document.getElementById('body');
     body.classList.add('pinkTheme');
+    colorTheme = "pink";
+    localStorage.setItem('colorTheme', colorTheme);
 
     if (body.classList.contains('blueTheme')) {
         body.classList.remove('blueTheme');
