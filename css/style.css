@@ -230,11 +230,25 @@ body.dark .modal {
 
 }
 
+.startModal .close {
+
+    display: none;
+
+}
+
+.startModal .close.startModalClose {
+
+    display: block;
+
+}
+
 .modal.deleteModal {
 
    min-height: 0;
 
 }
+
+
 
 .modal.deleteModal .content {
 
