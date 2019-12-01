@@ -19,9 +19,6 @@ if (localStorage.getItem("task:1") === null) {
 
 counter = localStorage.getItem('counter', JSON.stringify(counter));
 
-
-
-
 // increase counter function
 
 function increaseCounteronenter() {
@@ -335,12 +332,29 @@ function checkListItem(obj) {
 // reset functionality
 
 const resetButton = document.getElementById('reset');
-
+console.log(counter.length);
 function resetItems() {
+    console.log(counter);
+    //localStorage.clear();
+    for (let i; i < counter; i++) {
+        localStorage.removeItem('task:' + counter[i]);
+    }
 
-    localStorage.clear();
+    if (localStorage.contains("task")) {
+        console.log("this works");
+
+    }
+
     element.innerHTML = "";
     counter = 1;
+
+}
+
+const abortButton = document.getElementById('abort');
+
+function abortModal(event) {
+
+   event.target.parentNode.parentNode.classList.remove('opened');
 
 }
 
