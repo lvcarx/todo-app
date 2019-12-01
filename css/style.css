@@ -230,6 +230,37 @@ body.dark .modal {
 
 }
 
+.modal.deleteModal {
+
+   min-height: 0;
+
+}
+
+.modal.deleteModal .content {
+
+    display: block;
+    margin-top: 30px;
+    overflow: auto;
+
+}
+
+.deleteModal .yesBtn {
+
+    background: #e62525;
+    color: #fff;
+    padding: 6px 20px;
+    border-radius: 3px;
+    float: right;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+}
+
+.deleteModal .yesBtn:hover {
+
+    background: #d42020;
+
+}
 
 .close {
 
@@ -574,6 +605,8 @@ body.dark #content .itemWrapper ul li .handle:after {
     background-size: cover;
 
 }
+
+
 
 /* #content .itemWrapper ul li a.button.delete:hover {
 
