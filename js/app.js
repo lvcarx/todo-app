@@ -378,11 +378,23 @@ openResetModal.addEventListener('click', openDeleteModal, false);
 
 // SORTABLE JS config
 
-var el = document.getElementById('todoItems');
-var sortable = new Sortable(el, {
-	animation: 150,
+var today = document.getElementById('todoItems');
+var sortable = new Sortable(today, {
+    animation: 150,
+    group: 'shared',
     handle: '.handle', // handle's class
 });
+
+var pending = document.getElementById('pendingTodoItems');
+var sortable = new Sortable(pending, {
+    animation: 150,
+    group: 'shared',
+    handle: '.handle', // handle's class
+});
+
+
+
+
 
 
 // settings modal
