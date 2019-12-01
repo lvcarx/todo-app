@@ -12,7 +12,9 @@ body {
 
     font-family: 'Noto Sans', sans-serif;
     background: #f2f9ff !important;
+    background: #fff !important;
     /* background: #fff1ea !important;*/
+    transition: all 0.3s ease;
 
 }
 
