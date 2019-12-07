@@ -96,6 +96,13 @@ body.dark #content .itemWrapper {
     height: 40px;
     width: 40px;
     cursor: pointer;
+    transition: all 16s linear;
+
+}
+
+#settings:hover {
+
+    transform: rotate(360deg);
 
 }
 
@@ -242,13 +249,30 @@ body.dark .modal {
 
 }
 
+.startModal .feature {
+
+    width: 50%;
+    float: left;
+    text-align: center;
+    margin-top: 20px;
+    padding-bottom: 20px;
+    font-weight: 700;
+
+}
+
+.startModal .feature img {
+
+    display: block;
+    margin: 0 auto;
+    max-width: 140px;
+
+}
+
 .modal.deleteModal {
 
    min-height: 0;
 
 }
-
-
 
 .modal.deleteModal .content {
 
@@ -388,7 +412,7 @@ body.dark .modal {
 
 #content .inputWrapper input[type="button"]:hover {
 
-    background: #284fda;
+    background: #28345f;
 
 }
 
