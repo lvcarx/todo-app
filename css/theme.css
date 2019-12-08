@@ -1,0 +1,125 @@
+/* dark */
+
+
+body.dark {
+
+    background-color: #000 !important;
+    color: #fff;
+
+}
+
+body.dark .logo {
+
+    background: url(/img/new/logoLight.svg) no-repeat;
+
+}
+
+body.dark #content {
+
+    background: #202020;
+
+}
+
+body.dark a {
+
+    color: #fff;
+
+}
+
+body.dark #content .itemWrapper ul li {
+   
+    background: #333333;
+    
+}
+
+body.dark #content .inputWrapper input[type="text"] {
+
+    border: 2px solid #707070;
+    background: #333333;
+    transition: all 0.2s ease;
+
+}
+
+body.dark #content .inputWrapper input[type="text"]:focus {
+
+    border: 2px solid #ffffff;
+    outline: none;
+
+}
+
+body.dark #content .itemWrapper {
+
+    border-bottom: 2px solid #383838;
+
+}
+
+body.dark .modal {
+
+    background: #202020;
+
+}
+
+body.dark #content .itemWrapper {
+
+    background: #202020;
+
+}   
+
+body.dark #content .itemWrapper ul li {
+
+    border: 1px solid #0b0b0b;
+
+}
+
+body.dark #content .inputWrapper input[type="button"] {
+    background: #7DC2EB;
+
+}
+
+body.dark #content .inputWrapper input[type="button"]:hover {
+    background: #348DAE;
+
+}
+
+body.dark #content .itemWrapper ul li .edit:hover {
+    color: #7DC2EB;
+}
+
+body.dark #content .itemWrapper ul li.opened .edit {
+    color: #7DC2EB;
+}
+
+body.dark #content .itemWrapper ul li .check {
+    border: 2px solid #7DC2EB;
+
+}
+
+/* DARK ICONS */
+
+body.dark #settings {
+
+    background: url(../img/new/dark/settings-dark.svg);
+    transition: none;
+
+}
+
+body.dark #content .itemWrapper ul li a.button.favoriteButton {
+    background: url(../img/new/dark/favorite-dark.svg) no-repeat;
+    background-size: cover;
+}
+
+body.dark #content .itemWrapper ul li a.button.delete {
+    background: url(../img/new/dark/close-dark.svg) no-repeat;
+    background-size: cover;
+}
+
+body.dark #content .itemWrapper ul li a.handle {
+    height: 37px;
+    width: 37px;
+    background: url(../img/new/dark/handle-dark.svg) no-repeat;
+
+}
+
+.dark .close {
+    background: url(../img/new/dark/close-dark.svg);
+}
