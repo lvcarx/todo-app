@@ -88,6 +88,12 @@ function createList() {
         edit.setAttribute("id", "edit"); 
         edit.setAttribute("onclick", "focuseItem(this)");
 
+        const checkButton = document.createElement("a");
+        //deleteButtons.innerText = "Delete";
+        checkButton.setAttribute("id", "check");
+        checkButton.setAttribute("class", "check");
+        checkButton.setAttribute("onclick", "checkListItem(this)");   
+
         const actionArea  = document.createElement("a");
         actionArea.setAttribute("class", "actionArea");   
         actionArea.setAttribute("id", "actionArea");  
@@ -97,26 +103,31 @@ function createList() {
         
 
         const deleteButtons = document.createElement("a");
-        deleteButtons.innerText = "Delete";
+        //deleteButtons.innerText = "Delete";
         deleteButtons.setAttribute("id", "delete");
         deleteButtons.setAttribute("class", "button delete");
         deleteButtons.setAttribute("onclick", "removeListItem(this)");
     
         const favoriteButtons = document.createElement("a");
-        favoriteButtons.innerText = "Favorite";
+        //favoriteButtons.innerText = "Favorite";
         favoriteButtons.setAttribute("id", "favorite");
         favoriteButtons.setAttribute("onclick", "addFavorite()");
         favoriteButtons.setAttribute("class", "button favoriteButton");
         favoriteButtons.setAttribute("onclick", "favoriteListItem(this)");
         
 
+        para.appendChild(checkButton);
         para.appendChild(textWrapper);
         para.appendChild(edit);
+        
         textWrapper.appendChild(node);
         para.appendChild(actionArea);
         actionArea.appendChild(handleButtons);
         actionArea.appendChild(deleteButtons);
         actionArea.appendChild(favoriteButtons);
+
+
+        
         
         // para.appendChild(node);
         element.appendChild(para);
