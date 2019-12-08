@@ -13,6 +13,7 @@ body {
     font-family: 'Noto Sans', sans-serif;
     background: #f2f9ff !important;
     background: #fff !important;
+    margin: 0;
     /* background: #fff1ea !important;*/
     transition: all 0.3s ease;
 
@@ -42,52 +43,7 @@ body.pinkTheme {
 
 }
 
-body.dark {
 
-    background-color: #000 !important;
-    color: #fff;
-
-}
-
-
-body.dark #content {
-
-    background: #202020;
-
-}
-
-body.dark a {
-
-    color: #fff;
-
-}
-
-body.dark #content .itemWrapper ul li {
-   
-    background: #333333;
-    
-}
-
-body.dark #content .inputWrapper input[type="text"] {
-
-    border: 2px solid #707070;
-    background: #333333;
-    transition: all 0.2s ease;
-
-}
-
-body.dark #content .inputWrapper input[type="text"]:focus {
-
-    border: 2px solid #ffffff;
-    outline: none;
-
-}
-
-body.dark #content .itemWrapper {
-
-    border-bottom: 2px solid #383838;
-
-}
 
 #settings {
 
@@ -106,11 +62,7 @@ body.dark #content .itemWrapper {
 
 }
 
-body.dark #settings {
 
-    background: url(../img/settings-light.svg);
-    
-}
 
 @media (prefers-color-scheme: light) {
     body {
@@ -133,12 +85,22 @@ h1 {
 
 }
 
+input {
+
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+
+}
+
 .logo {
 
     display: block;
-    max-width: 260px;
-    margin: 25px auto;
-
+    width: 200px;
+    height: 47;
+    margin: 20px;
+    background: url(/img/new/logoDark.svg) no-repeat;
+    background-size: cover;
 
 }
 
@@ -146,7 +108,7 @@ h1 {
 
     position: absolute;
     top: 20px;
-    left: 20px;
+    right: 20px;
 
 }
 
@@ -180,11 +142,7 @@ h1 {
 
 }
 
-body.dark .modal {
 
-    background: #202020;
-
-}
 
 .modal.opened {
 
@@ -312,11 +270,6 @@ body.dark .modal {
 
 }
 
-.dark .close {
-
-    background: url(../img/close-light.svg);
-
-}
 
 #content {
 
@@ -532,11 +485,6 @@ body.dark .modal {
 
 }
 
-body.dark #content .itemWrapper ul li.favoriteItem {
-
-    background: #305dff;
-
-}
 
 /*
 #content .itemWrapper ul li .handle:after {
@@ -724,5 +672,63 @@ footer {
 .userInformation img {
 
     max-width: 80px;
+
+}
+
+@media only screen and (max-width: 1080px) {
+
+    .logo {
+    
+        display: block;
+        width: 70%;
+        max-width: 180px;
+        margin: 20px 0 0 20px;
+        
+    
+    }
+
+    #settings {
+    
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        left: auto;
+    
+    }
+
+    .modal {
+
+        width: 95%;
+        max-width: 95%;
+        box-shadow: 0px 10px 3000px 2000px rgba(0,0,0,0.12);
+
+    }
+
+    #content {
+
+        width: 100%;
+
+    }
+
+    #content .itemWrapper {
+
+        padding-left: 9px;
+        padding-right: 9px;
+
+    }
+
+    #content .inputWrapper input[type="text"] {
+
+        width: 100%;
+
+    }
+
+    #content .inputWrapper input[type="button"] {
+
+        width: 100%;
+        margin-top: 10px;
+        padding: 8px;
+
+    }
 
 }
