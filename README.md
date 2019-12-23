@@ -27,7 +27,8 @@
 - Modal when deleting items
 - update system
 - sortieren funktion
-
+- PWA
+- push notifications
 
 Known Bugs:
 

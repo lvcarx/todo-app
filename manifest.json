@@ -1,0 +1,21 @@
+{
+    "name": "be productive.",
+    "short_name": "be productive.",
+    "lang": "de-DE",
+    "start_url": "/",
+    "display": "fullscreen",
+    "theme_color": "#364684",
+    "background_color": "#ffffff",
+    "icons": [
+      {
+        "src": "img\/favicon-512x512.png",
+        "sizes": "512x512",
+        "type": "image\/png"
+      }, 
+      {
+        "src": "img\/favicon-192x192.png",
+        "sizes": "192x192",
+        "type": "image\/png"
+      }
+    ]
+}

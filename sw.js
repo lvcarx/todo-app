@@ -6,16 +6,36 @@ const cachedFiles = [
     'js/userInformation.js',
     'data/userInformation.json',
     'img/profile.jpg',
-    'css/style.css'
-  ];
+    'css/style.css',
+    'css/theme.css',
+    'img/new/close.svg',
+    'img/new/close2.svg',
+    'img/new/edit.svg',
+    'img/new/edit2.svg',
+    'img/new/favorite.svg',
+    'img/new/favorite2.svg',
+    'img/new/handle.svg',
+    'img/new/handle2.svg',
+    'img/new/logoDark.svg',
+    'img/new/logoLight.svg',
+    'img/new/settings.svg',
+    'img/new/settings2.svg',
+    'img/new/dark/close-dark.svg',
+    'img/new/dark/edit-dark.svg',
+    'img/new/dark/favorite-dark.svg',
+    'img/new/dark/handle-dark.svg',
+    'img/new/dark/settings-dark.svg',
+    'manifest.json'
+];
 
-self.addEventListener('install', function(e) {
+ self.addEventListener('install', function(e) {
     e.waitUntil(
         caches.open('v1').then(function(cache) {
             return cache.addAll(cachedFiles);
         })
     );
-  }); 
+  })
+
 
 self.addEventListener('fetch', function(e) {
     e.respondWith(
@@ -41,3 +61,5 @@ self.addEventListener('fetch', function(e) {
         })
     );
 })
+
+
