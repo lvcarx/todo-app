@@ -99,7 +99,7 @@ input {
     width: 200px;
     height: 47;
     margin: 20px;
-    background: url(/img/new/logoDark.svg) no-repeat;
+    background: url(../img/new/logoDark.svg) no-repeat;
     background-size: cover;
 
 }
