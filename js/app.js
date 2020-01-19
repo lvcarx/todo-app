@@ -130,93 +130,6 @@ document.addEventListener('keyup', addItemsToListonenter, false);
 submitButton.addEventListener('click', addItemsToListonclick, false);
 
 
-(function createInitialList() {
-
-    for (var i = 0; i < localStorage.length; i++) {
-        const key = localStorage.key(i);
-        console.log(key);
-        if (key !== 'counter' && key !== 'startModalHide') {
-            // TODO: if (localStorage.hasOwnProperty("task:" + [i])) 
-            if (key.includes('isItFav') == false) {
-                // use key name to retrieve the corresponding value
-                var value = JSON.parse(localStorage.getItem(key));
-
-                item = document.createElement("li");
-                item.classList.add("listElement", key);
-
-                node = document.createTextNode(value);
-
-                textWrapper = document.createElement("a");
-                textWrapper.setAttribute("class", "textWrapper");
-
-                createItemIcons();
-                appendItems();
-            }
-
-        } else {
-            console.log('didnt work' + i);
-        }
-    }
-})();
-
-/**
- * this function creates the subelements of an item
- * 
- * 
- */
-function createItemIcons() {
-
-    edit = document.createElement("a");
-    edit.innerText = "Edit";
-    edit.setAttribute("class", "edit");
-    edit.setAttribute("id", "edit");
-    edit.setAttribute("onclick", "focuseItem(this)");
-
-    actionArea = document.createElement("a");
-    actionArea.setAttribute("class", "actionArea");
-    actionArea.setAttribute("id", "actionArea");
-
-    handleButtons = document.createElement("a");
-    handleButtons.setAttribute("class", "handle");
-
-    checkButton = document.createElement("a");
-    checkButton.setAttribute("id", "check");
-    checkButton.setAttribute("class", "check");
-    checkButton.setAttribute("onclick", "checkListItem(this)");
-
-    deleteButtons = document.createElement("a");
-    deleteButtons.setAttribute("id", "delete");
-    deleteButtons.setAttribute("class", "button delete");
-    deleteButtons.setAttribute("onclick", "removeListItem(this)");
-
-    favoriteButtons = document.createElement("a");
-    favoriteButtons.setAttribute("id", "favorite");
-    favoriteButtons.setAttribute("onclick", "addFavorite()");
-    favoriteButtons.setAttribute("class", "button favoriteButton");
-    favoriteButtons.setAttribute("onclick", "favoriteListItem(this)");
-
-}
-
-/**
- * 
- * this function appends the subelements to the item
- * 
- */
-function appendItems() {
-
-    item.appendChild(checkButton);
-    item.appendChild(textWrapper);
-    item.appendChild(edit);
-
-    textWrapper.appendChild(node);
-    item.appendChild(actionArea);
-    actionArea.appendChild(handleButtons);
-    actionArea.appendChild(deleteButtons);
-    actionArea.appendChild(favoriteButtons);
-
-    element.appendChild(item);
-
-}
 
 
 // FAVORITE Function
@@ -287,7 +200,6 @@ function checkListItem(obj) {
         obj.parentNode.remove();
         localStorage.removeItem(obj.parentNode.classList[1]);
     }, 2000);
-
     
 }
 
@@ -318,7 +230,6 @@ function abortModal(event) {
     event.target.parentNode.parentNode.classList.remove('opened');
 
 }
-
 
 resetButton.addEventListener("click", resetItems, false);
 
@@ -352,10 +263,6 @@ var sortable = new Sortable(pending, {
     group: 'shared',
     handle: '.handle', // handle's class
 });
-
-
-
-
 
 
 // settings modal
@@ -450,3 +357,93 @@ const startModalClose = document.getElementById('startModalClose');
 startModalClose.addEventListener('click', saveToLocalStorage, false);
 
 
+
+
+
+(function createInitialList() {
+
+    for (var i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        console.log(key);
+        if (key !== 'counter' && key !== 'startModalHide') {
+            // TODO: if (localStorage.hasOwnProperty("task:" + [i])) 
+            if (key.includes('isItFav') == false) {
+                // use key name to retrieve the corresponding value
+                var value = JSON.parse(localStorage.getItem(key));
+
+                item = document.createElement("li");
+                item.classList.add("listElement", key);
+
+                node = document.createTextNode(value);
+
+                textWrapper = document.createElement("a");
+                textWrapper.setAttribute("class", "textWrapper");
+
+                createItemIcons();
+                appendItems();
+            }
+
+        } else {
+            console.log('didnt work' + i);
+        }
+    }
+})();
+
+/**
+ * this function creates the subelements of an item
+ * 
+ * 
+ */
+function createItemIcons() {
+
+    edit = document.createElement("a");
+    edit.innerText = "Edit";
+    edit.setAttribute("class", "edit");
+    edit.setAttribute("id", "edit");
+    edit.setAttribute("onclick", "focuseItem(this)");
+
+    actionArea = document.createElement("a");
+    actionArea.setAttribute("class", "actionArea");
+    actionArea.setAttribute("id", "actionArea");
+
+    handleButtons = document.createElement("a");
+    handleButtons.setAttribute("class", "handle");
+
+    checkButton = document.createElement("a");
+    checkButton.setAttribute("id", "check");
+    checkButton.setAttribute("class", "check");
+    checkButton.setAttribute("onclick", "checkListItem(this)");
+
+    deleteButtons = document.createElement("a");
+    deleteButtons.setAttribute("id", "delete");
+    deleteButtons.setAttribute("class", "button delete");
+    deleteButtons.setAttribute("onclick", "removeListItem(this)");
+
+    favoriteButtons = document.createElement("a");
+    favoriteButtons.setAttribute("id", "favorite");
+    favoriteButtons.setAttribute("onclick", "addFavorite()");
+    favoriteButtons.setAttribute("class", "button favoriteButton");
+    favoriteButtons.setAttribute("onclick", "favoriteListItem(this)");
+
+}
+
+/**
+ * 
+ * this function appends the subelements to the item
+ * 
+ */
+function appendItems() {
+
+    item.appendChild(checkButton);
+    item.appendChild(textWrapper);
+    item.appendChild(edit);
+
+    textWrapper.appendChild(node);
+    item.appendChild(actionArea);
+    actionArea.appendChild(handleButtons);
+    actionArea.appendChild(deleteButtons);
+    actionArea.appendChild(favoriteButtons);
+
+    element.appendChild(item);
+
+}
