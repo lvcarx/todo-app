@@ -1,40 +1,26 @@
 # ToDo Manager
 
-## How it works
+## How to use the app
 
+To use the ToDo App you can go to: https://reallucareichmann.github.io/todo-app/ or download the app and host it on a server by yourself.
 
+## Future plans
 
+### V1.0
 
-## Planned Features:
+Currently the app is pretty simple and has a lot of bugs. The plan for version 1.0 is to solve all of the bugs and to make the app stable.
+Also the design needs to finalised.
 
-- Löschen von einzelnen Einträgen (works, buggy)
-- Priorisierung von Einträgen
-- Accountfunktion
-- Einstellungen
-- Designverbesserungen (in work)
-- service workers (should work, has to be tested)
-- drag & drop (works)
-- submit button (in work)
-- rückmeldung wenn leeres eingabefeld
-- Darkmode (own toggle)
-- Benachrichtigungen
-- right click
-- favorite feature // implemented
-- updating user information
-- login screen
-- more personaliszation
-- Today/Pending/General sections
-- Modal when deleting items
-- update system
-- sortieren funktion
-- PWA
-- push notifications
+### V1.1 
 
-Known Bugs:
+To make the app secure it needs a new storing method. That can be a database model for example. But that needs to be discussed.
 
--leerer Eintrag kann eingegeben werden
+### V1.2 
 
-### Settings specification
+tbd
 
-- Dark Mode toggle
-- 
+## Warning!
+
+All the ToDo items are stored (unencrypted) in your Browser Local Storage! 
+That means it is not safe and shouldn't be used for sensitive data (like password for example).
+
