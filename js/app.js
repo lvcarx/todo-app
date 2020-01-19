@@ -137,7 +137,7 @@ submitButton.addEventListener('click', addItemsToListonclick, false);
         console.log(key);
         if (key !== 'counter' && key !== 'startModalHide') {
             // TODO: if (localStorage.hasOwnProperty("task:" + [i])) 
-            if (localStorage.hasOwnProperty("task:" + [i] + "isItFav") == false) {
+            if (key.includes('isItFav') == false) {
                 // use key name to retrieve the corresponding value
                 var value = JSON.parse(localStorage.getItem(key));
 
