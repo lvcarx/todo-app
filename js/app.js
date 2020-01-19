@@ -414,7 +414,8 @@ function closeModal() {
 
 // open
 
-const settings = document.getElementById('settings');
+let settings = document.getElementById('settings');
+console.log("yep" + settings);
 settings.addEventListener('click', openModal, false);
 
 // close
