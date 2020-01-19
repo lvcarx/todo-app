@@ -177,72 +177,83 @@ function createInitialList() {
 
     for (var i = 0; i < localStorage.length; i++) {
 
+       
+    
+
         // set iteration key name
-        var key = localStorage.key(i);
-      
-        // use key name to retrieve the corresponding value
-        var value = JSON.parse(localStorage.getItem(key));
-      
+       
+        
         // console.log the iteration key and value
-        console.log('Key: ' + key + ', Value: ' + value);  
-     
+        // console.log('Key: ' + key + ', Value: ' + value);  
+       
+        console.log(key);
         if (key !== 'counter') {
+            if (localStorage.getItem("task:" + [i]) !== null) {
 
-        var para = document.createElement("li");
-        para.classList.add("listElement", key);
-        
-        var node = document.createTextNode(value);
-        // para.appendChild(node);
-        // element.appendChild(para);
+                var key = localStorage.key(i);
+      
+                // use key name to retrieve the corresponding value
+                var value = JSON.parse(localStorage.getItem(key));
 
-        const textWrapper = document.createElement("a");
-        textWrapper.setAttribute("class", "textWrapper");
-    
-        const edit = document.createElement("a");
-        edit.innerText = "Edit";
-        edit.setAttribute("class", "edit");  
-        edit.setAttribute("id", "edit"); 
-        edit.setAttribute("onclick", "focuseItem(this)");
+                var para = document.createElement("li");
+                para.classList.add("listElement", key);
+                
+                var node = document.createTextNode(value);
+                // para.appendChild(node);
+                // element.appendChild(para);
 
-        const actionArea  = document.createElement("a");
-        actionArea.setAttribute("class", "actionArea");   
-        actionArea.setAttribute("id", "actionArea");  
+                const textWrapper = document.createElement("a");
+                textWrapper.setAttribute("class", "textWrapper");
+            
+                const edit = document.createElement("a");
+                edit.innerText = "Edit";
+                edit.setAttribute("class", "edit");  
+                edit.setAttribute("id", "edit"); 
+                edit.setAttribute("onclick", "focuseItem(this)");
 
-        const handleButtons = document.createElement("a");
-        handleButtons.setAttribute("class", "handle");
+                const actionArea  = document.createElement("a");
+                actionArea.setAttribute("class", "actionArea");   
+                actionArea.setAttribute("id", "actionArea");  
 
-        const checkButton = document.createElement("a");
-        //deleteButtons.innerText = "Delete";
-        checkButton.setAttribute("id", "check");
-        checkButton.setAttribute("class", "check");
-        checkButton.setAttribute("onclick", "checkListItem(this)");        
+                const handleButtons = document.createElement("a");
+                handleButtons.setAttribute("class", "handle");
 
-        const deleteButtons = document.createElement("a");
-        //deleteButtons.innerText = "Delete";
-        deleteButtons.setAttribute("id", "delete");
-        deleteButtons.setAttribute("class", "button delete");
-        deleteButtons.setAttribute("onclick", "removeListItem(this)");
-    
-        const favoriteButtons = document.createElement("a");
-        // favoriteButtons.innerText = "Favorite";
-        favoriteButtons.setAttribute("id", "favorite");
-        favoriteButtons.setAttribute("onclick", "addFavorite()");
-        favoriteButtons.setAttribute("class", "button favoriteButton");
-        favoriteButtons.setAttribute("onclick", "favoriteListItem(this)");
-        
-        para.appendChild(checkButton);
-        para.appendChild(textWrapper);
-        para.appendChild(edit);
-        
-        textWrapper.appendChild(node);
-        para.appendChild(actionArea);
-        actionArea.appendChild(handleButtons);
-        actionArea.appendChild(deleteButtons);
-        actionArea.appendChild(favoriteButtons);
-        
-        // para.appendChild(node);
-        element.appendChild(para);
+                const checkButton = document.createElement("a");
+                //deleteButtons.innerText = "Delete";
+                checkButton.setAttribute("id", "check");
+                checkButton.setAttribute("class", "check");
+                checkButton.setAttribute("onclick", "checkListItem(this)");        
 
+                const deleteButtons = document.createElement("a");
+                //deleteButtons.innerText = "Delete";
+                deleteButtons.setAttribute("id", "delete");
+                deleteButtons.setAttribute("class", "button delete");
+                deleteButtons.setAttribute("onclick", "removeListItem(this)");
+            
+                const favoriteButtons = document.createElement("a");
+                // favoriteButtons.innerText = "Favorite";
+                favoriteButtons.setAttribute("id", "favorite");
+                favoriteButtons.setAttribute("onclick", "addFavorite()");
+                favoriteButtons.setAttribute("class", "button favoriteButton");
+                favoriteButtons.setAttribute("onclick", "favoriteListItem(this)");
+                
+                para.appendChild(checkButton);
+                para.appendChild(textWrapper);
+                para.appendChild(edit);
+                
+                textWrapper.appendChild(node);
+                para.appendChild(actionArea);
+                actionArea.appendChild(handleButtons);
+                actionArea.appendChild(deleteButtons);
+                actionArea.appendChild(favoriteButtons);
+                
+                // para.appendChild(node);
+                element.appendChild(para);
+        }
+
+    } else {
+
+        console.log('didnt work' + i);
 
     }
 
@@ -262,6 +273,7 @@ function addFavorite() {
 
 
 
+
   
 }
 
@@ -277,20 +289,7 @@ for (var i = 0; i < favoriteButtons.length; i++) {
 }
 
 
-// dynamic advice wrapper 
 
-/**const advice = document.getElementById("advice");
-
-if (counter > 1) {
-
-    advice.textContent = "click on item to remove it";
-
-} else {
-
-    advice.textContent = "enter items";
-
-}
-*/
 
 // actionArea
 for (var i = 0; i < actionAreaSwitcher.length; i++) {
@@ -321,6 +320,11 @@ function focuseItem(obj) {
 
 function favoriteListItem(obj) {
     obj.parentNode.parentNode.classList.toggle('favoriteItem'); 
+    //let first = obj.parentNode.parentNode.classList[1];
+    //let isItFav = first + 'isItFav';
+    if (localStorage.getItem(obj.parentNode.parentNode.classList[1] + 'isItFav') === null) {
+        localStorage.setItem(obj.parentNode.parentNode.classList[1] + 'isItFav', 'true');
+    }
 }
 
 // check item functionality
@@ -355,7 +359,6 @@ function resetItems() {
 
     if (localStorage.contains("task")) {
         console.log("this works");
-
     }
 
     element.innerHTML = "";
