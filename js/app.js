@@ -416,6 +416,10 @@ function appendItems() {
 
 }
 
+
+console.log('worked yup');
+
+
 (function createInitialList() {
 
     for (var i = 0; i < localStorage.length; i++) {
@@ -444,5 +448,3 @@ function appendItems() {
         }
     }
 })();
-
-console.log('worked yup');
