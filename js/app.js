@@ -378,17 +378,17 @@ for (var i = 0; i < modal.length; i++) {
 // settings modal toggle
 
 
-function openFunction(e) {
+function openFunction(element) {
 
-    e.classList.add('opened');
+    element.classList.add('opened');
 
 }
 
-function closeFunction(e) {
+/*function closeFunction(e) {
 
     e.classList.remove('opened');
 
-} 
+} */
 
 function openModal() {
 
