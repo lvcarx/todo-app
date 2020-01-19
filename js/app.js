@@ -365,13 +365,13 @@ const modal = document.getElementsByClassName('modal');
 for (var i = 0; i < modal.length; i++) {
 
     const createCloseModal = document.createElement("a");
-    // const closeImg = document.createElement("img");
-    // closeImg.setAttribute("src", "/img/close.svg");
+    const closeImg = document.createElement("img");
+    closeImg.setAttribute("src", "../img/close.svg");
     createCloseModal.setAttribute("id", "close");
     createCloseModal.setAttribute("onclick", "closeModal()");
     createCloseModal.classList.add('close');
     modal[i].prepend(createCloseModal);
-    // createCloseModal.appendChild(closeImg)
+    createCloseModal.appendChild(closeImg)
 
 }
 
