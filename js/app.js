@@ -366,21 +366,21 @@ for (var i = 0; i < modal.length; i++) {
 
     const createCloseModal = document.createElement("a");
     const closeImg = document.createElement("img");
-    closeImg.setAttribute("src", "../img/close.svg");
+    //closeImg.setAttribute("src", "../img/close.svg");
     createCloseModal.setAttribute("id", "close");
     createCloseModal.setAttribute("onclick", "closeModal()");
     createCloseModal.classList.add('close');
+    createCloseModal.appendChild(closeImg);
     modal[i].prepend(createCloseModal);
-    createCloseModal.appendChild(closeImg)
-
+    
 }
 
 // settings modal toggle
 
 
-function openFunction(item) {
+function openFunction(e) {
 
-    item.classList.add('opened');
+    e.classList.add('opened');
 
 }
 
