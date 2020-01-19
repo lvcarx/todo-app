@@ -384,14 +384,15 @@ function openFunction(e) {
 
 }
 
-/* function closeFunction(item) {
+function closeFunction(e) {
 
-    item.classList.remove('opened');
+    e.classList.remove('opened');
 
-} */
+} 
 
 function openModal() {
 
+    console.log('settings will be opened');
     const settingsModal = document.getElementById('settingsModal');
     settingsModal.addEventListener('click', openFunction(settingsModal), false)
 
