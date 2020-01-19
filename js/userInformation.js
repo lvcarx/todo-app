@@ -31,8 +31,10 @@ userMailHTML.appendChild(mailNode);
 
 // profile picture
 
+/**
 const userPicture = JSON.parse(user);
 const userPictureHTML = document.getElementById('profilePicture');
 
 const pictureNode = document.createTextNode(userPicture[0].picture);
 userPictureHTML.setAttribute("src", pictureNode.textContent);
+*/
