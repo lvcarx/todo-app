@@ -189,7 +189,7 @@ function appendItems() {
 
 }
 
-(function createInitialList() {
+function createInitialList() {
 
     for (var i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i);
@@ -216,7 +216,9 @@ function appendItems() {
             console.log('didnt work' + i);
         }
     }
-})();
+}
+
+window.onload = createInitialList();
 
 
 // FAVORITE Function
