@@ -6,13 +6,15 @@ if ('serviceWorker' in navigator) {
         });
 }
 
+let item;
+let textWrapper;
 let edit;
+let node;
 let actionArea;
 let handleButtons;
 let checkButton;
 let deleteButtons;
 let favoriteButtons;
-
 
 let counter = 0;
 var element = document.getElementById("todoItems");
@@ -80,34 +82,16 @@ function setItems() {
 function createList() {
 
     var tasks = JSON.parse(window.localStorage.getItem('task:' + (counter - 1)));
-    var para = document.createElement("li");
-    para.className = "listElement" + counter;
+    item = document.createElement("li");
+    item.className = "listElement" + counter;
 
-    var node = document.createTextNode(tasks);
+    node = document.createTextNode(tasks);
 
-
-
-    const textWrapper = document.createElement("a");
+    textWrapper = document.createElement("a");
     textWrapper.setAttribute("class", "textWrapper");
 
     createItemIcons();
-
-
-    para.appendChild(checkButton);
-    para.appendChild(textWrapper);
-    para.appendChild(edit);
-
-    textWrapper.appendChild(node);
-    para.appendChild(actionArea);
-    actionArea.appendChild(handleButtons);
-    actionArea.appendChild(deleteButtons);
-    actionArea.appendChild(favoriteButtons);
-
-
-
-
-    // para.appendChild(node);
-    element.appendChild(para);
+    appendItems();
 
 
 }
@@ -146,62 +130,93 @@ document.addEventListener('keyup', addItemsToListonenter, false);
 submitButton.addEventListener('click', addItemsToListonclick, false);
 
 
-
-
-function createInitialList() {
+(function createInitialList() {
 
     for (var i = 0; i < localStorage.length; i++) {
-
-
-        var key = localStorage.key(i);
+        const key = localStorage.key(i);
         console.log(key);
         if (key !== 'counter' && key !== 'startModalHide') {
-            // TODO: if (localStorage.hasOwnProperty("task:" + [i])) {
+            // TODO: if (localStorage.hasOwnProperty("task:" + [i])) 
             if (localStorage.hasOwnProperty("task:" + [i] + "isItFav") == false) {
-
-
-
-
                 // use key name to retrieve the corresponding value
                 var value = JSON.parse(localStorage.getItem(key));
 
-                var para = document.createElement("li");
-                para.classList.add("listElement", key);
+                item = document.createElement("li");
+                item.classList.add("listElement", key);
 
-                var node = document.createTextNode(value);
+                node = document.createTextNode(value);
 
-                const textWrapper = document.createElement("a");
+                textWrapper = document.createElement("a");
                 textWrapper.setAttribute("class", "textWrapper");
 
                 createItemIcons();
-
-                para.appendChild(checkButton);
-                para.appendChild(textWrapper);
-                para.appendChild(edit);
-
-                textWrapper.appendChild(node);
-                para.appendChild(actionArea);
-                actionArea.appendChild(handleButtons);
-                actionArea.appendChild(deleteButtons);
-                actionArea.appendChild(favoriteButtons);
-
-                // para.appendChild(node);
-                element.appendChild(para);
-                //}  
+                appendItems();
             }
 
         } else {
-
             console.log('didnt work' + i);
-
         }
-
     }
+})();
+
+/**
+ * this function creates the subelements of an item
+ * 
+ * 
+ */
+function createItemIcons() {
+
+    edit = document.createElement("a");
+    edit.innerText = "Edit";
+    edit.setAttribute("class", "edit");
+    edit.setAttribute("id", "edit");
+    edit.setAttribute("onclick", "focuseItem(this)");
+
+    actionArea = document.createElement("a");
+    actionArea.setAttribute("class", "actionArea");
+    actionArea.setAttribute("id", "actionArea");
+
+    handleButtons = document.createElement("a");
+    handleButtons.setAttribute("class", "handle");
+
+    checkButton = document.createElement("a");
+    checkButton.setAttribute("id", "check");
+    checkButton.setAttribute("class", "check");
+    checkButton.setAttribute("onclick", "checkListItem(this)");
+
+    deleteButtons = document.createElement("a");
+    deleteButtons.setAttribute("id", "delete");
+    deleteButtons.setAttribute("class", "button delete");
+    deleteButtons.setAttribute("onclick", "removeListItem(this)");
+
+    favoriteButtons = document.createElement("a");
+    favoriteButtons.setAttribute("id", "favorite");
+    favoriteButtons.setAttribute("onclick", "addFavorite()");
+    favoriteButtons.setAttribute("class", "button favoriteButton");
+    favoriteButtons.setAttribute("onclick", "favoriteListItem(this)");
 
 }
 
-window.onload = createInitialList;
+/**
+ * 
+ * this function appends the subelements to the item
+ * 
+ */
+function appendItems() {
 
+    item.appendChild(checkButton);
+    item.appendChild(textWrapper);
+    item.appendChild(edit);
+
+    textWrapper.appendChild(node);
+    item.appendChild(actionArea);
+    actionArea.appendChild(handleButtons);
+    actionArea.appendChild(deleteButtons);
+    actionArea.appendChild(favoriteButtons);
+
+    element.appendChild(item);
+
+}
 
 
 // FAVORITE Function
@@ -209,10 +224,6 @@ window.onload = createInitialList;
 function addFavorite() {
 
     console.log('test');
-
-
-
-
 
 }
 
@@ -226,8 +237,6 @@ for (var i = 0; i < favoriteButtons.length; i++) {
     }, false);
 
 }
-
-
 
 
 // actionArea
@@ -279,10 +288,7 @@ function checkListItem(obj) {
         localStorage.removeItem(obj.parentNode.classList[1]);
     }, 2000);
 
-    // myVar = setTimeout(removeListItem, 55000);
-    //obj.parentNode.parentNode.remove();
-    // localStorage.removeItem(obj.parentNode.parentNode.classList[1]);
-
+    
 }
 
 // reset functionality
@@ -405,8 +411,6 @@ function closeModal() {
 
 }
 
-// actual toggles
-
 // open
 
 const settings = document.getElementById('settings');
@@ -444,53 +448,3 @@ const startModalClose = document.getElementById('startModalClose');
 startModalClose.addEventListener('click', saveToLocalStorage, false);
 
 
-// right click
-
-/* 
-
-if (document.addEventListener) {
-    document.addEventListener('contextmenu', function(e) {
-      alert("You've tried to open context menu"); //here you draw your own menu
-      e.preventDefault();
-    }, false);
-  } else {
-    document.attachEvent('oncontextmenu', function() {
-      alert("You've tried to open context menu");
-      window.event.returnValue = false;
-    });
-  }
-
-*/
-
-function createItemIcons() {
-
-    edit = document.createElement("a");
-    edit.innerText = "Edit";
-    edit.setAttribute("class", "edit");
-    edit.setAttribute("id", "edit");
-    edit.setAttribute("onclick", "focuseItem(this)");
-
-    actionArea = document.createElement("a");
-    actionArea.setAttribute("class", "actionArea");
-    actionArea.setAttribute("id", "actionArea");
-
-    handleButtons = document.createElement("a");
-    handleButtons.setAttribute("class", "handle");
-
-    checkButton = document.createElement("a");
-    checkButton.setAttribute("id", "check");
-    checkButton.setAttribute("class", "check");
-    checkButton.setAttribute("onclick", "checkListItem(this)");
-
-    deleteButtons = document.createElement("a");
-    deleteButtons.setAttribute("id", "delete");
-    deleteButtons.setAttribute("class", "button delete");
-    deleteButtons.setAttribute("onclick", "removeListItem(this)");
-
-    favoriteButtons = document.createElement("a");
-    favoriteButtons.setAttribute("id", "favorite");
-    favoriteButtons.setAttribute("onclick", "addFavorite()");
-    favoriteButtons.setAttribute("class", "button favoriteButton");
-    favoriteButtons.setAttribute("onclick", "favoriteListItem(this)");
-
-}
