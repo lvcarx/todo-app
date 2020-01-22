@@ -53,9 +53,7 @@ function switchToDark() {
         darkModeOn += 1;
         
         if (darkModeOn%2 == 0) {
-    
-            console.log ('test');
-    
+        
             let darkModeActivated = false;
             localStorage.setItem('mode', darkModeActivated);
     
@@ -88,20 +86,17 @@ let colorThemeStorage = localStorage.getItem('colorTheme');
 function loadTheme() {
 
     if (colorThemeStorage == "blue") {
-        console.log("yeah");
         body.classList.add('blueTheme');
     } else if (colorThemeStorage == "green") {
-        console.log('greeny');
         body.classList.add('greenTheme');
     } else if (colorThemeStorage == "pink") {
-        console.log('pinki pink');
         body.classList.add('pinkTheme');
     }
 
 
 }
 
-loadTheme();
+window.onload = loadTheme();
 
 function blueTheme() {
 
@@ -135,8 +130,6 @@ function greenTheme() {
         body.classList.remove('pinkTheme');
     }
 
-    console.log('blue');
-
 }
 
 function pinkTheme() {
@@ -158,15 +151,12 @@ function pinkTheme() {
 }
 
 function changeTheme(event) {
-    console.log(event.target);
     if(event.target.classList.contains("blue")) {
       blueTheme();
     }
-    console.log(event.target);
     if(event.target.classList.contains("green")) {
       greenTheme();
     }
-    console.log(event.target);
     if(event.target.classList.contains("pink")) {
       pinkTheme();
     }

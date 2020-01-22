@@ -23,7 +23,7 @@ const submitButton = document.getElementById('submit');
 var input = document.getElementById("box");
 const actionAreaSwitcher = document.getElementsByClassName("actionArea");
 
-if (localStorage.getItem("task:1") === null) {
+if (localStorage.getItem("task:0" || "task:0isFav") === null) {
     counter = localStorage.setItem('counter', JSON.stringify(counter));
 }
 
@@ -69,9 +69,9 @@ function setItems() {
 
     if (boxvalue.length > 1) {
 
-        localStorage.setItem('task:' + counter, JSON.stringify(items));
+        localStorage.setItem('task:' + counter, items);
         items.push(boxvalue);
-        localStorage.setItem('task:' + counter, JSON.stringify(items));
+        localStorage.setItem('task:' + counter, items);
         items = [];
         return false;
 
@@ -81,9 +81,10 @@ function setItems() {
 
 function createList() {
 
-    var tasks = JSON.parse(window.localStorage.getItem('task:' + (counter - 1)));
+    var tasks = window.localStorage.getItem('task:' + (counter - 1));
     item = document.createElement("li");
     item.className = "listElement" + counter;
+    item.classList.add("task:" + counter);
 
     node = document.createTextNode(tasks);
 
@@ -95,8 +96,6 @@ function createList() {
 
 
 }
-
-
 
 // function to add items to list on enter
 
@@ -131,22 +130,12 @@ submitButton.addEventListener('click', addItemsToListonclick, false);
 
 
 
-
-// FAVORITE Function
-
-function addFavorite() {
-
-    console.log('test');
-
-}
-
-
 favoriteButtons = document.getElementsByClassName("favoriteButton");
 
 for (var i = 0; i < favoriteButtons.length; i++) {
 
     favoriteButtons[i].addEventListener('click', function (event) {
-        console.log('clicked');
+     
     }, false);
 
 }
@@ -157,7 +146,7 @@ for (var i = 0; i < actionAreaSwitcher.length; i++) {
 
     actionAreaSwitcher[i].addEventListener("click", function (event) {
 
-        console.log('test');
+
         actionAreaSwitcher[i].classList.add("test");
 
     }, false);
@@ -177,15 +166,36 @@ function focuseItem(obj) {
     obj.parentNode.classList.toggle('opened');
 }
 
+
 // favorite item functionality 
+
+/**
+ * NOT FULLY IMPLEMENTED
+ * 
+ * @param 
+ */
 
 function favoriteListItem(obj) {
     obj.parentNode.parentNode.classList.toggle('favoriteItem');
-    //let first = obj.parentNode.parentNode.classList[1];
-    //let isItFav = first + 'isItFav';
-    if (localStorage.getItem(obj.parentNode.parentNode.classList[1] + 'isItFav') === null) {
-        localStorage.setItem(obj.parentNode.parentNode.classList[1] + 'isItFav', 'true');
-    }
+    
+    //let getFavObj = obj.parentNode.parentNode.classList[1] + 'isFav';
+
+    if (localStorage.getItem(obj.parentNode.parentNode.id + "isFav") === null) {
+
+        let test = localStorage.getItem(obj.parentNode.parentNode.classList[1]);
+        localStorage.setItem(obj.parentNode.parentNode.classList[1] + "isFav", test);
+        localStorage.removeItem(obj.parentNode.parentNode.classList[1]);
+
+    } else {
+
+        let test2 = localStorage.getItem(obj.parentNode.parentNode.classList[1] + 'isFav');
+        // localStorage.removeItem(obj.parentNode.parentNode.classList[1]);
+        localStorage.setItem(obj.parentNode.parentNode.classList[1], test2);
+        localStorage.removeItem(obj.parentNode.parentNode.classList[1] + 'isFav');
+       
+
+    }    
+
 }
 
 // check item functionality
@@ -206,16 +216,15 @@ function checkListItem(obj) {
 // reset functionality
 
 const resetButton = document.getElementById('reset');
-console.log(counter.length);
 function resetItems() {
-    console.log(counter);
+   
     //localStorage.clear();
     for (let i; i < counter; i++) {
         localStorage.removeItem('task:' + counter[i]);
     }
 
     if (localStorage.contains("task")) {
-        console.log("this works");
+
     }
 
     element.innerHTML = "";
@@ -299,7 +308,7 @@ function openFunction(element) {
 
 function openModal() {
 
-    console.log('settings will be opened');
+ 
     const settingsModal = document.getElementById('settingsModal');
     settingsModal.addEventListener('click', openFunction(settingsModal), false)
 
@@ -322,7 +331,7 @@ function closeModal() {
 // open
 
 let settings = document.getElementById('settings');
-console.log("yep" + settings);
+
 settings.addEventListener('click', openModal, false);
 
 // close
@@ -416,23 +425,25 @@ function appendItems() {
 
 }
 
-
-console.log('worked yup');
-
-
-(function createInitialList() {
+function createInitialList() {
 
     for (var i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i);
-        console.log(key);
+        let newKey = key.replace('isFav', '');
+
         if (key !== 'counter' && key !== 'startModalHide') {
             // TODO: if (localStorage.hasOwnProperty("task:" + [i])) 
-            if (key.includes('isItFav') == false) {
-                // use key name to retrieve the corresponding value
-                var value = JSON.parse(localStorage.getItem(key));
-
+            
+                var value = localStorage.getItem(key);
+            	
                 item = document.createElement("li");
-                item.classList.add("listElement", key);
+                item.classList.add("listElement", newKey);
+
+                if (key.includes('isFav')) {
+                    item.classList.add("favoriteItem");
+                }
+
+                item.setAttribute("id", key);
 
                 node = document.createTextNode(value);
 
@@ -441,10 +452,10 @@ console.log('worked yup');
 
                 createItemIcons();
                 appendItems();
-            }
 
-        } else {
-            console.log('didnt work' + i);
+        } else {   
         }
     }
-})();
+}
+
+window.onload = createInitialList();
