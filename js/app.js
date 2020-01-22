@@ -135,7 +135,7 @@ favoriteButtons = document.getElementsByClassName("favoriteButton");
 for (var i = 0; i < favoriteButtons.length; i++) {
 
     favoriteButtons[i].addEventListener('click', function (event) {
-     
+
     }, false);
 
 }
@@ -177,7 +177,7 @@ function focuseItem(obj) {
 
 function favoriteListItem(obj) {
     obj.parentNode.parentNode.classList.toggle('favoriteItem');
-    
+
     //let getFavObj = obj.parentNode.parentNode.classList[1] + 'isFav';
 
     if (localStorage.getItem(obj.parentNode.parentNode.id + "isFav") === null) {
@@ -192,9 +192,9 @@ function favoriteListItem(obj) {
         // localStorage.removeItem(obj.parentNode.parentNode.classList[1]);
         localStorage.setItem(obj.parentNode.parentNode.classList[1], test2);
         localStorage.removeItem(obj.parentNode.parentNode.classList[1] + 'isFav');
-       
 
-    }    
+
+    }
 
 }
 
@@ -210,14 +210,14 @@ function checkListItem(obj) {
         obj.parentNode.remove();
         localStorage.removeItem(obj.parentNode.classList[1]);
     }, 2000);
-    
+
 }
 
 // reset functionality
 
 const resetButton = document.getElementById('reset');
 function resetItems() {
-   
+
     //localStorage.clear();
     for (let i; i < counter; i++) {
         localStorage.removeItem('task:' + counter[i]);
@@ -288,7 +288,7 @@ for (var i = 0; i < modal.length; i++) {
     createCloseModal.classList.add('close');
     createCloseModal.appendChild(closeImg);
     modal[i].prepend(createCloseModal);
-    
+
 }
 
 // settings modal toggle
@@ -308,7 +308,7 @@ function openFunction(element) {
 
 function openModal() {
 
- 
+
     const settingsModal = document.getElementById('settingsModal');
     settingsModal.addEventListener('click', openFunction(settingsModal), false)
 
@@ -432,10 +432,10 @@ function createInitialList() {
         let newKey = key.replace('isFav', '');
 
         if (key !== 'counter' && key !== 'startModalHide') {
-            // TODO: if (localStorage.hasOwnProperty("task:" + [i])) 
-            
+            if (key.includes("task:")) {
+
                 var value = localStorage.getItem(key);
-            	
+
                 item = document.createElement("li");
                 item.classList.add("listElement", newKey);
 
@@ -453,7 +453,9 @@ function createInitialList() {
                 createItemIcons();
                 appendItems();
 
-        } else {   
+            }
+        }
+        else {
         }
     }
 }
