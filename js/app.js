@@ -166,38 +166,35 @@ function focuseItem(obj) {
     obj.parentNode.classList.toggle('opened');
 }
 
+
 // favorite item functionality 
+
+/**
+ * NOT FULLY IMPLEMENTED
+ * 
+ * @param 
+ */
 
 function favoriteListItem(obj) {
     obj.parentNode.parentNode.classList.toggle('favoriteItem');
     
-    if (localStorage.getItem(obj.parentNode.parentNode.classList[1] + 'isFav') === null) {
+    //let getFavObj = obj.parentNode.parentNode.classList[1] + 'isFav';
+
+    if (localStorage.getItem(obj.parentNode.parentNode.id + "isFav") === null) {
 
         let test = localStorage.getItem(obj.parentNode.parentNode.classList[1]);
         localStorage.setItem(obj.parentNode.parentNode.classList[1] + "isFav", test);
-        localStorage.removeItem(obj.parentNode.parentNode.id);
-        console.log('Im there');
+        localStorage.removeItem(obj.parentNode.parentNode.classList[1]);
 
-    } else if (localStorage.getItem(obj.parentNode.parentNode.classList[1] + 'isFav')) {
+    } else {
 
         let test2 = localStorage.getItem(obj.parentNode.parentNode.classList[1] + 'isFav');
-        console.log(test2);
-        localStorage.removeItem(obj.parentNode.parentNode.classList[1]);
+        // localStorage.removeItem(obj.parentNode.parentNode.classList[1]);
         localStorage.setItem(obj.parentNode.parentNode.classList[1], test2);
         localStorage.removeItem(obj.parentNode.parentNode.classList[1] + 'isFav');
-        localStorage.removeItem(obj.parentNode.parentNode.classList[1] + 'isFav' + 'isFav');
-        //localStorage.removeItem();
-        console.log('Im not');
+       
 
-    }
-
-    //test.removeItem();
-
-    //if (localStorage.getItem(obj.parentNode.parentNode.id + 'isItFav') === null) {
-      
-        //localStorage.removeItem(lKey);
-        //localStorage.setItem(lKey + 'isItFav', lValue);
-    //} 
+    }    
 
 }
 
@@ -409,16 +406,6 @@ function createItemIcons() {
 
 /**
  * 
- * 
- * 
- */
-
-
-
-
-
-/**
- * 
  * this function appends the subelements to the item
  * 
  */
@@ -438,22 +425,24 @@ function appendItems() {
 
 }
 
-
-
-
-
 function createInitialList() {
 
     for (var i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i);
+        let newKey = key.replace('isFav', '');
+
         if (key !== 'counter' && key !== 'startModalHide') {
             // TODO: if (localStorage.hasOwnProperty("task:" + [i])) 
-            //if (key.includes('isItFav') == false) {
-                // use key name to retrieve the corresponding value
+            
                 var value = localStorage.getItem(key);
             	
                 item = document.createElement("li");
-                item.classList.add("listElement", key);
+                item.classList.add("listElement", newKey);
+
+                if (key.includes('isFav')) {
+                    item.classList.add("favoriteItem");
+                }
+
                 item.setAttribute("id", key);
 
                 node = document.createTextNode(value);
@@ -463,19 +452,10 @@ function createInitialList() {
 
                 createItemIcons();
                 appendItems();
-                
-               
-            //}
 
-        
-
-        } else {
-         //   console.log('didnt work' + i);
+        } else {   
         }
-
-
     }
-
 }
 
 window.onload = createInitialList();
