@@ -16,7 +16,7 @@ let checkButton;
 let deleteButtons;
 let favoriteButtons;
 
-let counter = 0;
+let counter = 1;
 var element = document.getElementById("todoItems");
 const form = document.getElementById("form");
 const submitButton = document.getElementById('submit');
@@ -178,9 +178,7 @@ function focuseItem(obj) {
 function favoriteListItem(obj) {
     obj.parentNode.parentNode.classList.toggle('favoriteItem');
 
-    //let getFavObj = obj.parentNode.parentNode.classList[1] + 'isFav';
-
-    if (localStorage.getItem(obj.parentNode.parentNode.id + "isFav") === null) {
+    if (localStorage.getItem(obj.parentNode.parentNode.classList[1] + 'isFav') === null) {
 
         let test = localStorage.getItem(obj.parentNode.parentNode.classList[1]);
         localStorage.setItem(obj.parentNode.parentNode.classList[1] + "isFav", test);
@@ -189,7 +187,6 @@ function favoriteListItem(obj) {
     } else {
 
         let test2 = localStorage.getItem(obj.parentNode.parentNode.classList[1] + 'isFav');
-        // localStorage.removeItem(obj.parentNode.parentNode.classList[1]);
         localStorage.setItem(obj.parentNode.parentNode.classList[1], test2);
         localStorage.removeItem(obj.parentNode.parentNode.classList[1] + 'isFav');
 
@@ -431,7 +428,6 @@ function createInitialList() {
         const key = localStorage.key(i);
         let newKey = key.replace('isFav', '');
 
-        if (key !== 'counter' && key !== 'startModalHide') {
             if (key.includes("task:")) {
 
                 var value = localStorage.getItem(key);
@@ -453,10 +449,7 @@ function createInitialList() {
                 createItemIcons();
                 appendItems();
 
-            }
-        }
-        else {
-        }
+            }  
     }
 }
 
