@@ -1,18 +1,20 @@
-if ('serviceWorker' in navigator) {
+/**if ('serviceWorker' in navigator) {
     navigator.serviceWorker
         .register('./sw.js')
         .catch(function (err) {
             console.error(err);
         });
 }
-
+*/
+let item;
+let textWrapper;
 let edit;
+let node;
 let actionArea;
 let handleButtons;
 let checkButton;
 let deleteButtons;
 let favoriteButtons;
-
 
 let counter = 0;
 var element = document.getElementById("todoItems");
@@ -21,7 +23,7 @@ const submitButton = document.getElementById('submit');
 var input = document.getElementById("box");
 const actionAreaSwitcher = document.getElementsByClassName("actionArea");
 
-if (localStorage.getItem("task:1") === null) {
+if (localStorage.getItem("task:0" || "task:0isFav") === null) {
     counter = localStorage.setItem('counter', JSON.stringify(counter));
 }
 
@@ -67,9 +69,9 @@ function setItems() {
 
     if (boxvalue.length > 1) {
 
-        localStorage.setItem('task:' + counter, JSON.stringify(items));
+        localStorage.setItem('task:' + counter, items);
         items.push(boxvalue);
-        localStorage.setItem('task:' + counter, JSON.stringify(items));
+        localStorage.setItem('task:' + counter, items);
         items = [];
         return false;
 
@@ -79,40 +81,21 @@ function setItems() {
 
 function createList() {
 
-    var tasks = JSON.parse(window.localStorage.getItem('task:' + (counter - 1)));
-    var para = document.createElement("li");
-    para.className = "listElement" + counter;
+    var tasks = window.localStorage.getItem('task:' + (counter - 1));
+    item = document.createElement("li");
+    item.className = "listElement" + counter;
+    item.classList.add("task:" + counter);
 
-    var node = document.createTextNode(tasks);
+    node = document.createTextNode(tasks);
 
-
-
-    const textWrapper = document.createElement("a");
+    textWrapper = document.createElement("a");
     textWrapper.setAttribute("class", "textWrapper");
 
     createItemIcons();
-
-
-    para.appendChild(checkButton);
-    para.appendChild(textWrapper);
-    para.appendChild(edit);
-
-    textWrapper.appendChild(node);
-    para.appendChild(actionArea);
-    actionArea.appendChild(handleButtons);
-    actionArea.appendChild(deleteButtons);
-    actionArea.appendChild(favoriteButtons);
-
-
-
-
-    // para.appendChild(node);
-    element.appendChild(para);
+    appendItems();
 
 
 }
-
-
 
 // function to add items to list on enter
 
@@ -147,87 +130,15 @@ submitButton.addEventListener('click', addItemsToListonclick, false);
 
 
 
-
-function createInitialList() {
-
-    for (var i = 0; i < localStorage.length; i++) {
-
-
-        var key = localStorage.key(i);
-        console.log(key);
-        if (key !== 'counter' && key !== 'startModalHide') {
-            // TODO: if (localStorage.hasOwnProperty("task:" + [i])) {
-            if (localStorage.hasOwnProperty("task:" + [i] + "isItFav") == false) {
-
-
-
-
-                // use key name to retrieve the corresponding value
-                var value = JSON.parse(localStorage.getItem(key));
-
-                var para = document.createElement("li");
-                para.classList.add("listElement", key);
-
-                var node = document.createTextNode(value);
-
-                const textWrapper = document.createElement("a");
-                textWrapper.setAttribute("class", "textWrapper");
-
-                createItemIcons();
-
-                para.appendChild(checkButton);
-                para.appendChild(textWrapper);
-                para.appendChild(edit);
-
-                textWrapper.appendChild(node);
-                para.appendChild(actionArea);
-                actionArea.appendChild(handleButtons);
-                actionArea.appendChild(deleteButtons);
-                actionArea.appendChild(favoriteButtons);
-
-                // para.appendChild(node);
-                element.appendChild(para);
-                //}  
-            }
-
-        } else {
-
-            console.log('didnt work' + i);
-
-        }
-
-    }
-
-}
-
-window.onload = createInitialList;
-
-
-
-// FAVORITE Function
-
-function addFavorite() {
-
-    console.log('test');
-
-
-
-
-
-}
-
-
 favoriteButtons = document.getElementsByClassName("favoriteButton");
 
 for (var i = 0; i < favoriteButtons.length; i++) {
 
     favoriteButtons[i].addEventListener('click', function (event) {
-        console.log('clicked');
+
     }, false);
 
 }
-
-
 
 
 // actionArea
@@ -235,7 +146,7 @@ for (var i = 0; i < actionAreaSwitcher.length; i++) {
 
     actionAreaSwitcher[i].addEventListener("click", function (event) {
 
-        console.log('test');
+
         actionAreaSwitcher[i].classList.add("test");
 
     }, false);
@@ -255,15 +166,36 @@ function focuseItem(obj) {
     obj.parentNode.classList.toggle('opened');
 }
 
+
 // favorite item functionality 
+
+/**
+ * NOT FULLY IMPLEMENTED
+ * 
+ * @param 
+ */
 
 function favoriteListItem(obj) {
     obj.parentNode.parentNode.classList.toggle('favoriteItem');
-    //let first = obj.parentNode.parentNode.classList[1];
-    //let isItFav = first + 'isItFav';
-    if (localStorage.getItem(obj.parentNode.parentNode.classList[1] + 'isItFav') === null) {
-        localStorage.setItem(obj.parentNode.parentNode.classList[1] + 'isItFav', 'true');
+
+    //let getFavObj = obj.parentNode.parentNode.classList[1] + 'isFav';
+
+    if (localStorage.getItem(obj.parentNode.parentNode.id + "isFav") === null) {
+
+        let test = localStorage.getItem(obj.parentNode.parentNode.classList[1]);
+        localStorage.setItem(obj.parentNode.parentNode.classList[1] + "isFav", test);
+        localStorage.removeItem(obj.parentNode.parentNode.classList[1]);
+
+    } else {
+
+        let test2 = localStorage.getItem(obj.parentNode.parentNode.classList[1] + 'isFav');
+        // localStorage.removeItem(obj.parentNode.parentNode.classList[1]);
+        localStorage.setItem(obj.parentNode.parentNode.classList[1], test2);
+        localStorage.removeItem(obj.parentNode.parentNode.classList[1] + 'isFav');
+
+
     }
+
 }
 
 // check item functionality
@@ -279,25 +211,20 @@ function checkListItem(obj) {
         localStorage.removeItem(obj.parentNode.classList[1]);
     }, 2000);
 
-    // myVar = setTimeout(removeListItem, 55000);
-    //obj.parentNode.parentNode.remove();
-    // localStorage.removeItem(obj.parentNode.parentNode.classList[1]);
-
 }
 
 // reset functionality
 
 const resetButton = document.getElementById('reset');
-console.log(counter.length);
 function resetItems() {
-    console.log(counter);
+
     //localStorage.clear();
     for (let i; i < counter; i++) {
         localStorage.removeItem('task:' + counter[i]);
     }
 
     if (localStorage.contains("task")) {
-        console.log("this works");
+
     }
 
     element.innerHTML = "";
@@ -312,7 +239,6 @@ function abortModal(event) {
     event.target.parentNode.parentNode.classList.remove('opened');
 
 }
-
 
 resetButton.addEventListener("click", resetItems, false);
 
@@ -348,10 +274,6 @@ var sortable = new Sortable(pending, {
 });
 
 
-
-
-
-
 // settings modal
 
 const modal = document.getElementsByClassName('modal');
@@ -359,32 +281,33 @@ const modal = document.getElementsByClassName('modal');
 for (var i = 0; i < modal.length; i++) {
 
     const createCloseModal = document.createElement("a");
-    // const closeImg = document.createElement("img");
-    // closeImg.setAttribute("src", "/img/close.svg");
+    const closeImg = document.createElement("img");
+    //closeImg.setAttribute("src", "../img/close.svg");
     createCloseModal.setAttribute("id", "close");
     createCloseModal.setAttribute("onclick", "closeModal()");
     createCloseModal.classList.add('close');
+    createCloseModal.appendChild(closeImg);
     modal[i].prepend(createCloseModal);
-    // createCloseModal.appendChild(closeImg)
 
 }
 
 // settings modal toggle
 
 
-function openFunction(item) {
+function openFunction(element) {
 
-    item.classList.add('opened');
+    element.classList.add('opened');
 
 }
 
-/* function closeFunction(item) {
+/*function closeFunction(e) {
 
-    item.classList.remove('opened');
+    e.classList.remove('opened');
 
 } */
 
 function openModal() {
+
 
     const settingsModal = document.getElementById('settingsModal');
     settingsModal.addEventListener('click', openFunction(settingsModal), false)
@@ -405,11 +328,10 @@ function closeModal() {
 
 }
 
-// actual toggles
-
 // open
 
-const settings = document.getElementById('settings');
+let settings = document.getElementById('settings');
+
 settings.addEventListener('click', openModal, false);
 
 // close
@@ -444,24 +366,11 @@ const startModalClose = document.getElementById('startModalClose');
 startModalClose.addEventListener('click', saveToLocalStorage, false);
 
 
-// right click
-
-/* 
-
-if (document.addEventListener) {
-    document.addEventListener('contextmenu', function(e) {
-      alert("You've tried to open context menu"); //here you draw your own menu
-      e.preventDefault();
-    }, false);
-  } else {
-    document.attachEvent('oncontextmenu', function() {
-      alert("You've tried to open context menu");
-      window.event.returnValue = false;
-    });
-  }
-
-*/
-
+/**
+ * this function creates the subelements of an item
+ * 
+ * 
+ */
 function createItemIcons() {
 
     edit = document.createElement("a");
@@ -494,3 +403,61 @@ function createItemIcons() {
     favoriteButtons.setAttribute("onclick", "favoriteListItem(this)");
 
 }
+
+/**
+ * 
+ * this function appends the subelements to the item
+ * 
+ */
+function appendItems() {
+
+    item.appendChild(checkButton);
+    item.appendChild(textWrapper);
+    item.appendChild(edit);
+
+    textWrapper.appendChild(node);
+    item.appendChild(actionArea);
+    actionArea.appendChild(handleButtons);
+    actionArea.appendChild(deleteButtons);
+    actionArea.appendChild(favoriteButtons);
+
+    element.appendChild(item);
+
+}
+
+function createInitialList() {
+
+    for (var i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        let newKey = key.replace('isFav', '');
+
+        if (key !== 'counter' && key !== 'startModalHide') {
+            if (key.includes("task:")) {
+
+                var value = localStorage.getItem(key);
+
+                item = document.createElement("li");
+                item.classList.add("listElement", newKey);
+
+                if (key.includes('isFav')) {
+                    item.classList.add("favoriteItem");
+                }
+
+                item.setAttribute("id", key);
+
+                node = document.createTextNode(value);
+
+                textWrapper = document.createElement("a");
+                textWrapper.setAttribute("class", "textWrapper");
+
+                createItemIcons();
+                appendItems();
+
+            }
+        }
+        else {
+        }
+    }
+}
+
+window.onload = createInitialList();
