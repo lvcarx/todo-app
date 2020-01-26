@@ -15,28 +15,34 @@ let handleButtons;
 let checkButton;
 let deleteButtons;
 let favoriteButtons;
-
 let counter = 1;
-var element = document.getElementById("todoItems");
+
+
+let element = document.getElementById("todoItems");
 const form = document.getElementById("form");
 const submitButton = document.getElementById('submit');
 var input = document.getElementById("box");
 const actionAreaSwitcher = document.getElementsByClassName("actionArea");
 
-if (localStorage.getItem("task:0" || "task:0isFav") === null) {
-    counter = localStorage.setItem('counter', JSON.stringify(counter));
+if (localStorage.getItem("task:1")) {
+    counter = localStorage.getItem('counter');
+} else if (localStorage.getItem("task:null")) {
+    counter = localStorage.getItem('counter');
+} else {
+    counter = localStorage.setItem('counter', counter);
 }
 
-counter = localStorage.getItem('counter', JSON.stringify(counter));
+console.log(counter);
 
 // increase counter function
 
 function increaseCounteronenter() {
 
     if (event.keyCode === 13) {
-        localStorage.getItem('counter', JSON.stringify(counter));
+        counter = JSON.parse(window.localStorage.getItem('counter'));
+        console.log(counter);
         counter += 1;
-        localStorage.setItem('counter', JSON.stringify(counter));
+        localStorage.setItem('counter', counter);
         form.reset();
     }
 
@@ -44,9 +50,10 @@ function increaseCounteronenter() {
 
 function increaseCounteronclick() {
 
-    localStorage.getItem('counter', JSON.stringify(counter));
+    counter = JSON.parse(window.localStorage.getItem('counter'));
+    console.log(counter);
     counter += 1;
-    localStorage.setItem('counter', JSON.stringify(counter));
+    localStorage.setItem('counter', counter);
     form.reset();
 
 }
@@ -56,19 +63,17 @@ function increaseCounteronclick() {
 document.addEventListener('keyup', increaseCounteronenter, false);
 submitButton.addEventListener('click', increaseCounteronclick, false);
 
-
-
-
-counter = JSON.parse(window.localStorage.getItem('counter'));
+counter = window.localStorage.getItem(counter);
 
 let items = [];
 
 function setItems() {
 
     boxvalue = document.getElementById('box').value;
-
+    counter = localStorage.getItem('counter');
     if (boxvalue.length > 1) {
-
+        console.log(counter);
+        // HIER IST DER FEHLER
         localStorage.setItem('task:' + counter, items);
         items.push(boxvalue);
         localStorage.setItem('task:' + counter, items);
@@ -93,7 +98,6 @@ function createList() {
 
     createItemIcons();
     appendItems();
-
 
 }
 
@@ -424,32 +428,32 @@ function appendItems() {
 
 function createInitialList() {
 
-    for (var i = 0; i < localStorage.length; i++) {
+    for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i);
         let newKey = key.replace('isFav', '');
 
-            if (key.includes("task:")) {
+        if (key.includes("task:")) {
 
-                var value = localStorage.getItem(key);
+            var value = localStorage.getItem(key);
 
-                item = document.createElement("li");
-                item.classList.add("listElement", newKey);
+            item = document.createElement("li");
+            item.classList.add("listElement", newKey);
 
-                if (key.includes('isFav')) {
-                    item.classList.add("favoriteItem");
-                }
+            if (key.includes('isFav')) {
+                item.classList.add("favoriteItem");
+            }
 
-                item.setAttribute("id", key);
+            item.setAttribute("id", key);
 
-                node = document.createTextNode(value);
+            node = document.createTextNode(value);
 
-                textWrapper = document.createElement("a");
-                textWrapper.setAttribute("class", "textWrapper");
+            textWrapper = document.createElement("a");
+            textWrapper.setAttribute("class", "textWrapper");
 
-                createItemIcons();
-                appendItems();
+            createItemIcons();
+            appendItems();
 
-            }  
+        }
     }
 }
 
