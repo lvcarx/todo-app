@@ -89,7 +89,7 @@ function createList() {
     var tasks = window.localStorage.getItem('task:' + (counter - 1));
     item = document.createElement("li");
     item.className = "listElement" + counter;
-    item.classList.add("task:" + counter);
+    item.classList.add("task:" + (counter - 1));
 
     node = document.createTextNode(tasks);
 
