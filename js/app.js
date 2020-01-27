@@ -24,7 +24,7 @@ const submitButton = document.getElementById('submit');
 var input = document.getElementById("box");
 const actionAreaSwitcher = document.getElementsByClassName("actionArea");
 
-counter = localStorage.setItem('counter', counter);
+counter = localStorage.getItem(counter);
 
 console.log(counter);
 
