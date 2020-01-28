@@ -169,3 +169,11 @@ const pinkToggle = document.getElementById('pinkMode');
 blueToggle.addEventListener('click', changeTheme, false);
 greenToggle.addEventListener('click', changeTheme, false);
 pinkToggle.addEventListener('click', changeTheme, false);
+
+
+function clearLocalStorage() {
+
+    localStorage.clear();
+    location.reload();
+
+}
