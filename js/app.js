@@ -16,7 +16,13 @@ let checkButton;
 let deleteButtons;
 let favoriteButtons;
 let counter = 1;
+let saveCounter;
 
+
+saveCounter = localStorage.getItem('counter');
+if (saveCounter === null) {
+    localStorage.setItem('counter', counter);
+}
 
 let element = document.getElementById("todoItems");
 const form = document.getElementById("form");
@@ -24,17 +30,12 @@ const submitButton = document.getElementById('submit');
 var input = document.getElementById("box");
 const actionAreaSwitcher = document.getElementsByClassName("actionArea");
 
-counter = localStorage.getItem(counter);
-
-console.log(counter);
-
 // increase counter function
 
 function increaseCounteronenter() {
 
     if (event.keyCode === 13) {
         counter = JSON.parse(window.localStorage.getItem('counter'));
-        console.log(counter);
         counter += 1;
         localStorage.setItem('counter', counter);
         form.reset();
@@ -45,7 +46,6 @@ function increaseCounteronenter() {
 function increaseCounteronclick() {
 
     counter = JSON.parse(window.localStorage.getItem('counter'));
-    console.log(counter);
     counter += 1;
     localStorage.setItem('counter', counter);
     form.reset();
@@ -66,8 +66,6 @@ function setItems() {
     boxvalue = document.getElementById('box').value;
     counter = localStorage.getItem('counter');
     if (boxvalue.length > 1) {
-        console.log(counter);
-        // HIER IST DER FEHLER
         localStorage.setItem('task:' + counter, items);
         items.push(boxvalue);
         localStorage.setItem('task:' + counter, items);
@@ -211,19 +209,20 @@ function checkListItem(obj) {
 // reset functionality
 
 const resetButton = document.getElementById('reset');
+
 function resetItems() {
 
-    //localStorage.clear();
-    for (let i; i < counter; i++) {
-        localStorage.removeItem('task:' + counter[i]);
-    }
-
-    if (localStorage.contains("task")) {
-
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key.includes("task:")) {
+            console.log(key);
+            localStorage.removeItem(key);
+        }
     }
 
     element.innerHTML = "";
     counter = 1;
+    localStorage.setItem('counter', counter);
 
 }
 
