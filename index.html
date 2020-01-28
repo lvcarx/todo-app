@@ -64,15 +64,20 @@ Uses local storage</div>
             <a class="color green" id="greenMode" onclick="greenTheme(event)"></a>
             <a class="color pink" id="pinkMode" onclick="pinkTheme(event)"></a>
         </div>
+
+        <h3>Reset App (Developer)</h3>        
+        <a onclick="clearLocalStorage()">Delete all data</a>
+
     </div>
 </div>
 
 <div class="modal deleteModal" id="deleteModal">
     <h2>Do you really want to delete all items?</h2>
-    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
+    <p>With this action you will delete all existing items.<br>
+    They can't be restored!</p>
     <div class="content">
         <a class="noBtn" id="abort" onclick="abortModal(event)">abort</a>
-        <a class="yesBtn" id="reset">continue</a>
+        <a class="yesBtn" id="reset" onclick="resetItems()">continue</a>
     </div>
 </div>
 
@@ -103,10 +108,9 @@ Uses local storage</div>
  
 
 <footer>
-<a href="/features.html">Was kann diese App?</a>
-
-
-<a href="https://reichmann.digital">Made with ❤️ by reichmann.digital</a>
+<a target="_blank" href="https://github.com/reallucareichmann/todo-app">Changelog and future plans</a>
+<br>
+<a target="_blank" href="https://luca-reichmann.de">Made with ❤️ by luca-reichmann.de</a target="_blank">
 
 
 
