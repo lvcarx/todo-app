@@ -359,6 +359,19 @@ if (isStartModalHidden) {
 const startModalClose = document.getElementById('startModalClose');
 startModalClose.addEventListener('click', saveToLocalStorage, false);
 
+/**
+ * Create dynamic sections
+ * 
+ * 
+ */
+
+function dynamicSection() {
+
+    
+
+}
+
+
 
 /**
  * this function creates the subelements of an item
