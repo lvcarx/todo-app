@@ -158,8 +158,10 @@ function removeListItem(obj) {
     if (obj.parentNode.parentNode.classList.contains('favoriteItem')) {
         let isFav = 'isFav';
         removedItem = deletedElementClass.concat(isFav);
+        localStorage.removeItem(removedItem);
+    } else {
+        localStorage.removeItem(obj.parentNode.parentNode.classList[1]);
     }
-    localStorage.removeItem(removedItem);
 }
 
 function focuseItem(obj) {
