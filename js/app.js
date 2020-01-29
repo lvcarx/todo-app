@@ -152,10 +152,14 @@ for (var i = 0; i < actionAreaSwitcher.length; i++) {
 // remove item functionality
 
 function removeListItem(obj) {
-
+    let removedItem;
     obj.parentNode.parentNode.remove();
-    localStorage.removeItem(obj.parentNode.parentNode.classList[1]);
-
+    let deletedElementClass = obj.parentNode.parentNode.classList[1];
+    if (obj.parentNode.parentNode.classList.contains('favoriteItem')) {
+        let isFav = 'isFav';
+        removedItem = deletedElementClass.concat(isFav);
+    }
+    localStorage.removeItem(removedItem);
 }
 
 function focuseItem(obj) {
