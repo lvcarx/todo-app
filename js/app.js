@@ -66,9 +66,9 @@ function setItems() {
     boxvalue = document.getElementById('box').value;
     counter = localStorage.getItem('counter');
     if (boxvalue.length > 1) {
-        localStorage.setItem('task:' + counter, items);
+        localStorage.setItem('task:' + counter + 'todoItems', items);
         items.push(boxvalue);
-        localStorage.setItem('task:' + counter, items);
+        localStorage.setItem('task:' + counter + 'todoItems', items);
         items = [];
         return false;
 
@@ -77,19 +77,32 @@ function setItems() {
 }
 
 function createList() {
+    let tasks;
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key.includes('task:')) {
+            if (key.includes(counter - 1)) {
+                let sub;
+                if (counter < 10) {
+                    sub = key.substr(0, 6);
+                } else {
+                    sub = key.substr(0, 7);
+                }
+                
+                tasks = localStorage.getItem(sub + 'todoItems');
+            }
+        }
+    }
 
-    var tasks = window.localStorage.getItem('task:' + (counter - 1));
     item = document.createElement("li");
     item.className = "listElement" + counter;
     item.classList.add("task:" + (counter - 1));
-
     node = document.createTextNode(tasks);
-
     textWrapper = document.createElement("a");
     textWrapper.setAttribute("class", "textWrapper");
-
     createItemIcons();
     appendItems();
+    element.appendChild(item);
 
 }
 
@@ -253,12 +266,60 @@ openResetModal.addEventListener('click', openDeleteModal, false);
 
 // SORTABLE JS config
 
-var today = document.getElementById('todoItems');
-var sortable = new Sortable(today, {
-    animation: 150,
-    group: 'shared',
-    handle: '.handle', // handle's class
-});
+let allItems = document.getElementsByTagName('ul');
+
+let itemEl;
+let itemPosition; 
+let oldItemPosition;   // target list
+let draggedItemContainerId;
+let draggedItemClass;
+let itemContent;
+let prevContainer;
+for (let i = 0; i < allItems.length; i++) {
+    var sortable = new Sortable(allItems[i], {
+        animation: 150,
+        group: 'shared',
+        handle: '.handle', // handle's class
+        onEnd: function (/**Event*/evt) {
+            itemEl = evt.item;
+            itemPosition = evt.to;  
+            oldItemPosition = evt.from; 
+            oldItemPositionId = oldItemPosition.id; 
+            draggedItemContainerId = itemPosition.id;
+            draggedItemClass = itemEl.classList[1];
+
+            itemContent = localStorage.getItem(draggedItemClass);
+            console.log(itemContent);
+
+
+            if (itemContent === null) {
+                
+                    itemContent = localStorage.getItem(draggedItemClass + oldItemPositionId);
+                    console.log('works null' + itemContent);
+                
+            }
+
+            if (oldItemPositionId !== draggedItemContainerId) {
+                console.log(draggedItemClass + oldItemPositionId);
+                localStorage.setItem(draggedItemClass + draggedItemContainerId, itemContent);
+                localStorage.removeItem(draggedItemClass + oldItemPositionId);
+            }
+            /*if (itemContent === null) {
+                itemContent = localStorage.getItem(draggedItemClass + prevContainer);
+                console.log('works null');
+                
+            }*/
+
+            /*console.log(itemEl);
+            console.log(itemPosition);
+            console.log(draggedItemContainerId);
+            console.log(draggedItemClass);
+            console.log(itemContent);
+            console.log(prevContainer);*/
+            prevContainer = draggedItemContainerId;
+        }
+    });
+}
 
 var pending = document.getElementById('pendingTodoItems');
 var sortable = new Sortable(pending, {
@@ -266,6 +327,10 @@ var sortable = new Sortable(pending, {
     group: 'shared',
     handle: '.handle', // handle's class
 });
+
+// save where item was put
+
+
 
 
 // settings modal
@@ -323,16 +388,12 @@ function closeModal() {
 }
 
 // open
-
 let settings = document.getElementById('settings');
-
 settings.addEventListener('click', openModal, false);
 
 // close
-
 const test = document.getElementById('close');
 test.addEventListener('click', closeModal, false);
-
 
 // implement saving clicking start modal away 
 
@@ -344,18 +405,11 @@ function saveToLocalStorage() {
 }
 
 isStartModalHidden = localStorage.getItem('startModalHide');
-
 if (isStartModalHidden) {
-
-
-
 } else {
-
     const startModal = document.getElementById('startModal');
     startModal.classList.add('opened');
-
 }
-
 const startModalClose = document.getElementById('startModalClose');
 startModalClose.addEventListener('click', saveToLocalStorage, false);
 
@@ -365,12 +419,83 @@ startModalClose.addEventListener('click', saveToLocalStorage, false);
  * 
  */
 
-function dynamicSection() {
+function createDynamicSection() {
 
+    let boxvalue = document.getElementById('sectionName').value;
+    let itemWrapper = document.createElement("div");
+    let itemHeading = document.createElement("h2");
+    let itemList = document.createElement("ul");
+
+    itemWrapper.classList.add('itemWrapper');
+    itemWrapper.classList.add(boxvalue + 'Section');
+    itemHeading.textContent = boxvalue;
+    itemList.setAttribute('id', boxvalue);
+
+    const wrapper = document.getElementById('content');
+
+    itemWrapper.appendChild(itemHeading);
+    itemWrapper.appendChild(itemList);
+
+    wrapper.appendChild(itemWrapper);
+
+    const body = document.getElementsByTagName('body');
+
+    localStorage.setItem('section' + boxvalue, boxvalue);
+
+    for (let i = 0; i < allItems.length; i++) {
+        var sortable = new Sortable(allItems[i], {
+            animation: 150,
+            group: 'shared',
+            handle: '.handle', // handle's class
+            onEnd: function (/**Event*/evt) {
+                let itemEl = evt.item;
+                let itemPosition = evt.to;    // target list
+                let draggedItemContainerId = itemPosition.id;
+                let draggedItemClass = itemEl.classList[1];
+                let itemContent = localStorage.getItem(draggedItemClass);
+                localStorage.setItem(draggedItemClass + draggedItemContainerId, itemContent);
+                localStorage.removeItem(draggedItemClass);
+            }
+        });
+    }
+}
+
+function loadSections() {
+
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+
+        if (key.includes('section')) {
+            
+            let boxvalue = localStorage.getItem(key);
+            let itemWrapper = document.createElement("div");
+            let itemHeading = document.createElement("h2");
+            let itemList = document.createElement("ul");
+        
+            itemWrapper.classList.add('itemWrapper');
+            itemWrapper.classList.add(boxvalue + 'Section');
+            itemHeading.textContent = boxvalue;
+            itemList.setAttribute('id', boxvalue);
+        
+            const wrapper = document.getElementById('content');
+        
+            itemWrapper.appendChild(itemHeading);
+            itemWrapper.appendChild(itemList);
+        
+            wrapper.appendChild(itemWrapper);
     
+        }
+
+    }    
 
 }
 
+window.load = loadSections();
+
+function setCharAt(str, index, chr) {
+    if (index > str.length - 1) return str;
+    return str.substr(0, index) + chr + str.substr(index + 1);
+}
 
 
 /**
@@ -428,7 +553,7 @@ function appendItems() {
     actionArea.appendChild(deleteButtons);
     actionArea.appendChild(favoriteButtons);
 
-    element.appendChild(item);
+
 
 }
 
@@ -436,14 +561,31 @@ function createInitialList() {
 
     for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i);
-        let newKey = key.replace('isFav', '');
+        let counters = localStorage.getItem('counter');
+        let toReplace = 'task:';
+        let anotherNewKey = key.replace(toReplace, '');
+        anotherNewKey = setCharAt(anotherNewKey, 0, '');
 
+        let newKey = key.replace('isFav', '');
+        let counter = localStorage.getItem('counter');
         if (key.includes("task:")) {
 
+            if (newKey.includes(anotherNewKey)) {
+                newKey.replace(anotherNewKey, '');
+            }
+            let onlySub;
+            let onlySub2;
+            onlySub = key.substr(0, 6);
+            /*if (counters < 10) {
+                onlySub = key.substr(0, 6);
+            } else {
+                onlySub2 = key.substr(0, 7);
+            }*/
+            console.log(onlySub);
             var value = localStorage.getItem(key);
 
             item = document.createElement("li");
-            item.classList.add("listElement", newKey);
+            item.classList.add("listElement", onlySub);
 
             if (key.includes('isFav')) {
                 item.classList.add("favoriteItem");
@@ -459,8 +601,17 @@ function createInitialList() {
             createItemIcons();
             appendItems();
 
+            let whereToAppendItem = document.getElementById(anotherNewKey);
+
+            if (key.length > 6) {
+                whereToAppendItem.appendChild(item);
+            } else {
+                element.appendChild(item);
+            }
+
         }
     }
 }
+
 
 window.onload = createInitialList();
