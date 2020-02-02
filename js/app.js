@@ -17,7 +17,7 @@ let deleteButtons;
 let favoriteButtons;
 let counter = 1;
 let saveCounter;
-
+const dynamicSection = document.getElementById('dynamicSection');
 
 saveCounter = localStorage.getItem('counter');
 if (saveCounter === null) {
@@ -414,6 +414,38 @@ const startModalClose = document.getElementById('startModalClose');
 startModalClose.addEventListener('click', saveToLocalStorage, false);
 
 /**
+ * 
+ * 
+ * 
+ */
+
+function openerFunction() {    
+    dynamicSection.classList.add('opened');
+
+    
+}
+
+
+if (dynamicSection.classList.contains('opened')) {
+    window.onclick = function(event) {
+        if (event.target !== dynamicSection) {
+            dynamicSection.style.display = "none";
+        }
+    }
+
+    console.log('test');
+}
+
+/**
+ * 
+ * 
+ */
+
+const opener = document.getElementById('addSections');
+opener.addEventListener("click", openerFunction, false);
+
+
+/**
  * Create dynamic sections
  * 
  * 
@@ -422,41 +454,66 @@ startModalClose.addEventListener('click', saveToLocalStorage, false);
 function createDynamicSection() {
 
     let boxvalue = document.getElementById('sectionName').value;
-    let itemWrapper = document.createElement("div");
-    let itemHeading = document.createElement("h2");
-    let itemList = document.createElement("ul");
+    dynamicSection.classList.remove('opened');
+    if (boxvalue.length > 0) {
+        let itemWrapper = document.createElement("div");
+        let itemHeading = document.createElement("h2");
+        let itemList = document.createElement("ul");
+        let removeList = document.createElement("a");
+        removeList.setAttribute('onclick', 'removeSections(this)');
+        removeList.textContent = 'Remove';
+        itemWrapper.classList.add('itemWrapper');
+        itemWrapper.classList.add(boxvalue + 'Section');
+        itemWrapper.classList.add('section' + boxvalue);
+        itemHeading.textContent = boxvalue;
+        itemList.setAttribute('id', boxvalue);
 
-    itemWrapper.classList.add('itemWrapper');
-    itemWrapper.classList.add(boxvalue + 'Section');
-    itemHeading.textContent = boxvalue;
-    itemList.setAttribute('id', boxvalue);
+        const wrapper = document.getElementById('itemSections');
 
-    const wrapper = document.getElementById('content');
+        itemWrapper.appendChild(itemHeading);
+        itemWrapper.appendChild(itemList);
+        itemWrapper.appendChild(removeList);
 
-    itemWrapper.appendChild(itemHeading);
-    itemWrapper.appendChild(itemList);
+        wrapper.appendChild(itemWrapper);
 
-    wrapper.appendChild(itemWrapper);
+        //const body = document.getElementsByTagName('body');
+        
+        localStorage.setItem('section' + boxvalue, boxvalue);
 
-    const body = document.getElementsByTagName('body');
-
-    localStorage.setItem('section' + boxvalue, boxvalue);
-
-    for (let i = 0; i < allItems.length; i++) {
-        var sortable = new Sortable(allItems[i], {
-            animation: 150,
-            group: 'shared',
-            handle: '.handle', // handle's class
-            onEnd: function (/**Event*/evt) {
-                let itemEl = evt.item;
-                let itemPosition = evt.to;    // target list
-                let draggedItemContainerId = itemPosition.id;
-                let draggedItemClass = itemEl.classList[1];
-                let itemContent = localStorage.getItem(draggedItemClass);
-                localStorage.setItem(draggedItemClass + draggedItemContainerId, itemContent);
-                localStorage.removeItem(draggedItemClass);
-            }
-        });
+        for (let i = 0; i < allItems.length; i++) {
+            var sortable = new Sortable(allItems[i], {
+                animation: 150,
+                group: 'shared',
+                handle: '.handle', // handle's class
+                onEnd: function (/**Event*/evt) {
+                    itemEl = evt.item;
+                    itemPosition = evt.to;  
+                    oldItemPosition = evt.from; 
+                    oldItemPositionId = oldItemPosition.id; 
+                    draggedItemContainerId = itemPosition.id;
+                    draggedItemClass = itemEl.classList[1];
+        
+                    itemContent = localStorage.getItem(draggedItemClass);
+                    console.log(itemContent);
+        
+        
+                    if (itemContent === null) {
+                        
+                            itemContent = localStorage.getItem(draggedItemClass + oldItemPositionId);
+                            console.log('works null' + itemContent);
+                        
+                    }
+        
+                    if (oldItemPositionId !== draggedItemContainerId) {
+                        console.log(draggedItemClass + oldItemPositionId);
+                        localStorage.setItem(draggedItemClass + draggedItemContainerId, itemContent);
+                        localStorage.removeItem(draggedItemClass + oldItemPositionId);
+                    }
+                    
+                    prevContainer = draggedItemContainerId;
+                }
+            });
+        }
     }
 }
 
@@ -471,26 +528,86 @@ function loadSections() {
             let itemWrapper = document.createElement("div");
             let itemHeading = document.createElement("h2");
             let itemList = document.createElement("ul");
-        
+            let removeList = document.createElement("a");
+
+            removeList.textContent = 'Remove';
+            removeList.setAttribute('onclick', 'removeSections(this)');
             itemWrapper.classList.add('itemWrapper');
             itemWrapper.classList.add(boxvalue + 'Section');
+            itemWrapper.classList.add('section' + boxvalue);
+            itemWrapper.classList.add(boxvalue);
             itemHeading.textContent = boxvalue;
             itemList.setAttribute('id', boxvalue);
         
-            const wrapper = document.getElementById('content');
+            const wrapper = document.getElementById('itemSections');
         
             itemWrapper.appendChild(itemHeading);
             itemWrapper.appendChild(itemList);
-        
+            itemWrapper.appendChild(removeList);
             wrapper.appendChild(itemWrapper);
     
         }
 
     }    
 
+    for (let i = 0; i < allItems.length; i++) {
+        var sortable = new Sortable(allItems[i], {
+            animation: 150,
+            group: 'shared',
+            handle: '.handle', // handle's class
+            onEnd: function (/**Event*/evt) {
+                itemEl = evt.item;
+                itemPosition = evt.to;  
+                oldItemPosition = evt.from; 
+                oldItemPositionId = oldItemPosition.id; 
+                draggedItemContainerId = itemPosition.id;
+                draggedItemClass = itemEl.classList[1];
+    
+                itemContent = localStorage.getItem(draggedItemClass);
+                console.log(itemContent);
+    
+    
+                if (itemContent === null) {
+                    
+                        itemContent = localStorage.getItem(draggedItemClass + oldItemPositionId);
+                        console.log('works null' + itemContent);
+                    
+                }
+    
+                if (oldItemPositionId !== draggedItemContainerId) {
+                    console.log(draggedItemClass + oldItemPositionId);
+                    localStorage.setItem(draggedItemClass + draggedItemContainerId, itemContent);
+                    localStorage.removeItem(draggedItemClass + oldItemPositionId);
+                }
+               
+                prevContainer = draggedItemContainerId;
+            }
+        });
+    }
+
 }
 
 window.load = loadSections();
+
+function removeSections(obj) {
+
+    obj.parentNode.remove();
+    let objClass = obj.parentNode.classList[2];
+
+    for (let i = 0; i < localStorage.length; i++) {
+
+        const key = localStorage.key(i);
+        console.log(key);
+        console.log(objClass);
+        if (key.includes(objClass)) {
+            localStorage.removeItem(key);
+        }
+    }   
+
+    localStorage.removeItem(objClass);
+
+}
+
 
 function setCharAt(str, index, chr) {
     if (index > str.length - 1) return str;
@@ -576,17 +693,12 @@ function createInitialList() {
             let onlySub;
             let onlySub2;
             onlySub = key.substr(0, 6);
-            /*if (counters < 10) {
-                onlySub = key.substr(0, 6);
-            } else {
-                onlySub2 = key.substr(0, 7);
-            }*/
-            console.log(onlySub);
+     
             var value = localStorage.getItem(key);
 
             item = document.createElement("li");
-            item.classList.add("listElement", onlySub);
 
+            item.classList.add("listElement", onlySub);
             if (key.includes('isFav')) {
                 item.classList.add("favoriteItem");
             }
