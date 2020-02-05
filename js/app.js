@@ -167,7 +167,16 @@ for (var i = 0; i < actionAreaSwitcher.length; i++) {
 function removeListItem(obj) {
 
     obj.parentNode.parentNode.remove();
-    localStorage.removeItem(obj.parentNode.parentNode.classList[1]);
+
+    let objClass = obj.parentNode.parentNode.classList[1];
+
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key.includes(objClass)) {
+            localStorage.removeItem(key);
+        }
+    }   
+    //localStorage.removeItem(objClass);
 
 }
 
@@ -239,7 +248,17 @@ function checkListItem(obj) {
 
     setTimeout(function () {
         obj.parentNode.remove();
-        localStorage.removeItem(obj.parentNode.classList[1]);
+        // localStorage.removeItem(obj.parentNode.classList[1]);
+
+        let objClass = obj.parentNode.classList[1];
+
+        for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            if (key.includes(objClass)) {
+                localStorage.removeItem(key);
+            }
+        }   
+
     }, 2000);
 
 }
@@ -648,14 +667,11 @@ function removeSections(obj) {
     let objClass = obj.parentNode.classList[2];
 
     for (let i = 0; i < localStorage.length; i++) {
-
         const key = localStorage.key(i);
- 
         if (key.includes(objClass)) {
             localStorage.removeItem(key);
         }
     }   
-
     localStorage.removeItem(objClass);
 
 }
