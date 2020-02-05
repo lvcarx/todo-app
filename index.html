@@ -51,10 +51,12 @@ Uses local storage</div>
 <div class="modal" id="settingsModal">
     <h2>Settings</h2>
     <div class="content">
+
+        
+        <!--  Not finished
         <h3>Push notifications</h3>
         <a href="">Enable</a>
-        <a href="">Disable</a>
-
+        <a href="">Disable</a> -->
 
         <h3>Appearance</h3>
         <a class="" id="darkModeToggle">Dark Mode</a>
@@ -90,16 +92,24 @@ Uses local storage</div>
     </div>
 </form>
 
-    
+<div id="itemSections">
 
-<div class="itemWrapper todaySection">
-    <h2>Today</h2>
-    <ul id="todoItems"></ul>
-</div>
+    <div class="dynamicSectionWrapper">
+        <a id="addSections">Add new sections</a>
+        <div id="dynamicSection" class="dynamicSection">
+            <input id="sectionName" type="text">
+            <a onclick="createDynamicSection()">Save and close</a>
+        </div>    
+    </div>
+    <div class="itemWrapper todaySection">
+        <h2>Today</h2>
+        <ul id="todoItems"></ul>
+    </div>
 
-<div class="itemWrapper doneSection">
-    <h2>Pending</h2>
-    <ul id="pendingTodoItems"></ul>
+    <div class="itemWrapper doneSection">
+        <h2>Pending</h2>
+        <ul id="pendingTodoItems"></ul>
+    </div>
 </div>
 
 <p id="advice"></p>

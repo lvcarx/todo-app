@@ -17,7 +17,7 @@ let deleteButtons;
 let favoriteButtons;
 let counter = 1;
 let saveCounter;
-
+const dynamicSection = document.getElementById('dynamicSection');
 
 saveCounter = localStorage.getItem('counter');
 if (saveCounter === null) {
@@ -66,9 +66,9 @@ function setItems() {
     boxvalue = document.getElementById('box').value;
     counter = localStorage.getItem('counter');
     if (boxvalue.length > 1) {
-        localStorage.setItem('task:' + counter, items);
+        localStorage.setItem('task:' + counter + 'todoItems', items);
         items.push(boxvalue);
-        localStorage.setItem('task:' + counter, items);
+        localStorage.setItem('task:' + counter + 'todoItems', items);
         items = [];
         return false;
 
@@ -77,19 +77,32 @@ function setItems() {
 }
 
 function createList() {
+    let tasks;
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key.includes('task:')) {
+            if (key.includes(counter - 1)) {
+                let sub;
+                if (counter < 10) {
+                    sub = key.substr(0, 6);
+                } else {
+                    sub = key.substr(0, 7);
+                }
+                
+                tasks = localStorage.getItem(sub + 'todoItems');
+            }
+        }
+    }
 
-    var tasks = window.localStorage.getItem('task:' + (counter - 1));
     item = document.createElement("li");
     item.className = "listElement" + counter;
     item.classList.add("task:" + (counter - 1));
-
     node = document.createTextNode(tasks);
-
     textWrapper = document.createElement("a");
     textWrapper.setAttribute("class", "textWrapper");
-
     createItemIcons();
     appendItems();
+    element.appendChild(item);
 
 }
 
@@ -177,25 +190,50 @@ function focuseItem(obj) {
  * @param 
  */
 
-function favoriteListItem(obj) {
+
+function addFavoriteListItem(obj) {
     obj.parentNode.parentNode.classList.toggle('favoriteItem');
 
-    if (localStorage.getItem(obj.parentNode.parentNode.classList[1] + 'isFav') === null) {
-
-        let test = localStorage.getItem(obj.parentNode.parentNode.classList[1]);
-        localStorage.setItem(obj.parentNode.parentNode.classList[1] + "isFav", test);
-        localStorage.removeItem(obj.parentNode.parentNode.classList[1]);
-
-    } else {
-
-        let test2 = localStorage.getItem(obj.parentNode.parentNode.classList[1] + 'isFav');
-        localStorage.setItem(obj.parentNode.parentNode.classList[1], test2);
-        localStorage.removeItem(obj.parentNode.parentNode.classList[1] + 'isFav');
-
-
-    }
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key.includes(obj.parentNode.parentNode.classList[1])) { 
+            if (key.includes('isFav') == false) {
+                let test = localStorage.getItem(key);
+    
+                localStorage.setItem(key + 'isFav', test);
+                localStorage.removeItem(key); 
+            } 
+        }
+    }    
+    let testItem = obj;
+    testItem.setAttribute('onclick', "removeFavoriteListItem(this)");
 
 }
+
+// remove Fav
+
+function removeFavoriteListItem(obj) {
+    obj.parentNode.parentNode.classList.toggle('favoriteItem');
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key.includes(obj.parentNode.parentNode.classList[1])) { 
+            if (key.includes('isFav')) {
+                let test3 = localStorage.getItem(key);
+             
+                const splitFav = 'isFav';
+                let anotherNewKey = key.replace(splitFav, '');
+                localStorage.setItem(anotherNewKey, test3);
+                localStorage.removeItem(key); 
+            } 
+        }
+    }    
+
+    let testItem = obj;
+    testItem.setAttribute('onclick', "addFavoriteListItem(this)");
+
+}
+
+
 
 // check item functionality
 
@@ -221,7 +259,7 @@ function resetItems() {
     for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i);
         if (key.includes("task:")) {
-            console.log(key);
+     
             localStorage.removeItem(key);
         }
     }
@@ -259,12 +297,67 @@ openResetModal.addEventListener('click', openDeleteModal, false);
 
 // SORTABLE JS config
 
-var today = document.getElementById('todoItems');
-var sortable = new Sortable(today, {
-    animation: 150,
-    group: 'shared',
-    handle: '.handle', // handle's class
-});
+let allItems = document.getElementsByTagName('ul');
+
+let itemEl;
+let itemPosition; 
+let oldItemPosition;   // target list
+let draggedItemContainerId;
+let draggedItemClass;
+let itemContent;
+let prevContainer;
+for (let i = 0; i < allItems.length; i++) {
+    var sortable = new Sortable(allItems[i], {
+        animation: 150,
+        group: 'shared',
+        handle: '.handle', // handle's class
+        onEnd: function (/**Event*/evt) {
+            itemEl = evt.item;
+            itemPosition = evt.to;  
+            oldItemPosition = evt.from; 
+            oldItemPositionId = oldItemPosition.id; 
+            draggedItemContainerId = itemPosition.id;
+            draggedItemClass = itemEl.classList[1];
+
+            itemContent = localStorage.getItem(draggedItemClass);
+            console.log(itemContent);
+
+
+            if (itemContent === null) {
+                
+                    itemContent = localStorage.getItem(draggedItemClass + oldItemPositionId);
+                    console.log('works null' + itemContent);
+                
+                	if (itemContent === null) {
+                        console.log('works null null' + itemContent);
+                        itemContent = localStorage.getItem(draggedItemClass + oldItemPositionId + 'isFav');
+                        console.log('works null null null ' + itemContent);
+                    }
+
+            }
+
+            if (oldItemPositionId !== draggedItemContainerId) {
+                //console.log(draggedItemClass + oldItemPositionId);
+                let testItemContent = localStorage.getItem(draggedItemClass + oldItemPositionId);
+                    
+                
+                if (testItemContent === null) {
+                    localStorage.setItem(draggedItemClass + draggedItemContainerId + 'isFav', itemContent);
+                } else {
+                    localStorage.setItem(draggedItemClass + draggedItemContainerId, itemContent);
+                }
+                
+                localStorage.removeItem(draggedItemClass + oldItemPositionId);
+                if (testItemContent === null) {
+                    localStorage.removeItem(draggedItemClass + oldItemPositionId + 'isFav');
+                }    
+            }
+
+            
+            prevContainer = draggedItemContainerId;
+        }
+    });
+}
 
 var pending = document.getElementById('pendingTodoItems');
 var sortable = new Sortable(pending, {
@@ -272,6 +365,10 @@ var sortable = new Sortable(pending, {
     group: 'shared',
     handle: '.handle', // handle's class
 });
+
+// save where item was put
+
+
 
 
 // settings modal
@@ -329,16 +426,12 @@ function closeModal() {
 }
 
 // open
-
 let settings = document.getElementById('settings');
-
 settings.addEventListener('click', openModal, false);
 
 // close
-
 const test = document.getElementById('close');
 test.addEventListener('click', closeModal, false);
-
 
 // implement saving clicking start modal away 
 
@@ -350,20 +443,234 @@ function saveToLocalStorage() {
 }
 
 isStartModalHidden = localStorage.getItem('startModalHide');
-
 if (isStartModalHidden) {
-
-
-
 } else {
-
     const startModal = document.getElementById('startModal');
     startModal.classList.add('opened');
+}
+const startModalClose = document.getElementById('startModalClose');
+startModalClose.addEventListener('click', saveToLocalStorage, false);
+
+/**
+ * 
+ * 
+ * 
+ */
+
+function openerFunction() {    
+    dynamicSection.classList.add('opened');
+
+    
+}
+
+
+if (dynamicSection.classList.contains('opened')) {
+    window.onclick = function(event) {
+        if (event.target !== dynamicSection) {
+            dynamicSection.style.display = "none";
+        }
+    }
 
 }
 
-const startModalClose = document.getElementById('startModalClose');
-startModalClose.addEventListener('click', saveToLocalStorage, false);
+/**
+ * 
+ * 
+ */
+
+const opener = document.getElementById('addSections');
+opener.addEventListener("click", openerFunction, false);
+
+
+/**
+ * Create dynamic sections
+ * 
+ * 
+ */
+
+function createDynamicSection() {
+
+    let boxvalue = document.getElementById('sectionName').value;
+    dynamicSection.classList.remove('opened');
+    if (boxvalue.length > 0) {
+        let itemWrapper = document.createElement("div");
+        let itemHeading = document.createElement("h2");
+        let itemList = document.createElement("ul");
+        let removeList = document.createElement("a");
+        removeList.setAttribute('onclick', 'removeSections(this)');
+        removeList.textContent = 'Remove';
+        itemWrapper.classList.add('itemWrapper');
+        itemWrapper.classList.add(boxvalue + 'Section');
+        itemWrapper.classList.add('section' + boxvalue);
+        itemHeading.textContent = boxvalue;
+        itemList.setAttribute('id', boxvalue);
+
+        const wrapper = document.getElementById('itemSections');
+
+        itemWrapper.appendChild(itemHeading);
+        itemWrapper.appendChild(itemList);
+        itemWrapper.appendChild(removeList);
+
+        wrapper.appendChild(itemWrapper);
+
+        //const body = document.getElementsByTagName('body');
+        
+        localStorage.setItem('section' + boxvalue, boxvalue);
+
+        for (let i = 0; i < allItems.length; i++) {
+            var sortable = new Sortable(allItems[i], {
+                animation: 150,
+                group: 'shared',
+                handle: '.handle', // handle's class
+                onEnd: function (/**Event*/evt) {
+                    itemEl = evt.item;
+                    itemPosition = evt.to;  
+                    oldItemPosition = evt.from; 
+                    oldItemPositionId = oldItemPosition.id; 
+                    draggedItemContainerId = itemPosition.id;
+                    draggedItemClass = itemEl.classList[1];
+        
+                    itemContent = localStorage.getItem(draggedItemClass);
+                    console.log(itemContent);
+        
+        
+                    if (itemContent === null) {
+                
+                        itemContent = localStorage.getItem(draggedItemClass + oldItemPositionId);
+                        console.log('works null' + itemContent);
+                    
+                        if (itemContent === null) {
+                            console.log('works null null' + itemContent);
+                            itemContent = localStorage.getItem(draggedItemClass + oldItemPositionId + 'isFav');
+                            console.log('works null null null ' + itemContent);
+                        }
+    
+                }
+    
+                if (oldItemPositionId !== draggedItemContainerId) {
+                    //console.log(draggedItemClass + oldItemPositionId);
+                    let testItemContent = localStorage.getItem(draggedItemClass + oldItemPositionId);
+                        
+                    
+                    if (testItemContent === null) {
+                        localStorage.setItem(draggedItemClass + draggedItemContainerId + 'isFav', itemContent);
+                    } else {
+                        localStorage.setItem(draggedItemClass + draggedItemContainerId, itemContent);
+                    }
+                    
+                    localStorage.removeItem(draggedItemClass + oldItemPositionId);
+                    if (testItemContent === null) {
+                        localStorage.removeItem(draggedItemClass + oldItemPositionId + 'isFav');
+                    }    
+                }
+                    
+                    prevContainer = draggedItemContainerId;
+                }
+            });
+        }
+    }
+}
+
+function loadSections() {
+
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+
+        if (key.includes('section')) {
+            
+            let boxvalue = localStorage.getItem(key);
+            let itemWrapper = document.createElement("div");
+            let itemHeading = document.createElement("h2");
+            let itemList = document.createElement("ul");
+            let removeList = document.createElement("a");
+
+            removeList.textContent = 'Remove';
+            removeList.setAttribute('onclick', 'removeSections(this)');
+            itemWrapper.classList.add('itemWrapper');
+            itemWrapper.classList.add(boxvalue + 'Section');
+            itemWrapper.classList.add('section' + boxvalue);
+            itemWrapper.classList.add(boxvalue);
+            itemHeading.textContent = boxvalue;
+            itemList.setAttribute('id', boxvalue);
+        
+            const wrapper = document.getElementById('itemSections');
+        
+            itemWrapper.appendChild(itemHeading);
+            itemWrapper.appendChild(itemList);
+            itemWrapper.appendChild(removeList);
+            wrapper.appendChild(itemWrapper);
+    
+        }
+
+    }    
+
+    for (let i = 0; i < allItems.length; i++) {
+        var sortable = new Sortable(allItems[i], {
+            animation: 150,
+            group: 'shared',
+            handle: '.handle', // handle's class
+            onEnd: function (/**Event*/evt) {
+                itemEl = evt.item;
+                itemPosition = evt.to;  
+                oldItemPosition = evt.from; 
+                oldItemPositionId = oldItemPosition.id; 
+                draggedItemContainerId = itemPosition.id;
+                draggedItemClass = itemEl.classList[1];
+    
+                itemContent = localStorage.getItem(draggedItemClass);
+                console.log(itemContent);
+    
+    
+                if (itemContent === null) {
+                    
+                        itemContent = localStorage.getItem(draggedItemClass + oldItemPositionId);
+                        console.log('works null' + itemContent);
+                        if (itemContent === null) {
+
+                            itemContent = localStorage.getItem(draggedItemClass + oldItemPositionId + 'isFav');
+    
+                        }
+                    
+                }
+    
+                if (oldItemPositionId !== draggedItemContainerId) {
+                    console.log(draggedItemClass + oldItemPositionId);
+                    localStorage.setItem(draggedItemClass + draggedItemContainerId, itemContent);
+                    localStorage.removeItem(draggedItemClass + oldItemPositionId);
+                }
+               
+                prevContainer = draggedItemContainerId;
+            }
+        });
+    }
+
+}
+
+window.load = loadSections();
+
+function removeSections(obj) {
+
+    obj.parentNode.remove();
+    let objClass = obj.parentNode.classList[2];
+
+    for (let i = 0; i < localStorage.length; i++) {
+
+        const key = localStorage.key(i);
+ 
+        if (key.includes(objClass)) {
+            localStorage.removeItem(key);
+        }
+    }   
+
+    localStorage.removeItem(objClass);
+
+}
+
+
+function setCharAt(str, index, chr) {
+    if (index > str.length - 1) return str;
+    return str.substr(0, index) + chr + str.substr(index + 1);
+}
 
 
 /**
@@ -400,7 +707,7 @@ function createItemIcons() {
     favoriteButtons.setAttribute("id", "favorite");
     favoriteButtons.setAttribute("onclick", "addFavorite()");
     favoriteButtons.setAttribute("class", "button favoriteButton");
-    favoriteButtons.setAttribute("onclick", "favoriteListItem(this)");
+    favoriteButtons.setAttribute("onclick", "addFavoriteListItem(this)");
 
 }
 
@@ -421,7 +728,7 @@ function appendItems() {
     actionArea.appendChild(deleteButtons);
     actionArea.appendChild(favoriteButtons);
 
-    element.appendChild(item);
+
 
 }
 
@@ -429,15 +736,34 @@ function createInitialList() {
 
     for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i);
-        let newKey = key.replace('isFav', '');
+        let counters = localStorage.getItem('counter');
+        let toReplace = 'task:';
+        let toReplace2 = 'isFav';
+        let anotherNewKey = key.replace(toReplace, '');
+        
+        anotherNewKey = setCharAt(anotherNewKey, 0, '');
 
+        let newKey = key.replace('isFav', '');
+        let counter = localStorage.getItem('counter');
         if (key.includes("task:")) {
 
+            if (newKey.includes(anotherNewKey)) {
+                newKey.replace(anotherNewKey, '');
+            }
+            if (anotherNewKey.includes('isFav')) {
+                anotherNewKey.replace('isFav', '');
+            }
+            let anotherNewKey2 = anotherNewKey.replace(toReplace2, '');
+
+            let onlySub;
+            let onlySub2;
+            onlySub = key.substr(0, 6);
+     
             var value = localStorage.getItem(key);
 
             item = document.createElement("li");
-            item.classList.add("listElement", newKey);
 
+            item.classList.add("listElement", onlySub);
             if (key.includes('isFav')) {
                 item.classList.add("favoriteItem");
             }
@@ -452,8 +778,23 @@ function createInitialList() {
             createItemIcons();
             appendItems();
 
+            if (key.includes("isFav")) {
+                favoriteButtons.setAttribute("onclick", "removeFavoriteListItem(this)");
+            }
+
+            let whereToAppendItem = document.getElementById(anotherNewKey2);
+
+    
+
+            if (key.length > 6) {
+                whereToAppendItem.appendChild(item);
+            } else {
+                element.appendChild(item);
+            }
+
         }
     }
 }
+
 
 window.onload = createInitialList();
