@@ -184,25 +184,50 @@ function focuseItem(obj) {
  * @param 
  */
 
-function favoriteListItem(obj) {
+
+function addFavoriteListItem(obj) {
     obj.parentNode.parentNode.classList.toggle('favoriteItem');
 
-    if (localStorage.getItem(obj.parentNode.parentNode.classList[1] + 'isFav') === null) {
-
-        let test = localStorage.getItem(obj.parentNode.parentNode.classList[1]);
-        localStorage.setItem(obj.parentNode.parentNode.classList[1] + "isFav", test);
-        localStorage.removeItem(obj.parentNode.parentNode.classList[1]);
-
-    } else {
-
-        let test2 = localStorage.getItem(obj.parentNode.parentNode.classList[1] + 'isFav');
-        localStorage.setItem(obj.parentNode.parentNode.classList[1], test2);
-        localStorage.removeItem(obj.parentNode.parentNode.classList[1] + 'isFav');
-
-
-    }
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key.includes(obj.parentNode.parentNode.classList[1])) { 
+            if (key.includes('isFav') == false) {
+                let test = localStorage.getItem(key);
+    
+                localStorage.setItem(key + 'isFav', test);
+                localStorage.removeItem(key); 
+            } 
+        }
+    }    
+    let testItem = obj;
+    testItem.setAttribute('onclick', "removeFavoriteListItem(this)");
 
 }
+
+// remove Fav
+
+function removeFavoriteListItem(obj) {
+    obj.parentNode.parentNode.classList.toggle('favoriteItem');
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key.includes(obj.parentNode.parentNode.classList[1])) { 
+            if (key.includes('isFav')) {
+                let test3 = localStorage.getItem(key);
+             
+                const splitFav = 'isFav';
+                let anotherNewKey = key.replace(splitFav, '');
+                localStorage.setItem(anotherNewKey, test3);
+                localStorage.removeItem(key); 
+            } 
+        }
+    }    
+
+    let testItem = obj;
+    testItem.setAttribute('onclick', "addFavoriteListItem(this)");
+
+}
+
+
 
 // check item functionality
 
@@ -228,7 +253,7 @@ function resetItems() {
     for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i);
         if (key.includes("task:")) {
-            console.log(key);
+     
             localStorage.removeItem(key);
         }
     }
@@ -297,25 +322,32 @@ for (let i = 0; i < allItems.length; i++) {
                     itemContent = localStorage.getItem(draggedItemClass + oldItemPositionId);
                     console.log('works null' + itemContent);
                 
+                	if (itemContent === null) {
+                        console.log('works null null' + itemContent);
+                        itemContent = localStorage.getItem(draggedItemClass + oldItemPositionId + 'isFav');
+                        console.log('works null null null ' + itemContent);
+                    }
+
             }
 
             if (oldItemPositionId !== draggedItemContainerId) {
-                console.log(draggedItemClass + oldItemPositionId);
-                localStorage.setItem(draggedItemClass + draggedItemContainerId, itemContent);
-                localStorage.removeItem(draggedItemClass + oldItemPositionId);
-            }
-            /*if (itemContent === null) {
-                itemContent = localStorage.getItem(draggedItemClass + prevContainer);
-                console.log('works null');
+                //console.log(draggedItemClass + oldItemPositionId);
+                let testItemContent = localStorage.getItem(draggedItemClass + oldItemPositionId);
+                    
                 
-            }*/
+                if (testItemContent === null) {
+                    localStorage.setItem(draggedItemClass + draggedItemContainerId + 'isFav', itemContent);
+                } else {
+                    localStorage.setItem(draggedItemClass + draggedItemContainerId, itemContent);
+                }
+                
+                localStorage.removeItem(draggedItemClass + oldItemPositionId);
+                if (testItemContent === null) {
+                    localStorage.removeItem(draggedItemClass + oldItemPositionId + 'isFav');
+                }    
+            }
 
-            /*console.log(itemEl);
-            console.log(itemPosition);
-            console.log(draggedItemContainerId);
-            console.log(draggedItemClass);
-            console.log(itemContent);
-            console.log(prevContainer);*/
+            
             prevContainer = draggedItemContainerId;
         }
     });
@@ -433,7 +465,6 @@ if (dynamicSection.classList.contains('opened')) {
         }
     }
 
-    console.log('test');
 }
 
 /**
@@ -498,17 +529,34 @@ function createDynamicSection() {
         
         
                     if (itemContent === null) {
+                
+                        itemContent = localStorage.getItem(draggedItemClass + oldItemPositionId);
+                        console.log('works null' + itemContent);
+                    
+                        if (itemContent === null) {
+                            console.log('works null null' + itemContent);
+                            itemContent = localStorage.getItem(draggedItemClass + oldItemPositionId + 'isFav');
+                            console.log('works null null null ' + itemContent);
+                        }
+    
+                }
+    
+                if (oldItemPositionId !== draggedItemContainerId) {
+                    //console.log(draggedItemClass + oldItemPositionId);
+                    let testItemContent = localStorage.getItem(draggedItemClass + oldItemPositionId);
                         
-                            itemContent = localStorage.getItem(draggedItemClass + oldItemPositionId);
-                            console.log('works null' + itemContent);
-                        
-                    }
-        
-                    if (oldItemPositionId !== draggedItemContainerId) {
-                        console.log(draggedItemClass + oldItemPositionId);
+                    
+                    if (testItemContent === null) {
+                        localStorage.setItem(draggedItemClass + draggedItemContainerId + 'isFav', itemContent);
+                    } else {
                         localStorage.setItem(draggedItemClass + draggedItemContainerId, itemContent);
-                        localStorage.removeItem(draggedItemClass + oldItemPositionId);
                     }
+                    
+                    localStorage.removeItem(draggedItemClass + oldItemPositionId);
+                    if (testItemContent === null) {
+                        localStorage.removeItem(draggedItemClass + oldItemPositionId + 'isFav');
+                    }    
+                }
                     
                     prevContainer = draggedItemContainerId;
                 }
@@ -571,6 +619,11 @@ function loadSections() {
                     
                         itemContent = localStorage.getItem(draggedItemClass + oldItemPositionId);
                         console.log('works null' + itemContent);
+                        if (itemContent === null) {
+
+                            itemContent = localStorage.getItem(draggedItemClass + oldItemPositionId + 'isFav');
+    
+                        }
                     
                 }
     
@@ -597,8 +650,7 @@ function removeSections(obj) {
     for (let i = 0; i < localStorage.length; i++) {
 
         const key = localStorage.key(i);
-        console.log(key);
-        console.log(objClass);
+ 
         if (key.includes(objClass)) {
             localStorage.removeItem(key);
         }
@@ -649,7 +701,7 @@ function createItemIcons() {
     favoriteButtons.setAttribute("id", "favorite");
     favoriteButtons.setAttribute("onclick", "addFavorite()");
     favoriteButtons.setAttribute("class", "button favoriteButton");
-    favoriteButtons.setAttribute("onclick", "favoriteListItem(this)");
+    favoriteButtons.setAttribute("onclick", "addFavoriteListItem(this)");
 
 }
 
@@ -680,7 +732,9 @@ function createInitialList() {
         const key = localStorage.key(i);
         let counters = localStorage.getItem('counter');
         let toReplace = 'task:';
+        let toReplace2 = 'isFav';
         let anotherNewKey = key.replace(toReplace, '');
+        
         anotherNewKey = setCharAt(anotherNewKey, 0, '');
 
         let newKey = key.replace('isFav', '');
@@ -690,6 +744,11 @@ function createInitialList() {
             if (newKey.includes(anotherNewKey)) {
                 newKey.replace(anotherNewKey, '');
             }
+            if (anotherNewKey.includes('isFav')) {
+                anotherNewKey.replace('isFav', '');
+            }
+            let anotherNewKey2 = anotherNewKey.replace(toReplace2, '');
+
             let onlySub;
             let onlySub2;
             onlySub = key.substr(0, 6);
@@ -713,7 +772,13 @@ function createInitialList() {
             createItemIcons();
             appendItems();
 
-            let whereToAppendItem = document.getElementById(anotherNewKey);
+            if (key.includes("isFav")) {
+                favoriteButtons.setAttribute("onclick", "removeFavoriteListItem(this)");
+            }
+
+            let whereToAppendItem = document.getElementById(anotherNewKey2);
+
+    
 
             if (key.length > 6) {
                 whereToAppendItem.appendChild(item);
