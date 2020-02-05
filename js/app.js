@@ -794,7 +794,7 @@ function createInitialList() {
 
             let whereToAppendItem = document.getElementById(anotherNewKey2);
 
-    
+            //
 
             if (key.length > 6) {
                 whereToAppendItem.appendChild(item);
