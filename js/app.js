@@ -167,14 +167,19 @@ for (var i = 0; i < actionAreaSwitcher.length; i++) {
 function removeListItem(obj) {
     let removedItem;
     obj.parentNode.parentNode.remove();
-    let deletedElementClass = obj.parentNode.parentNode.classList[1];
-    if (obj.parentNode.parentNode.classList.contains('favoriteItem')) {
-        let isFav = 'isFav';
-        removedItem = deletedElementClass.concat(isFav);
-        localStorage.removeItem(removedItem);
-    } else {
-        localStorage.removeItem(obj.parentNode.parentNode.classList[1]);
-    }
+
+
+    let objClass = obj.parentNode.parentNode.classList[1];
+
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key.includes(objClass)) {
+            localStorage.removeItem(key);
+        }
+    }   
+    //localStorage.removeItem(objClass);
+
+
 }
 
 function focuseItem(obj) {
@@ -245,7 +250,17 @@ function checkListItem(obj) {
 
     setTimeout(function () {
         obj.parentNode.remove();
-        localStorage.removeItem(obj.parentNode.classList[1]);
+        // localStorage.removeItem(obj.parentNode.classList[1]);
+
+        let objClass = obj.parentNode.classList[1];
+
+        for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            if (key.includes(objClass)) {
+                localStorage.removeItem(key);
+            }
+        }   
+
     }, 2000);
 
 }
@@ -654,14 +669,11 @@ function removeSections(obj) {
     let objClass = obj.parentNode.classList[2];
 
     for (let i = 0; i < localStorage.length; i++) {
-
         const key = localStorage.key(i);
- 
         if (key.includes(objClass)) {
             localStorage.removeItem(key);
         }
     }   
-
     localStorage.removeItem(objClass);
 
 }
@@ -784,7 +796,7 @@ function createInitialList() {
 
             let whereToAppendItem = document.getElementById(anotherNewKey2);
 
-    
+            //
 
             if (key.length > 6) {
                 whereToAppendItem.appendChild(item);
