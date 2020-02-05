@@ -1,11 +1,11 @@
-/**if ('serviceWorker' in navigator) {
+if ('serviceWorker' in navigator) {
     navigator.serviceWorker
         .register('./sw.js')
         .catch(function (err) {
             console.error(err);
         });
 }
-*/
+
 let item;
 let textWrapper;
 let edit;
@@ -165,8 +165,9 @@ for (var i = 0; i < actionAreaSwitcher.length; i++) {
 // remove item functionality
 
 function removeListItem(obj) {
-
+    let removedItem;
     obj.parentNode.parentNode.remove();
+
 
     let objClass = obj.parentNode.parentNode.classList[1];
 
@@ -177,6 +178,7 @@ function removeListItem(obj) {
         }
     }   
     //localStorage.removeItem(objClass);
+
 
 }
 
