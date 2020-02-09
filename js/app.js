@@ -513,7 +513,8 @@ function createDynamicSection() {
         let itemList = document.createElement("ul");
         let removeList = document.createElement("a");
         removeList.setAttribute('onclick', 'removeSections(this)');
-        removeList.textContent = 'Remove';
+        removeList.setAttribute('class', 'removeSections');
+        removeList.textContent = 'Remove this section';
         itemWrapper.classList.add('itemWrapper');
         itemWrapper.classList.add(boxvalue + 'Section');
         itemWrapper.classList.add('section' + boxvalue);
@@ -599,8 +600,9 @@ function loadSections() {
             let itemList = document.createElement("ul");
             let removeList = document.createElement("a");
 
-            removeList.textContent = 'Remove';
+            removeList.textContent = 'Remove this section';
             removeList.setAttribute('onclick', 'removeSections(this)');
+            removeList.setAttribute('class', 'removeSections');
             itemWrapper.classList.add('itemWrapper');
             itemWrapper.classList.add(boxvalue + 'Section');
             itemWrapper.classList.add('section' + boxvalue);
