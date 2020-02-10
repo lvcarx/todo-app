@@ -488,6 +488,11 @@ if (dynamicSection.classList.contains('opened')) {
 
 }
 
+
+
+
+
+
 /**
  * 
  * 
@@ -812,3 +817,26 @@ function createInitialList() {
 
 
 window.onload = createInitialList();
+
+
+/**
+ * 
+ * 
+ * 
+ */
+
+(function sectionHasChildren() {
+
+    const todoItems = document.getElementById('todoItems').hasChildNodes(); 
+    const todoItem = document.getElementById('todoItems');
+
+    if (todoItems == false) {
+        
+        const emptyImage = document.createElement('img');
+        emptyImage.setAttribute('src', '../img/noTasks.svg');
+        emptyImage.setAttribute('class', 'emptyImage');
+        todoItem.appendChild(emptyImage);
+
+    }
+
+})();
