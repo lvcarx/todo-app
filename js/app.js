@@ -246,22 +246,63 @@ var myVar;
 
 function checkListItem(obj) {
 
-    obj.parentNode.classList.add('removed');
+    obj.parentNode.classList.toggle('checked');
 
-    setTimeout(function () {
-        obj.parentNode.remove();
-        // localStorage.removeItem(obj.parentNode.classList[1]);
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key.includes(obj.parentNode.classList[1])) { 
+            if (key.includes('Checked') == false) {
+                let test = localStorage.getItem(key);
+                localStorage.setItem(key + 'Checked', test);
+                localStorage.removeItem(key); 
+            } 
+        }
+    }    
+    let testItem = obj;
+    testItem.setAttribute('onclick', "removeCheck(this)");
 
-        let objClass = obj.parentNode.classList[1];
 
-        for (let i = 0; i < localStorage.length; i++) {
-            const key = localStorage.key(i);
-            if (key.includes(objClass)) {
-                localStorage.removeItem(key);
-            }
-        }   
+    // REMOVED TEMPORARILY
+    
+            // obj.parentNode.classList.add('removed');
 
-    }, 2000);
+            /*setTimeout(function () {
+                //obj.parentNode.remove();
+                // localStorage.removeItem(obj.parentNode.classList[1]);
+
+                let objClass = obj.parentNode.classList[1];
+
+                for (let i = 0; i < localStorage.length; i++) {
+                    const key = localStorage.key(i);
+                    if (key.includes(objClass)) {
+                        localStorage.removeItem(key);
+                    }
+                }   
+
+            }, 2000);*/
+
+}
+
+// remove Fav
+
+function removeCheck(obj) {
+    obj.parentNode.classList.toggle('checked');
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key.includes(obj.parentNode.classList[1])) { 
+            if (key.includes('Checked')) {
+                let test3 = localStorage.getItem(key);
+             
+                const splitFav = 'Checked';
+                let anotherNewKey = key.replace(splitFav, '');
+                localStorage.setItem(anotherNewKey, test3);
+                localStorage.removeItem(key); 
+            } 
+        }
+    }    
+
+    let testItem = obj;
+    testItem.setAttribute('onclick', "checkListItem(this)");
 
 }
 
@@ -521,7 +562,7 @@ function createDynamicSection() {
         removeList.setAttribute('class', 'removeSections');
         removeList.textContent = 'Remove this section';
         itemWrapper.classList.add('itemWrapper');
-        itemWrapper.classList.add(boxvalue + 'Section');
+        itemWrapper.classList.add(boxvalue+'Section');
         itemWrapper.classList.add('section' + boxvalue);
         itemHeading.textContent = boxvalue;
         itemList.setAttribute('id', boxvalue);
@@ -670,6 +711,17 @@ function loadSections() {
 
 window.load = loadSections();
 
+
+/**
+ * 
+ * This function 
+ * 
+ * @param {
+ * 
+ * 
+ * } obj 
+ */
+
 function removeSections(obj) {
 
     obj.parentNode.remove();
@@ -694,7 +746,7 @@ function setCharAt(str, index, chr) {
 
 /**
  * this function creates the subelements of an item
- * 
+ * like delete button etc.
  * 
  */
 function createItemIcons() {
@@ -751,6 +803,13 @@ function appendItems() {
 
 }
 
+/**
+ * This function creates the list at pageload
+ * and loads the task elements from local storage
+ * 
+ * 
+ */
+
 function createInitialList() {
 
     for (let i = 0; i < localStorage.length; i++) {
@@ -758,11 +817,13 @@ function createInitialList() {
         let counters = localStorage.getItem('counter');
         let toReplace = 'task:';
         let toReplace2 = 'isFav';
+        let toReplace3 = 'Checked';
         let anotherNewKey = key.replace(toReplace, '');
         
         anotherNewKey = setCharAt(anotherNewKey, 0, '');
 
         let newKey = key.replace('isFav', '');
+        //let newKey2 = newKey.replace('Checked', '');
         let counter = localStorage.getItem('counter');
         if (key.includes("task:")) {
 
@@ -772,15 +833,23 @@ function createInitialList() {
             if (anotherNewKey.includes('isFav')) {
                 anotherNewKey.replace('isFav', '');
             }
+            
             let anotherNewKey2 = anotherNewKey.replace(toReplace2, '');
+            let anotherNewKey5 = anotherNewKey2.replace(toReplace3, '');
 
             let onlySub;
             let onlySub2;
             onlySub = key.substr(0, 6);
-     
+            onlySub2 = key.substr(5, 2);
+            let isNumeric = $.isNumeric(onlySub2);
+
             var value = localStorage.getItem(key);
 
             item = document.createElement("li");
+
+            if (isNumeric == true) {
+                item.classList.add(onlySub2);
+            }
 
             item.classList.add("listElement", onlySub);
             if (key.includes('isFav')) {
@@ -801,15 +870,53 @@ function createInitialList() {
                 favoriteButtons.setAttribute("onclick", "removeFavoriteListItem(this)");
             }
 
-            let whereToAppendItem = document.getElementById(anotherNewKey2);
+            if (key.includes("Checked")) {
+                item.classList.add("checked");
+                checkButton.setAttribute("onclick", "removeCheck(this)");
+            }
 
-            //
+            let isFirstCharNum;
 
-            if (key.length > 6) {
+            let determineFirstChar;
+            determineFirstChar = anotherNewKey5.charAt(0);
+
+            isFirstCharNum = $.isNumeric(determineFirstChar);
+            let anotherNewKey3 = anotherNewKey5;
+            if (isFirstCharNum == true) {
+                anotherNewKey3 = setCharAt(anotherNewKey3, 0, '');
+                
+            }
+
+            console.log('key2' + anotherNewKey2);
+            console.log('key3' + anotherNewKey3);
+            /*let anotherNewKey2WithOutChecked;
+            let anotherNewKey3WithOutChecked;
+            if (anotherNewKey2.includes('Checked')) {
+                anotherNewKey2WithOutChecked = anotherNewKey2.replace('Checked', '');
+            }
+            if (anotherNewKey3.includes('Checked')) {
+                anotherNewKey3WithOutChecked = anotherNewKey3.replace('Checked', '');
+            }
+
+            console.log('key2' + anotherNewKey2WithOutChecked);
+            console.log('key3' + anotherNewKey3WithOutChecked);
+            */
+            let whereToAppendItem = document.getElementById(anotherNewKey5);
+            let whereToAppendItem2 = document.getElementById(anotherNewKey3);
+
+            
+
+            if (isFirstCharNum == false) {
                 whereToAppendItem.appendChild(item);
+                //console.log(whereToAppendItem);
+            } else if (isFirstCharNum == true) {
+                whereToAppendItem2.appendChild(item);
             } else {
                 element.appendChild(item);
-            }
+            } 
+
+
+        
 
         }
     }
@@ -818,11 +925,23 @@ function createInitialList() {
 
 window.onload = createInitialList();
 
-
 /**
  * 
- * 
- * 
+ * Sort checked items to the bottom
+ * TBD
+ */
+
+function sortCheckedItems() {
+
+
+
+}
+
+
+/**
+ * This function determines if the section has children elements
+ * and shows a graphic if not
+ *  
  */
 
 (function sectionHasChildren() {
