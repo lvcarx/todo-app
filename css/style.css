@@ -106,7 +106,7 @@ input {
     width: 200px;
     height: 47;
     margin: 20px;
-    background: url(../img/new/logoDark.svg) no-repeat;
+    background: url(../img/new/logoDark2.svg) no-repeat;
     background-size: cover;
 
 }
@@ -533,6 +533,12 @@ input {
 
 }
 
+#content .itemWrapper ul li.checked {
+
+    opacity: 0.6;
+ 
+}
+
 #content .itemWrapper ul li .check {
 
     width: 23px;
@@ -542,6 +548,12 @@ input {
     display: inline-block;
     margin-right: 15px;
     float: left;
+
+}
+
+#content .itemWrapper ul li.checked .check {
+
+    background: #364684;
 
 }
 
@@ -600,7 +612,8 @@ input {
 
 #content .itemWrapper ul li.favoriteItem {
 
-    /* background: #305dff; */
+    border: 1px solid #f3e7be;
+    background: #fffad6;
 
 }
 
@@ -631,13 +644,13 @@ input {
 
 #content .itemWrapper ul li.favoriteItem a.textWrapper:before {
 
-    margin-bottom: -6px;
+    /*margin-bottom: -6px;
     margin-right: 4px;
     width: 27px;
     height: 27px;
     opacity: 1;
     visibility: visible;
-
+*/
 }
 
 #content .itemWrapper ul li a.handle {
@@ -680,6 +693,13 @@ input {
 #content .itemWrapper ul li a.button.favoriteButton {
 
     background: url(../img/new/favorite2.svg) no-repeat;
+    background-size: cover;
+
+}
+
+#content .itemWrapper ul li.favoriteItem a.button.favoriteButton {
+
+    background: url(../img/new/favorite3.svg) no-repeat;
     background-size: cover;
 
 }
@@ -873,3 +893,15 @@ footer a {
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
