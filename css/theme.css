@@ -26,6 +26,10 @@ body.dark a {
 
 }
 
+body.dark p {
+    color: #fff;
+}
+
 body.dark #content .itemWrapper ul li {
    
     background: #333333;
@@ -36,6 +40,7 @@ body.dark #content .inputWrapper input[type="text"] {
 
     border: 2px solid #707070;
     background: #333333;
+    color: #fff;
     transition: all 0.2s ease;
 
 }
@@ -89,9 +94,45 @@ body.dark #content .itemWrapper ul li.opened .edit {
     color: #7DC2EB;
 }
 
+body.dark #content #addSections {
+    color: #7DC2EB;
+}
+
+body.dark #content #addSections:before {
+    background: url(../img/new/dark/plus-icon-dark.svg);
+}
+
 body.dark #content .itemWrapper ul li .check {
     border: 2px solid #7DC2EB;
+}
 
+body.dark #content .itemWrapper ul li.checked .check {
+    background: #7DC2EB;
+}
+
+.modal.opened {
+    box-shadow: 0px 0px 15px 1000px rgba(0,0,0,0.42);
+}
+
+#content .dynamicSection {
+    background: #202020;
+    border: 1px solid #0b0b0b;
+    box-shadow: 0px 0px 15px 1000px rgba(0,0,0,0.42);
+}
+
+#content .dynamicSection input {
+    border: 2px solid #707070;
+    background: #333333;
+    color: #fff;
+    transition: all 0.2s ease;
+}
+
+#content .dynamicSection a {
+    background: #7DC2EB;
+}
+
+#content .dynamicSection a:hover {
+    background: #348DAE;
 }
 
 /* DARK ICONS */
@@ -103,19 +144,29 @@ body.dark #settings {
 
 }
 
+body.dark #content .itemWrapper ul li a.button {
+    margin: 0 8px;
+}
+
 body.dark #content .itemWrapper ul li a.button.favoriteButton {
+
+    height: 32px;
+    width: 32px;
     background: url(../img/new/dark/favorite-dark.svg) no-repeat;
     background-size: cover;
 }
 
 body.dark #content .itemWrapper ul li a.button.delete {
+
+    height: 32px;
+    width: 32px;
     background: url(../img/new/dark/close-dark.svg) no-repeat;
     background-size: cover;
 }
 
 body.dark #content .itemWrapper ul li a.handle {
-    height: 37px;
-    width: 37px;
+    height: 32px;
+    width: 32px;
     background: url(../img/new/dark/handle-dark.svg) no-repeat;
 
 }
