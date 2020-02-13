@@ -1,10 +1,10 @@
-if ('serviceWorker' in navigator) {
+/** if ('serviceWorker' in navigator) {
     navigator.serviceWorker
         .register('./sw.js')
         .catch(function (err) {
             console.error(err);
         });
-}
+}*/
 
 let item;
 let textWrapper;
