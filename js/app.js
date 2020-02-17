@@ -944,6 +944,10 @@ function sortCheckedItems() {
  *  
  */
 
+/*
+
+Reimplementation when a cool image is ready
+
 (function sectionHasChildren() {
 
     const todoItems = document.getElementById('todoItems').hasChildNodes(); 
@@ -959,3 +963,5 @@ function sortCheckedItems() {
     }
 
 })();
+
+*/
