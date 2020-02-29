@@ -74,7 +74,7 @@ body.pinkTheme .colorPicker .pink {
 
 #settings {
 
-    background: url(../img/new/settings2.svg);
+    background: url(../img/new/settings2.svg) !important;
     background-repeat: no-repeat;
     height: 40px;
     width: 40px;
@@ -126,7 +126,7 @@ input {
     width: 200px;
     height: 47;
     margin: 20px;
-    background: url(../img/new/logoDark2.svg) no-repeat;
+    background: url(../img/new/logoDark2.svg) no-repeat !important;
     background-size: cover;
 
 }
@@ -411,7 +411,7 @@ input {
 
     content:"";
     display: inline-block;
-    background: url(../img/plus.svg) no-repeat;
+    background: url(../img/plus.svg) no-repeat !important;
     background-size: cover;
     height: 15px;
     width: 16px;
@@ -446,7 +446,7 @@ input {
 #content #addSections:before {
 
     content: "";
-    background: url(../img/plus-icon.svg);
+    background: url(../img/plus-icon.svg) !important;
     background-size: cover;
     height: 15px;
     width: 16px;
@@ -685,7 +685,7 @@ input {
     height: 0px;
     margin-bottom: -6px;
     margin-right: 0px;
-    background: url(../img/new/favorite2.svg) no-repeat;
+    background: url(../img/new/favorite2.svg) no-repeat !important;
     background-size: cover;
     transition: all 0.3s ease;
 
@@ -715,7 +715,7 @@ input {
     margin: 0 6px;
     text-align: center;
     float: right;
-    background: url(../img/new/handle2.svg) no-repeat;
+    background: url(../img/new/handle2.svg) no-repeat !important;
     background-size: cover;
     transition: all 0.2s ease;
 
@@ -742,21 +742,21 @@ input {
 
 #content .itemWrapper ul li a.button.favoriteButton {
 
-    background: url(../img/new/favorite2.svg) no-repeat;
+    background: url(../img/new/favorite2.svg) no-repeat !important;
     background-size: cover;
 
 }
 
 #content .itemWrapper ul li.favoriteItem a.button.favoriteButton {
 
-    background: url(../img/new/favorite3.svg) no-repeat;
+    background: url(../img/new/favorite3.svg) no-repeat !important;
     background-size: cover;
 
 }
 
 #content .itemWrapper ul li a.button.delete {
 
-    background: url(../img/new/close2.svg) no-repeat;
+    background: url(../img/new/close2.svg) no-repeat !important;
     background-size: cover;
 
 }
