@@ -29,6 +29,7 @@ p {
 a {
 
     color: #000;
+    cursor: pointer;
 
 }
 
@@ -50,6 +51,25 @@ body.pinkTheme {
 
 }
 
+/**/
+
+body.blueTheme .colorPicker .blue {
+
+    border: 2px solid #8e8e8e;
+
+}
+
+body.greenTheme .colorPicker .green {
+
+    border: 2px solid #8e8e8e;
+
+}
+
+body.pinkTheme .colorPicker .pink {
+
+    border: 2px solid #8e8e8e;
+
+}
 
 
 #settings {
@@ -335,7 +355,7 @@ input {
 
     width: 75%;
     float: left;
-    border: 2px solid #e4e4e4;
+    border: 1px solid #e4e4e4;
     background: #fbfbfb;
     padding: 10px 7px;
     font-size: 17px;
@@ -346,7 +366,7 @@ input {
 
 #content .inputWrapper input[type="text"]:focus {
 
-    border: 2px solid #cecece;
+    border: 1px solid #cecece;
     outline: none;
 
 }
@@ -366,6 +386,36 @@ input {
     border-radius: 3px;
     cursor: pointer;
     transition: all 0.3s ease;
+
+}
+
+#content .inputWrapper a#submit {
+
+    min-width: 20%;
+    width: 22%;
+    float: right;
+    padding: 13px 10px;
+    background: #364684;
+    color: #fff;
+    border: none;
+    font-weight: 700;
+    font-size: 13px;
+    text-transform: uppercase;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+}
+
+#content .inputWrapper a#submit:before {
+
+    content:"";
+    display: inline-block;
+    background: url(../img/plus.svg) no-repeat;
+    background-size: cover;
+    height: 15px;
+    width: 16px;
+    margin: 0 7px -2px 0;
 
 }
 
@@ -860,6 +910,9 @@ footer a {
 
         width: 100%;
 
+        width: 86%;
+        float: left;
+
     }
 
     #content .inputWrapper input[type="button"] {
@@ -868,6 +921,21 @@ footer a {
         margin-top: 10px;
         padding: 8px;
 
+    }
+
+    #content .inputWrapper a#submit {
+
+        width: 50px;
+        max-width: 12%;
+        min-width: 0;
+        padding: 13px 0;
+        font-size: 0;
+
+    }
+
+    #content .inputWrapper a#submit:before {
+        
+        margin: 0 0px 0px 0;
     }
 
     #content .dynamicSection input {
