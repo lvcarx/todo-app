@@ -291,7 +291,7 @@ input {
     height: 30px;
     display: block;
     float: right;
-    background: url(../img/new/close2.svg);
+    background: url(../img/new/close2.svg) !important;
     cursor: pointer;
 
 }
