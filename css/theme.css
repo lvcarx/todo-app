@@ -154,11 +154,11 @@ body.dark #content .dynamicSection a:hover {
 
 /* DARK ICONS */
 
-/*
+
 
 body.dark #settings {
 
-    background: url(../img/new/dark/settings-dark.svg) !important;
+    background: url(.../img/new/dark/settings-dark.svg) !important;
     transition: none;
 
 }
@@ -167,11 +167,12 @@ body.dark #content .itemWrapper ul li a.button {
     margin: 0 8px;
 }
 
+
 body.dark #content .itemWrapper ul li a.button.favoriteButton {
 
     height: 30px;
     width: 30px;
-    background: url(../img/new/dark/favorite-dark.svg) no-repeat !important;
+    background: url(.../img/new/dark/favorite-dark.svg) no-repeat !important;
     background-size: cover;
 }
 
@@ -179,19 +180,19 @@ body.dark #content .itemWrapper ul li a.button.delete {
 
     height: 30px;
     width: 30px;
-    background: url(../img/new/dark/close-dark.svg) no-repeat !important;
+    background: url(.../img/new/dark/close-dark.svg) no-repeat !important;
     background-size: cover;
 }
 
 body.dark #content .itemWrapper ul li a.handle {
     height: 30px;
     width: 30px;
-    background: url(../img/new/dark/handle-dark.svg) no-repeat !important;
+    background: url(.../img/new/dark/handle-dark.svg) no-repeat !important;
 
 }
+
+
 
 .dark .close {
     background: url(../img/new/dark/close-dark.svg) !important;
 }
-
-*/

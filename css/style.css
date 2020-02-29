@@ -739,24 +739,23 @@ input {
 
 }
 
+body #content .itemWrapper ul li a.button.favoriteButton {
 
-#content .itemWrapper ul li a.button.favoriteButton {
-
-    background: url(../img/new/favorite2.svg) no-repeat !important;
+    background: url(.../img/new/favorite2.svg) no-repeat !important;
     background-size: cover;
 
 }
 
-#content .itemWrapper ul li.favoriteItem a.button.favoriteButton {
+body #content .itemWrapper ul li.favoriteItem a.button.favoriteButton {
 
-    background: url(../img/new/favorite3.svg) no-repeat !important;
+    background: url(.../img/new/favorite3.svg) no-repeat !important;
     background-size: cover;
 
 }
 
-#content .itemWrapper ul li a.button.delete {
+body #content .itemWrapper ul li a.button.delete {
 
-    background: url(../img/new/close2.svg) no-repeat !important;
+    background: url(.../img/new/close2.svg) no-repeat !important;
     background-size: cover;
 
 }
