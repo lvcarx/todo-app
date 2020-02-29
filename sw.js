@@ -1,4 +1,5 @@
-const cachedFiles = [
+/**
+ * const cachedFiles = [
     '/',
     '/index.html',
     'js/app.js',
@@ -61,5 +62,5 @@ self.addEventListener('fetch', function(e) {
         })
     );
 })
-
+*/
 
