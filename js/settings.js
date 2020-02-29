@@ -52,9 +52,12 @@ function switchToDark() {
     
     for (let i = 0; i < bodys.length; i++) {
 
-        bodys[i].classList.toggle('dark');
+        /*bodys[i].classList.toggle('dark');
         bodys[i].classList.toggle('light');
-        
+        */
+       
+        location.reload();
+
         darkModeOn += 1;
         
         if (darkModeOn%2 == 0) {
@@ -68,6 +71,8 @@ function switchToDark() {
             localStorage.setItem('mode', darkModeActivated); 
 
         }
+
+        
 
 } 
 
