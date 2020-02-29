@@ -931,11 +931,14 @@ footer a {
         padding: 13px 0;
         font-size: 0;
 
+
     }
 
     #content .inputWrapper a#submit:before {
         
-        margin: 0 0px 0px 0;
+        margin: 0;
+        height: 15px;
+        width: 15px;
     }
 
     #content .dynamicSection input {
@@ -961,8 +964,6 @@ footer a {
     }
 
 }
-
-
 
 
 
