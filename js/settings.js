@@ -2,6 +2,8 @@
 
 const isDarkModeActivatedOnStart = localStorage.getItem('mode');
 
+
+
 if (isDarkModeActivatedOnStart === 'true') {
 
     const bodys = document.getElementsByTagName('body');
@@ -9,6 +11,7 @@ if (isDarkModeActivatedOnStart === 'true') {
     for (let i = 0; i < bodys.length; i++) {
 
         bodys[i].classList.add('dark');
+        bodys[i].classList.remove('light');
 
     }
 
@@ -19,6 +22,7 @@ if (isDarkModeActivatedOnStart === 'true') {
     for (let i = 0; i < bodys.length; i++) {
 
         bodys[i].classList.remove('dark');
+        bodys[i].classList.add('light');
 
     }
 

@@ -154,7 +154,7 @@ body.dark #content .dynamicSection a:hover {
 
 /* DARK ICONS */
 
-/*
+
 
 body.dark #settings {
 
@@ -167,6 +167,7 @@ body.dark #content .itemWrapper ul li a.button {
     margin: 0 8px;
 }
 
+/**
 body.dark #content .itemWrapper ul li a.button.favoriteButton {
 
     height: 30px;
@@ -190,8 +191,8 @@ body.dark #content .itemWrapper ul li a.handle {
 
 }
 
+*/
+
 .dark .close {
     background: url(../img/new/dark/close-dark.svg) !important;
 }
-
-*/
