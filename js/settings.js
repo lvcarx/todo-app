@@ -53,6 +53,7 @@ function switchToDark() {
     for (let i = 0; i < bodys.length; i++) {
 
         bodys[i].classList.toggle('dark');
+        bodys[i].classList.toggle('light');
         
         darkModeOn += 1;
         
