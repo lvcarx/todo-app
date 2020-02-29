@@ -1,3 +1,5 @@
+
+
 /* dark */
 
 
@@ -10,7 +12,7 @@ body.dark {
 
 body.dark .logo {
 
-    background: url(../img/new/logoLight2.svg) no-repeat;
+    background: url(../img/new/logoLight2.svg) no-repeat !important;
 
 }
 
@@ -93,6 +95,14 @@ body.dark #content .inputWrapper input[type="button"]:hover {
 
 }
 
+body.dark #content .inputWrapper a#submit {
+    background: #7DC2EB;
+}
+
+body.dark #content .inputWrapper a#submit:hover {
+    background: #348DAE;
+}
+
 body.dark #content .itemWrapper ul li .edit:hover {
     color: #7DC2EB;
 }
@@ -106,7 +116,7 @@ body.dark #content #addSections {
 }
 
 body.dark #content #addSections:before {
-    background: url(../img/new/dark/plus-icon-dark.svg);
+    background: url(../img/new/dark/plus-icon-dark.svg) !important;
 }
 
 body.dark #content .itemWrapper ul li .check {
@@ -146,7 +156,7 @@ body.dark #content .dynamicSection a:hover {
 
 body.dark #settings {
 
-    background: url(../img/new/dark/settings-dark.svg);
+    background: url(../img/new/dark/settings-dark.svg) !important;
     transition: none;
 
 }
@@ -157,27 +167,27 @@ body.dark #content .itemWrapper ul li a.button {
 
 body.dark #content .itemWrapper ul li a.button.favoriteButton {
 
-    height: 32px;
-    width: 32px;
-    background: url(../img/new/dark/favorite-dark.svg) no-repeat;
+    height: 30px;
+    width: 30px;
+    background: url(../img/new/dark/favorite-dark.svg) no-repeat !important;
     background-size: cover;
 }
 
 body.dark #content .itemWrapper ul li a.button.delete {
 
-    height: 32px;
-    width: 32px;
-    background: url(../img/new/dark/close-dark.svg) no-repeat;
+    height: 30px;
+    width: 30px;
+    background: url(../img/new/dark/close-dark.svg) no-repeat !important;
     background-size: cover;
 }
 
 body.dark #content .itemWrapper ul li a.handle {
-    height: 32px;
-    width: 32px;
-    background: url(../img/new/dark/handle-dark.svg) no-repeat;
+    height: 30px;
+    width: 30px;
+    background: url(../img/new/dark/handle-dark.svg) no-repeat !important;
 
 }
 
 .dark .close {
-    background: url(../img/new/dark/close-dark.svg);
+    background: url(../img/new/dark/close-dark.svg) !important;
 }
