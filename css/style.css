@@ -74,8 +74,6 @@ body.pinkTheme .colorPicker .pink {
 
 #settings {
 
-    background: url(../img/new/settings2.svg) !important;
-    background-repeat: no-repeat;
     height: 40px;
     width: 40px;
     cursor: pointer;
@@ -126,9 +124,7 @@ input {
     width: 200px;
     height: 47;
     margin: 20px;
-    background: url(../img/new/logoDark2.svg) no-repeat !important;
-    background-size: cover;
-
+    
 }
 
 #settings {
@@ -291,7 +287,6 @@ input {
     height: 30px;
     display: block;
     float: right;
-    background: url(../img/new/close2.svg) !important;
     cursor: pointer;
 
 }
@@ -703,30 +698,9 @@ input {
 */
 }
 
-#content .itemWrapper ul li a.handle {
-
-    background: #e8e8e8;
-    padding: 10px;
-    border-radius: 5px;
-    display: inline-block;
-    width: 5%;
-    height: 37px;
-    width: 37px;
-    margin: 0 6px;
-    text-align: center;
-    float: right;
-    background: url(../img/new/handle2.svg) no-repeat !important;
-    background-size: cover;
-    transition: all 0.2s ease;
-
-}
-
-
-
 #content .itemWrapper ul li a.button {
 
-    background: #e8e8e8;
-    padding: 10px;
+    padding: 0px;
     border-radius: 5px;
     display: inline-block;
     /*width: 40%;*/
@@ -736,27 +710,6 @@ input {
     margin: 0 6px;
     text-align: center;
     transition: all 0.2s ease;
-
-}
-
-body #content .itemWrapper ul li a.button.favoriteButton {
-
-    background: url(../img/new/favorite2.svg) no-repeat !important;
-    background-size: cover;
-
-}
-
-body #content .itemWrapper ul li.favoriteItem a.button.favoriteButton {
-
-    background: url(../img/new/favorite3.svg) no-repeat !important;
-    background-size: cover;
-
-}
-
-body #content .itemWrapper ul li a.button.delete {
-
-    background: url(../img/new/close2.svg) no-repeat !important;
-    background-size: cover;
 
 }
 
@@ -781,7 +734,7 @@ body #content .itemWrapper ul li a.button.delete {
     -webkit-box-shadow: 0px 0px 46px 0px rgba(0,0,0,0.11);
     -moz-box-shadow: 0px 0px 46px 0px rgba(0,0,0,0.11);
     box-shadow: 0px 0px 46px 0px rgba(0,0,0,0.11);
-   /* transform: scale(1.1);*/
+
 
 } 
 

@@ -427,19 +427,84 @@ var sortable = new Sortable(pending, {
 
 
 
+/**
+ * create icons
+ * 
+ * 
+ */
+
+
+let handleIconLight;
+let deleteButtonIconLight;
+let favoriteButtonIconLight;
+
+function createLightItemIcons() {
+
+    handleIconLight = document.createElement("img");
+    handleIconLight.setAttribute("class", "handle light");
+    handleIconLight.setAttribute("src", "img/new/handle2.svg");
+
+    deleteButtonIconLight = document.createElement("img");
+    deleteButtonIconLight.setAttribute("class", "button light delete");
+    deleteButtonIconLight.setAttribute("src", "img/new/close2.svg");
+
+    favoriteButtonIconLight = document.createElement("img");
+    favoriteButtonIconLight.setAttribute("class", "button light favoriteButton");
+    favoriteButtonIconLight.setAttribute("src", "img/new/favorite2.svg");
+
+    closeIconLight = document.createElement("img");
+    closeIconLight.setAttribute("class", "button light close");
+    closeIconLight.setAttribute("src", "img/new/close2.svg");
+}
+
+let handleIconDark;
+let deleteButtonIconDark;
+let favoriteButtonIconDark;
+
+function createDarkItemIcons() {
+
+    handleIconDark = document.createElement("img");
+    handleIconDark.setAttribute("class", "handle dark");
+    handleIconDark.setAttribute("src", "img/new/dark/handle-dark.svg");
+
+    deleteButtonIconDark = document.createElement("img");
+    deleteButtonIconDark.setAttribute("class", "button delete dark");
+    deleteButtonIconDark.setAttribute("src", "img/new/dark/close-dark.svg");
+
+    favoriteButtonIconDark = document.createElement("img");
+    favoriteButtonIconDark.setAttribute("class", "button favoriteButton dark");
+    favoriteButtonIconDark.setAttribute("src", "img/new/dark/favorite-dark.svg");
+
+    closeIconDark = document.createElement("img");
+    closeIconDark.setAttribute("class", "button dark close");
+    closeIconDark.setAttribute("src", "img/new/dark/close-dark.svg");
+
+}
+
+
 // settings modal
 
 const modal = document.getElementsByClassName('modal');
 
+
+
 for (var i = 0; i < modal.length; i++) {
 
     const createCloseModal = document.createElement("a");
-    const closeImg = document.createElement("img");
-    //closeImg.setAttribute("src", "../img/close.svg");
+    const closeImgLight = document.createElement("img");
+    closeImgLight.setAttribute("src", "img/new/close2.svg");
+    closeImgLight.setAttribute("class", "light");
+
+    const closeImgDark = document.createElement("img");
+    closeImgDark.setAttribute("src", "img/new/dark/close-dark.svg");
+    closeImgDark.setAttribute("class", "dark");
+
     createCloseModal.setAttribute("id", "close");
     createCloseModal.setAttribute("onclick", "closeModal()");
     createCloseModal.classList.add('close');
-    createCloseModal.appendChild(closeImg);
+    createCloseModal.appendChild(closeImgLight);
+    createCloseModal.appendChild(closeImgDark);
+    
     modal[i].prepend(createCloseModal);
 
 }
@@ -762,7 +827,7 @@ function createItemIcons() {
     actionArea.setAttribute("id", "actionArea");
 
     handleButtons = document.createElement("a");
-    handleButtons.setAttribute("class", "handle");
+    handleButtons.setAttribute("class", "button handle");
 
     checkButton = document.createElement("a");
     checkButton.setAttribute("id", "check");
@@ -799,7 +864,12 @@ function appendItems() {
     actionArea.appendChild(deleteButtons);
     actionArea.appendChild(favoriteButtons);
 
-
+    handleButtons.appendChild(handleIconLight);
+    handleButtons.appendChild(handleIconDark);
+    deleteButtons.appendChild(deleteButtonIconLight);
+    deleteButtons.appendChild(deleteButtonIconDark);
+    favoriteButtons.appendChild(favoriteButtonIconLight);
+    favoriteButtons.appendChild(favoriteButtonIconDark);
 
 }
 
@@ -864,6 +934,8 @@ function createInitialList() {
             textWrapper.setAttribute("class", "textWrapper");
 
             createItemIcons();
+            createLightItemIcons();
+            createDarkItemIcons();
             appendItems();
 
             if (key.includes("isFav")) {
