@@ -162,9 +162,3 @@ body.dark #content .dynamicSection a {
 body.dark #content .dynamicSection a:hover {
     background: #348DAE;
 }
-
-/* DARK ICONS */
-
-body.dark #content .itemWrapper ul li a.button {
-    margin: 0 8px;
-}

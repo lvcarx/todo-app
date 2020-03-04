@@ -137,8 +137,8 @@ input {
 
 #settings img {
 
-    width: 40px;
-    height: 40px;
+    width: 34px;
+    height: 34px;
 
 }
 
@@ -686,28 +686,15 @@ input {
 
 }
 
-
-#content .itemWrapper ul li.favoriteItem a.textWrapper:before {
-
-    /*margin-bottom: -6px;
-    margin-right: 4px;
-    width: 27px;
-    height: 27px;
-    opacity: 1;
-    visibility: visible;
-*/
-}
-
 #content .itemWrapper ul li a.button {
 
     padding: 0px;
     border-radius: 5px;
     display: inline-block;
-    /*width: 40%;*/
-    height: 37px;
-    width: 37px;
+    height: 30px;
+    width: 30px;
     float: right;
-    margin: 0 6px;
+    margin: 0 11px;
     text-align: center;
     transition: all 0.2s ease;
 
