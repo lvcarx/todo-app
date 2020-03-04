@@ -71,24 +71,6 @@ body.pinkTheme .colorPicker .pink {
 
 }
 
-
-#settings {
-
-    height: 40px;
-    width: 40px;
-    cursor: pointer;
-    transition: all 0.1s linear;
-
-}
-
-#settings:hover {
-
-    opacity: 0.8;
-
-}
-
-
-
 @media (prefers-color-scheme: light) {
     body {
        background-color: #fff;
@@ -132,6 +114,14 @@ input {
     position: absolute;
     top: 20px;
     right: 20px;
+    cursor: pointer;
+    transition: all 0.1s linear;
+
+}
+
+#settings:hover {
+
+    opacity: 0.8;
 
 }
 
@@ -283,8 +273,8 @@ input {
 .close {
 
     margin-block-start: 0.83em;
-    width: 30px;
-    height: 30px;
+    width: 28px;
+    height: 28px;
     display: block;
     float: right;
     cursor: pointer;
