@@ -101,6 +101,8 @@ function createList() {
     textWrapper = document.createElement("a");
     textWrapper.setAttribute("class", "textWrapper");
     createItemIcons();
+    createLightItemIcons();
+    createDarkItemIcons();
     appendItems();
     element.appendChild(item);
 
