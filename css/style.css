@@ -831,6 +831,12 @@ footer a {
 
     }
 
+    #content .dynamicSection {
+
+        padding: 20px 15px;
+
+    }
+
     #content .itemWrapper {
 
         padding-left: 9px;
