@@ -352,70 +352,76 @@ const openResetModal = document.getElementById('openResetModal');
 openResetModal.addEventListener('click', openDeleteModal, false);
 
 
+/**
+ * SORTABLE JS config
+ * The sortableJS function is responsible for category managing. 
+ * 
+*/
 
-// SORTABLE JS config
+function sortableJS() {
+        let allItems = document.getElementsByTagName('ul');
 
-let allItems = document.getElementsByTagName('ul');
+        let itemEl;
+        let itemPosition; 
+        let oldItemPosition;   // target list
+        let draggedItemContainerId;
+        let draggedItemClass;
+        let itemContent;
+        let itemContent2;
+        let itemContent3;
+        let prevContainer;
+        for (let i = 0; i < allItems.length; i++) {
+            var sortable = new Sortable(allItems[i], {
+                animation: 150,
+                group: 'shared',
+                handle: '.handle', // handle's class
+                onEnd: function (/**Event*/evt) {
+                    itemEl = evt.item;
+                    itemPosition = evt.to;  
+                    oldItemPosition = evt.from; 
+                    oldItemPositionId = oldItemPosition.id; 
+                    draggedItemContainerId = itemPosition.id;
+                    draggedItemClass = itemEl.classList[1];
 
-let itemEl;
-let itemPosition; 
-let oldItemPosition;   // target list
-let draggedItemContainerId;
-let draggedItemClass;
-let itemContent;
-let prevContainer;
-for (let i = 0; i < allItems.length; i++) {
-    var sortable = new Sortable(allItems[i], {
-        animation: 150,
-        group: 'shared',
-        handle: '.handle', // handle's class
-        onEnd: function (/**Event*/evt) {
-            itemEl = evt.item;
-            itemPosition = evt.to;  
-            oldItemPosition = evt.from; 
-            oldItemPositionId = oldItemPosition.id; 
-            draggedItemContainerId = itemPosition.id;
-            draggedItemClass = itemEl.classList[1];
+                    itemContent = localStorage.getItem(draggedItemClass);
+                    itemContent2 = localStorage.getItem(draggedItemClass + oldItemPositionId);
+                    itemContent3 = localStorage.getItem(draggedItemClass + oldItemPositionId + 'isFav');
 
-            itemContent = localStorage.getItem(draggedItemClass);
-            console.log(itemContent);
+                    if (itemContent === null) {
+                        
+                        if (itemContent2 !== null) {
+                                itemContent = itemContent2;
+                        } else {
+                                itemContent = itemContent3;
+                        }
 
-
-            if (itemContent === null) {
-                
-                    itemContent = localStorage.getItem(draggedItemClass + oldItemPositionId);
-                    console.log('works null' + itemContent);
-                
-                	if (itemContent === null) {
-                        console.log('works null null' + itemContent);
-                        itemContent = localStorage.getItem(draggedItemClass + oldItemPositionId + 'isFav');
-                        console.log('works null null null ' + itemContent);
                     }
 
-            }
+                    if (oldItemPositionId !== draggedItemContainerId) {
+                        
+                        let testItemContent = localStorage.getItem(draggedItemClass + oldItemPositionId);
+                            
+                        
+                        if (testItemContent === null) {
+                            localStorage.setItem(draggedItemClass + draggedItemContainerId + 'isFav', itemContent);
+                        } else {
+                            localStorage.setItem(draggedItemClass + draggedItemContainerId, itemContent);
+                        }
+                        
+                        localStorage.removeItem(draggedItemClass + oldItemPositionId);
+                        if (testItemContent === null) {
+                            localStorage.removeItem(draggedItemClass + oldItemPositionId + 'isFav');
+                        }    
+                    }
 
-            if (oldItemPositionId !== draggedItemContainerId) {
-                //console.log(draggedItemClass + oldItemPositionId);
-                let testItemContent = localStorage.getItem(draggedItemClass + oldItemPositionId);
                     
-                
-                if (testItemContent === null) {
-                    localStorage.setItem(draggedItemClass + draggedItemContainerId + 'isFav', itemContent);
-                } else {
-                    localStorage.setItem(draggedItemClass + draggedItemContainerId, itemContent);
+                    prevContainer = draggedItemContainerId;
                 }
-                
-                localStorage.removeItem(draggedItemClass + oldItemPositionId);
-                if (testItemContent === null) {
-                    localStorage.removeItem(draggedItemClass + oldItemPositionId + 'isFav');
-                }    
-            }
-
-            
-            prevContainer = draggedItemContainerId;
+            });
         }
-    });
 }
+
+window.onload = sortableJS();
 
 var pending = document.getElementById('pendingTodoItems');
 var sortable = new Sortable(pending, {
@@ -423,8 +429,6 @@ var sortable = new Sortable(pending, {
     group: 'shared',
     handle: '.handle', // handle's class
 });
-
-// save where item was put
 
 
 
@@ -646,57 +650,7 @@ function createDynamicSection() {
         
         localStorage.setItem('section' + boxvalue, boxvalue);
 
-        for (let i = 0; i < allItems.length; i++) {
-            var sortable = new Sortable(allItems[i], {
-                animation: 150,
-                group: 'shared',
-                handle: '.handle', // handle's class
-                onEnd: function (/**Event*/evt) {
-                    itemEl = evt.item;
-                    itemPosition = evt.to;  
-                    oldItemPosition = evt.from; 
-                    oldItemPositionId = oldItemPosition.id; 
-                    draggedItemContainerId = itemPosition.id;
-                    draggedItemClass = itemEl.classList[1];
-        
-                    itemContent = localStorage.getItem(draggedItemClass);
-                    console.log(itemContent);
-        
-        
-                    if (itemContent === null) {
-                
-                        itemContent = localStorage.getItem(draggedItemClass + oldItemPositionId);
-                        console.log('works null' + itemContent);
-                    
-                        if (itemContent === null) {
-                            console.log('works null null' + itemContent);
-                            itemContent = localStorage.getItem(draggedItemClass + oldItemPositionId + 'isFav');
-                            console.log('works null null null ' + itemContent);
-                        }
-    
-                }
-    
-                if (oldItemPositionId !== draggedItemContainerId) {
-                    //console.log(draggedItemClass + oldItemPositionId);
-                    let testItemContent = localStorage.getItem(draggedItemClass + oldItemPositionId);
-                        
-                    
-                    if (testItemContent === null) {
-                        localStorage.setItem(draggedItemClass + draggedItemContainerId + 'isFav', itemContent);
-                    } else {
-                        localStorage.setItem(draggedItemClass + draggedItemContainerId, itemContent);
-                    }
-                    
-                    localStorage.removeItem(draggedItemClass + oldItemPositionId);
-                    if (testItemContent === null) {
-                        localStorage.removeItem(draggedItemClass + oldItemPositionId + 'isFav');
-                    }    
-                }
-                    
-                    prevContainer = draggedItemContainerId;
-                }
-            });
-        }
+        sortableJS();
     }
 }
 
@@ -734,45 +688,7 @@ function loadSections() {
 
     }    
 
-    for (let i = 0; i < allItems.length; i++) {
-        var sortable = new Sortable(allItems[i], {
-            animation: 150,
-            group: 'shared',
-            handle: '.handle', // handle's class
-            onEnd: function (/**Event*/evt) {
-                itemEl = evt.item;
-                itemPosition = evt.to;  
-                oldItemPosition = evt.from; 
-                oldItemPositionId = oldItemPosition.id; 
-                draggedItemContainerId = itemPosition.id;
-                draggedItemClass = itemEl.classList[1];
-    
-                itemContent = localStorage.getItem(draggedItemClass);
-                console.log(itemContent);
-    
-    
-                if (itemContent === null) {
-                    
-                        itemContent = localStorage.getItem(draggedItemClass + oldItemPositionId);
-                        console.log('works null' + itemContent);
-                        if (itemContent === null) {
-
-                            itemContent = localStorage.getItem(draggedItemClass + oldItemPositionId + 'isFav');
-    
-                        }
-                    
-                }
-    
-                if (oldItemPositionId !== draggedItemContainerId) {
-                    console.log(draggedItemClass + oldItemPositionId);
-                    localStorage.setItem(draggedItemClass + draggedItemContainerId, itemContent);
-                    localStorage.removeItem(draggedItemClass + oldItemPositionId);
-                }
-               
-                prevContainer = draggedItemContainerId;
-            }
-        });
-    }
+    sortableJS();
 
 }
 
@@ -920,10 +836,8 @@ function createInitialList() {
             item = document.createElement("li");
 
             if (isNumeric == true) {
-                console.log("isNumeric!");
                 item.classList.add("listElement","task:" + onlySub2);
             } else {
-                console.log("isNotNumeric!");
                 item.classList.add("listElement", onlySub);
             }
 
@@ -965,9 +879,6 @@ function createInitialList() {
                 
             }
 
-            console.log('key2' + anotherNewKey2);
-            console.log('key3' + anotherNewKey3);
-           
             let whereToAppendItem = document.getElementById(anotherNewKey5);
             let whereToAppendItem2 = document.getElementById(anotherNewKey3);
 
