@@ -804,8 +804,8 @@ footer a {
 
     .modal {
 
-        width: 95%;
-        max-width: 95%;
+        width: 100%;
+        max-width: 100%;
         box-shadow: 0px 10px 3000px 2000px rgba(0,0,0,0.12);
 
     }
