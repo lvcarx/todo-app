@@ -207,12 +207,6 @@ input {
 
 }
 
-.startModal .close {
-
-    display: none;
-
-}
-
 .startModal .close.startModalClose {
 
     display: block;
