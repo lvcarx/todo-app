@@ -847,7 +847,7 @@ footer a {
     #content .inputWrapper input[type="text"] {
 
         width: 100%;
-
+        background: #f5f5f5;
         width: 86%;
         float: left;
 
