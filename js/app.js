@@ -895,7 +895,7 @@ function createInitialList() {
         anotherNewKey = setCharAt(anotherNewKey, 0, '');
 
         let newKey = key.replace('isFav', '');
-        //let newKey2 = newKey.replace('Checked', '');
+
         let counter = localStorage.getItem('counter');
         if (key.includes("task:")) {
 
@@ -920,10 +920,14 @@ function createInitialList() {
             item = document.createElement("li");
 
             if (isNumeric == true) {
-                item.classList.add(onlySub2);
+                console.log("isNumeric!");
+                item.classList.add("listElement","task:" + onlySub2);
+            } else {
+                console.log("isNotNumeric!");
+                item.classList.add("listElement", onlySub);
             }
 
-            item.classList.add("listElement", onlySub);
+            
             if (key.includes('isFav')) {
                 item.classList.add("favoriteItem");
             }
@@ -963,18 +967,7 @@ function createInitialList() {
 
             console.log('key2' + anotherNewKey2);
             console.log('key3' + anotherNewKey3);
-            /*let anotherNewKey2WithOutChecked;
-            let anotherNewKey3WithOutChecked;
-            if (anotherNewKey2.includes('Checked')) {
-                anotherNewKey2WithOutChecked = anotherNewKey2.replace('Checked', '');
-            }
-            if (anotherNewKey3.includes('Checked')) {
-                anotherNewKey3WithOutChecked = anotherNewKey3.replace('Checked', '');
-            }
-
-            console.log('key2' + anotherNewKey2WithOutChecked);
-            console.log('key3' + anotherNewKey3WithOutChecked);
-            */
+           
             let whereToAppendItem = document.getElementById(anotherNewKey5);
             let whereToAppendItem2 = document.getElementById(anotherNewKey3);
 
