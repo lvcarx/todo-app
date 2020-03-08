@@ -51,8 +51,8 @@ body.dark #content .itemWrapper ul li {
 
 body.dark #content .itemWrapper ul li.favoriteItem {
    
-    background: #8c7c2a;
-    border: 1px solid #9c957d;
+    background: #9f8b24;
+    border: 1px solid #e6ca6b;
     
 }
 
@@ -149,7 +149,7 @@ body.dark #content .dynamicSection {
 }
 
 body.dark #content .dynamicSection input {
-    border: 2px solid #707070;
+    border: 1px solid #707070;
     background: #333333;
     color: #fff;
     transition: all 0.2s ease;
