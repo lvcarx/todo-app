@@ -369,6 +369,9 @@ function sortableJS() {
         let itemContent;
         let itemContent2;
         let itemContent3;
+        let itemContent4;
+        let itemContent5;
+        let itemContent6;
         let prevContainer;
         for (let i = 0; i < allItems.length; i++) {
             var sortable = new Sortable(allItems[i], {
@@ -386,32 +389,55 @@ function sortableJS() {
                     itemContent = localStorage.getItem(draggedItemClass);
                     itemContent2 = localStorage.getItem(draggedItemClass + oldItemPositionId);
                     itemContent3 = localStorage.getItem(draggedItemClass + oldItemPositionId + 'isFav');
+                    itemContent4 = localStorage.getItem(draggedItemClass + oldItemPositionId + 'isFav' + 'Checked');
+                    itemContent5 = localStorage.getItem(draggedItemClass + oldItemPositionId + 'Checked');
+                    itemContent6 = localStorage.getItem(draggedItemClass + oldItemPositionId + 'Checked' + 'isFav');
+                    
+
 
                     if (itemContent === null) {
                         
                         if (itemContent2 !== null) {
                                 itemContent = itemContent2;
-                        } else {
+                                console.log("reassigned 2");
+                        } else if (itemContent3 !== null) {
                                 itemContent = itemContent3;
-                        }
+                                console.log("reassigned 3");
+                        } else if (itemContent4 !== null) {
+                            itemContent = itemContent4;
+                            console.log("reassigned 4");
+                        } else if (itemContent5 !== null) {
+                            itemContent = itemContent5;
+                            console.log("reassigned 5");
+                        } else if (itemContent6 !== null) {
+                            itemContent = itemContent6;
+                            console.log("reassigned 6");
+                        }       
 
                     }
 
                     if (oldItemPositionId !== draggedItemContainerId) {
                         
                         let testItemContent = localStorage.getItem(draggedItemClass + oldItemPositionId);
-                            
                         
-                        if (testItemContent === null) {
-                            localStorage.setItem(draggedItemClass + draggedItemContainerId + 'isFav', itemContent);
-                        } else {
+                        // set items
+                        if (itemContent2 !== null) {
                             localStorage.setItem(draggedItemClass + draggedItemContainerId, itemContent);
-                        }
-                        
-                        localStorage.removeItem(draggedItemClass + oldItemPositionId);
-                        if (testItemContent === null) {
+                            localStorage.removeItem(draggedItemClass + oldItemPositionId);
+                        } else if (itemContent3 !== null) {
+                            localStorage.setItem(draggedItemClass + draggedItemContainerId + 'isFav', itemContent);
                             localStorage.removeItem(draggedItemClass + oldItemPositionId + 'isFav');
-                        }    
+                        } else if (itemContent4 !== null) {
+                            localStorage.setItem(draggedItemClass + draggedItemContainerId + 'isFav' + 'Checked', itemContent);
+                            localStorage.removeItem(draggedItemClass + oldItemPositionId + 'isFav' + 'Checked');
+                        } else if (itemContent5 !== null) {
+                            localStorage.setItem(draggedItemClass + draggedItemContainerId + 'Checked', itemContent);
+                            localStorage.removeItem(draggedItemClass + oldItemPositionId + 'Checked');
+                        } else if (itemContent6 !== null) {
+                            localStorage.setItem(draggedItemClass + draggedItemContainerId + 'Checked' + 'isFav', itemContent);
+                            localStorage.removeItem(draggedItemClass + oldItemPositionId + 'Checked' + 'isFav');
+                        }       
+
                     }
 
                     
