@@ -569,14 +569,19 @@ function saveToLocalStorage() {
 
 }
 
+
+
 isStartModalHidden = localStorage.getItem('startModalHide');
-if (isStartModalHidden) {
-} else {
-    const startModal = document.getElementById('startModal');
-    startModal.classList.add('opened');
-}
+    if (isStartModalHidden) {
+    } else {
+        const startModal = document.getElementById('startModal');
+        startModal.classList.add('opened');
+    }
+
 const startModalClose = document.getElementById('startModalClose');
 startModalClose.addEventListener('click', saveToLocalStorage, false);
+
+window.onload = saveToLocalStorage();
 
 /**
  * 
