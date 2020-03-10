@@ -664,7 +664,7 @@ input {
     height: 0px;
     margin-bottom: -6px;
     margin-right: 0px;
-    background: url(../img/new/favorite2.svg) no-repeat !important;
+    background: url(../img/favorite2.svg) no-repeat !important;
     background-size: cover;
     transition: all 0.3s ease;
 

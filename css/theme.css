@@ -127,7 +127,7 @@ body.dark #content #addSections {
 }
 
 body.dark #content #addSections:before {
-    background: url(../img/new/dark/plus-icon-dark.svg) !important;
+    background: url(../img/dark/plus-icon-dark.svg) !important;
 }
 
 body.dark #content .itemWrapper ul li .check {
