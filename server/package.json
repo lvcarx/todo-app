@@ -1,0 +1,40 @@
+{
+  "name": "todo",
+  "version": "1.0.0",
+  "description": "A simple note taking app, that saves all your notes automatically.",
+  "main": "app.js",
+  "engines": {
+    "node": "12.16.x"
+  },
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reallucareichmann/simple-note-taking-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/reallucareichmann/simple-note-taking-app/issues"
+  },
+  "dev": "webpack-dev-server --open",
+  "homepage": "https://github.com/reallucareichmann/simple-note-taking-app#readme",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "bcrypt": "^4.0.1",
+    "bcryptjs": "^2.4.3",
+    "config": "^3.3.1",
+    "cookie-parser": "^1.4.5",
+    "express": "^4.17.1",
+    "joi": "^14.3.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.6",
+    "nodemon": "^2.0.2",
+    "passport": "^0.4.1",
+    "passport-http-bearer": "^1.0.1",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0"
+  }
+}

@@ -1,0 +1,142 @@
+<!-- ༼ つ ◕_◕ ༽つ   made with love by luca-reichmann.de --- www.luca-reichmann.de    ༼ つ ◕_◕ ༽つ -->
+
+<!--
+This app was created by Luca Reichmann.
+Website: luca-reichmann.de
+Instagram: lvcarx
+Github: reallucareichmann
+-->
+
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<title>be productive.</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://sortablejs.github.io/Sortable/Sortable.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700&display=swap" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+<link href="css/theme.css" rel="stylesheet">
+<link rel="manifest" href="/manifest.json">
+<link rel="shortcut icon" type="image/png" href="img/favicon-512x512.png">
+<link rel="apple-touch-icon" sizes="512x512" href="img/favicon-512x512-apple.png">
+</head>
+
+
+<body id="body" class="blueTheme light">
+<a class="logo" href="/">
+<img src="img/logoDark2.svg" class="light" alt="">
+<img src="img/logoLight2.svg" class="dark" alt="">
+</a>
+
+
+<div id="settings">
+    <img src="img/settings2.svg" class="light" alt="">
+    <img src="img/dark/settings-dark.svg" class="dark" alt="">
+</div>
+
+<div class="modal startModal" id="startModal">
+<a id="startModalClose" onclick="closeModal()" class="close startModalClose"></a>
+<h2>Hey there!</h2>
+<p>Thank you for using my Todo Manager, called "be productive."<br>This app uses your browsers local storage to store all the information, so keep in mind that this isn't secure! 
+You shouldn't store any sensitive information in this application! Currently i'm working on a database storing model that will be safe, but for now you will have to work with this system.
+But anyways thank you!</p>
+
+<div class="iconSet">
+<div class="feature">
+<img src="img/noWifi2.svg" alt="">
+Works offline</div>
+<div class="feature">
+<img src="img/noads.svg" alt="">
+No ads</div>
+<div class="feature">
+<img src="img/warning.svg" alt="">
+Uses local storage</div>
+</div>
+
+</div>
+
+<div class="modal" id="settingsModal">
+    <h2>Settings</h2>
+    <div class="content">
+
+        
+        <!--  Not finished
+        <h3>Push notifications</h3>
+        <a href="">Enable</a>
+        <a href="">Disable</a> -->
+
+        <h3>Appearance</h3>
+        <a class="" id="darkModeToggle">Dark Mode</a>
+        <h4>Colors</h4>
+        <div class="colorPicker">
+            <a class="color blue" id="blueMode" onclick="blueTheme(event)"></a>
+            <a class="color green" id="greenMode" onclick="greenTheme(event)"></a>
+            <a class="color pink" id="pinkMode" onclick="pinkTheme(event)"></a>
+        </div>
+
+        <h3>Reset App (Developer)</h3>        
+        <a onclick="clearLocalStorage()">Delete all data</a>
+
+    </div>
+</div>
+
+<div class="modal deleteModal" id="deleteModal">
+    <h2>Do you really want to delete all items?</h2>
+    <p>With this action you will delete all existing items.<br>
+    They can't be restored!</p>
+    <div class="content">
+        <a class="noBtn" id="abort" onclick="abortModal(event)">abort</a>
+        <a class="yesBtn" id="reset" onclick="resetItems()">continue</a>
+    </div>
+</div>
+
+<div id="content">
+<form id="form" onsubmit="return setItems()">
+    <div class="inputWrapper">
+        <p id="errorNotice"></p>
+        <input type="text" id="box" placeholder="Add a task...">
+        <a type="button" id="submit" value="Add to list" onclick="return setItems()">Add to list</a>
+    </div>
+</form>
+
+<div id="itemSections">
+
+    <div class="dynamicSectionWrapper">
+        <a id="addSections">Add new sections</a>
+        <div id="dynamicSection" class="dynamicSection">
+            <input id="sectionName" type="text" placeholder="Add a new task category...">
+            <a onclick="createDynamicSection()">Save and close</a>
+        </div>    
+    </div>
+    <div class="itemWrapper todaySection">
+        <h2>Today</h2>
+        <ul id="todoItems"></ul>
+    </div>
+
+    <div class="itemWrapper doneSection">
+        <h2>Pending</h2>
+        <ul id="pendingTodoItems"></ul>
+    </div>
+</div>
+
+<p id="advice"></p>
+<a class="resetButton" id="openResetModal">Delete all items</a> 
+</div>
+ 
+
+<footer>
+<a target="_blank" href="https://github.com/reallucareichmann/todo-app" class="">Changelog and future plans</a>
+<br>
+<a target="_blank" href="https://luca-reichmann.de/impressum">Impressum</a>
+<br>
+<a target="_blank" href="https://luca-reichmann.de" class="madeWithLove">Made with ❤️ by luca-reichmann.de</a target="_blank">
+
+</footer>
+</body>
+</html>
+<script type="text/javascript" src="data/userInformation.json"></script>
+<script type="text/javascript" src="js/app.js"></script>
+<!--<script type="text/javascript" src="js/modal.js"></script>-->
+<script type="text/javascript" src="js/userInformation.js"></script>
+<script type="text/javascript" src="js/settings.js"></script>
