@@ -60,16 +60,9 @@ server.get('/', auth, (req, res, next) => {
     return next();
 });
 
-
-
 // protect
 server.get('/#/');
 server.get('/');
-
-server.get('/dashboard/current', function (req, res, next) {
-    res.send({ username: req.user.email });
-    return next();
-});
 
 server.use('/users', users);
 

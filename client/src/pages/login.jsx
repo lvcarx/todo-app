@@ -36,7 +36,9 @@ class LoginPage extends React.Component {
         }
         axios.post('http://localhost:8000/users/login', user)
             .then((resp) => {
-                console.log(resp.data)
+                if (resp.data) {
+                    localStorage.setItem("user-token", resp.data);
+                }
             })
 
         this.setState({
