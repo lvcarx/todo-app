@@ -2,9 +2,11 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
-const passport = require('passport');
-const bearer = require('passport-http-bearer');
 const jwt = require('jsonwebtoken');
+const jwtDecode = require('jwt-decode');
+
+// Authentification middleware
+const auth = require('../middleware/auth');
 
 // Get user
 const User = require('../models/user');
@@ -59,10 +61,19 @@ router.post('/login', (req, res) => {
             }
 
     });
-
     }
 );
 
+router.post('/currentUser', auth, (req, res) => {
+    const decoded = jwtDecode(req.body.token);
+    console.log(decoded._id);
+    User.findOne({
+        _id: decoded._id
+    }).then(user => {
+            //console.log(user);
+            return res.send({email: user.email, _id: user._id}); 
+       }) 
+}) 
 
 router.post('/delete', (req, res) => {
     console.log(req.user);
