@@ -27,9 +27,9 @@ class NotePage extends React.Component {
             })
     }
 
-    shouldComponentUpdate(nextState) {
+    /*shouldComponentUpdate(nextState) {
         return nextState.userID !== this.state.userID;
-    }
+    }*/
   
     render() {
         return(
