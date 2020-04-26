@@ -13,14 +13,13 @@ class TodoItem extends React.Component {
         if (nextProps.todoItems !== this.props.todoItems) {
             return true;
         } 
-       
+        return false
     }
 
     render() {
         return (
-            this.props.todoItems.map(note =>
-                <p>{note.name}</p>
-            )
+            null
+            
         )
     }
 
