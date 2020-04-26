@@ -1,8 +1,10 @@
 import React from 'react';
-import NotesPage from './pages/notes.jsx'
+import NotesPage from './pages/todo.jsx'
 import LoginPage from './pages/login.jsx'
 import RegisterPage from './pages/register.jsx'
 import axios from 'axios'
+
+import style from './css/style.css'
 
 import {
   BrowserRouter as Router,
@@ -18,7 +20,6 @@ class App extends React.Component {
   
   constructor() {
     super()
-  
     this.state = {
       userIsAuthenticated: false
     }
@@ -27,7 +28,10 @@ class App extends React.Component {
   componentWillMount() {
     const token = localStorage.getItem('user-token')
     if (token) {
-      this.setState({userIsAuthenticated: true});
+      this.setState(
+        {
+          userIsAuthenticated: true
+        });
       console.log('Okay this worked!');
       axios.defaults.headers.common['x-auth-token'] = token
     }

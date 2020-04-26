@@ -5,8 +5,8 @@ import Footer from '../components/Footer.jsx'
 import Content from '../components/Content.jsx'
 class NotePage extends React.Component {
 
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             userEmail: '',
             userID: ''
@@ -27,12 +27,15 @@ class NotePage extends React.Component {
             })
     }
 
+    shouldComponentUpdate(nextState) {
+        return nextState.userID !== this.state.userID;
+    }
+  
     render() {
         return(
           <div>
               <Header />
-              <Content userEmail = {this.state.userEmail} />
-              <h1>NotesPage</h1>
+              <Content userID={this.state.userID} userEmail={this.state.userEmail} />
               <Footer />
           </div>  
         )

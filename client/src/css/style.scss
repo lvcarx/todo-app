@@ -1,0 +1,34 @@
+body {
+    background: #f2f9ff !important;
+    header {
+        img {
+            display: block;
+            max-width: 300px;
+            &.logo {
+                display: block;
+                width: 200px;
+                height: 47;
+                margin: 20px;
+            }
+            &.settingsIcon {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                width: 34px;
+                height: 34px;
+            }
+        }
+    }
+    .content {
+        display: block;
+        text-align: center;
+        margin: 100px auto;
+        width: 70%;
+        max-width: 700px;
+        background: #fff;
+        border-radius: 4px;
+        box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.07);
+        padding: 0 1px 30px 1px;
+        border: 5px;
+    }
+}
