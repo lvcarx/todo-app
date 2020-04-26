@@ -4,7 +4,10 @@ class Header extends React.Component {
 
     render() {
         return (
-            <p>Header</p>
+            <header className="header">
+                <img className="logo" src="/img/logo.svg"></img>
+                <img className="settingsIcon" src="/img/settings.svg"></img>
+            </header>
         )
     }
 

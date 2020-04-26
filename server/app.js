@@ -8,8 +8,10 @@ const cookieParser = require('cookie-parser')
 const cors = require("cors");
 
 const auth = require('./middleware/auth');
+
 // Load api routes
-var users = require('./routes/users.js');
+const users = require('./routes/users.js');
+const todo = require('./routes/todo.js');
 
 // DB config
 const db = process.env.DB_CONNECTION;
@@ -65,4 +67,4 @@ server.get('/#/');
 server.get('/');
 
 server.use('/users', users);
-
+server.use('/api/todo', todo);

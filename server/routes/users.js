@@ -13,16 +13,12 @@ const User = require('../models/user');
 
 // Register handle
 router.post('/register', (req, res) => {
-
-    //res.send('hello');
     const { name, email, password } = req.body;
-
     const newUser = new User({
         name,
         email,
         password
     });
-
     // Hash password
     bcrypt.genSalt(10, (err, salt) =>
         bcrypt.hash(newUser.password, salt, (err, hash) => {
@@ -33,8 +29,7 @@ router.post('/register', (req, res) => {
                     res.header('x-auth-token', token).send({ _id: user._id, email: user._email});
                     res.send('User registered!');
                 })
-                .catch(err => console.log(err));
-                    
+                .catch(err => console.log(err));      
         })
 )});
 
@@ -70,7 +65,6 @@ router.post('/currentUser', auth, (req, res) => {
     User.findOne({
         _id: decoded._id
     }).then(user => {
-            //console.log(user);
             return res.send({email: user.email, _id: user._id}); 
        }) 
 }) 
