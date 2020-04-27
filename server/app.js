@@ -1,8 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const passport = require('passport');
 const db_connection = require('dotenv').config()
-const bcrypt = require('bcryptjs');
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const cors = require("cors");
@@ -12,6 +10,7 @@ const auth = require('./middleware/auth');
 // Load api routes
 const users = require('./routes/users.js');
 const todo = require('./routes/todo.js');
+const settings = require('./routes/settings.js');
 
 // DB config
 const db = process.env.DB_CONNECTION;
@@ -39,14 +38,7 @@ server.use(express.urlencoded({ extended: true }));
 server.use(express.json());
 server.use(bodyParser.json());
 
-//  server.use("/", bodyParser.json());
-
-// Passport middleware
-
-
 server.use(cookieParser());
-server.use(passport.initialize());
-server.use(passport.session());
 
 // CORS
 server.use(cors());
@@ -55,7 +47,6 @@ server.use(function (req, res, next) {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
-
 
 server.get('/', auth, (req, res, next) => {
     res.send('protected');
@@ -66,5 +57,6 @@ server.get('/', auth, (req, res, next) => {
 server.get('/#/');
 server.get('/');
 
-server.use('/users', users);
+server.use('/api/users', users);
 server.use('/api/todo', todo);
+server.use('/api/settings', settings);
