@@ -3,6 +3,7 @@ import axios from 'axios'
 import Header from '../components/Header.jsx'
 import Footer from '../components/Footer.jsx'
 import Content from '../components/Content.jsx'
+import SettingsModal from '../components/modals/SettingsModal.jsx'
 class NotePage extends React.Component {
 
     constructor(props) {
@@ -18,7 +19,7 @@ class NotePage extends React.Component {
         const sendToken = {
             token: token
         }
-        axios.post('http://localhost:8000/users/currentUser', sendToken)
+        axios.post('http://localhost:8000/api/users/currentUser', sendToken)
             .then((resp) => {
                 this.setState({
                     userEmail: resp.data.email,
@@ -27,10 +28,6 @@ class NotePage extends React.Component {
             })
     }
 
-    /*shouldComponentUpdate(nextState) {
-        return nextState.userID !== this.state.userID;
-    }*/
-  
     render() {
         return(
           <div>

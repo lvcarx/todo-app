@@ -25,6 +25,28 @@ router.post('/create', auth, (req, res) => {
         .catch(err => console.log(err));
 });
 
+// delete todo item handle
+router.post('/delete', auth, (req, res) => {
+    const { author, todoItem } = req.body;
+    Todo.findOneAndRemove({_id: todoItem, author: author}, req.body, function(err,data)
+    {
+        if(!err){
+            console.log("Deleted");
+        }
+    });
+});
+
+// delete todo item handle
+router.post('/update', auth, (req, res) => {
+    const { author, todoItem, favorite, done } = req.body;
+    Todo.findOneAndUpdate({_id: todoItem, author: author}, req.body, function(err,data)
+    {
+        if(!err){
+            console.log("Updated");
+        }
+    });
+});
+
 // fetch todo item handle
 router.post('/fetch', auth, (req, res) => {
     const decoded = jwtDecode(req.body.token);

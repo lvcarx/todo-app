@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import TodoItemWrapper from './TodoItemWrapper.jsx'
+import SettingsModal from './modals/SettingsModal.jsx'
 
 class Content extends React.Component {
 
@@ -37,7 +38,7 @@ class Content extends React.Component {
         axios.post('http://localhost:8000/api/todo/create', todo)
             .then(this.fetchTodoItems())
             .catch(err => console.log(err))
-        this.fetchTodoItems()
+        // this.fetchTodoItems()
     }
 
     shouldComponentUpdate(nextState, nextProps) {
@@ -82,7 +83,7 @@ class Content extends React.Component {
                         </div>
                     </form>
                 </div>
-                <TodoItemWrapper allNotes = {this.state.notesInDB}/>
+                <TodoItemWrapper fetchTodoItems={this.fetchTodoItems} author = {this.props.userID} allNotes = {this.state.notesInDB}/>
             </div>
         )
     }

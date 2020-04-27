@@ -8,8 +8,9 @@ const jwtDecode = require('jwt-decode');
 // Authentification middleware
 const auth = require('../middleware/auth');
 
-// Get user
+// Get User & Settings
 const User = require('../models/user');
+const Setting = require('../models/setting');
 
 // Register handle
 router.post('/register', (req, res) => {
@@ -19,15 +20,23 @@ router.post('/register', (req, res) => {
         email,
         password
     });
+
     // Hash password
     bcrypt.genSalt(10, (err, salt) =>
         bcrypt.hash(newUser.password, salt, (err, hash) => {
            newUser.password = hash;
-            newUser.save()
-                .then(user => {
+           newUser.save()
+                .then(user => {    
+                    const newSettings = new Setting({
+                        userID: user._id
+                    });
+                    newSettings.save()
+                        .then(console.log('called'))
+                        .catch(console.log('called'));
                     const token = jwt.sign({ _id: user._id}, process.env.JWT);
                     res.header('x-auth-token', token).send({ _id: user._id, email: user._email});
                     res.send('User registered!');
+                    
                 })
                 .catch(err => console.log(err));      
         })
