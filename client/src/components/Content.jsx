@@ -1,8 +1,6 @@
 import React from 'react'
 import axios from 'axios'
 import TodoItemWrapper from './TodoItemWrapper.jsx'
-import SettingsModal from './modals/SettingsModal.jsx'
-
 class Content extends React.Component {
 
     constructor(props) {
@@ -67,7 +65,6 @@ class Content extends React.Component {
                 });
                 console.log(this.state.notesInDB);
             })
-        console.log('is exec')
     }
     
     render() {

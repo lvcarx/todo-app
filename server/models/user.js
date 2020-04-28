@@ -20,6 +20,9 @@ const UserSchema = new mongoose.Schema({
         required: true,
         default: false
     },
+    sections: {
+        type: [String],
+    },
     date: {
         type: Date,
         default: Date.now
