@@ -7,11 +7,18 @@ class TodoItemWrapper extends React.Component {
         super(props)
         this.deleteTodoItem = this.deleteTodoItem.bind(this)
         this.favoriteTodoItem = this.favoriteTodoItem.bind(this)
-        
+        this.doneTodoItem = this.doneTodoItem.bind(this)
+        this.openTodoItem = this.openTodoItem.bind(this)
         this.state = {
             notesInDB: [],
             noteAuthor: this.props.author
         }
+    }
+
+    openTodoItem(e) {
+        const item = document.getElementById(e);
+        console.log(e);
+        item.classList.toggle('opened')
     }
 
     doneTodoItem(e) {
@@ -53,36 +60,22 @@ class TodoItemWrapper extends React.Component {
     render() {
         return (
             <div className="todoItemWrapper">
-                
                 {this.props.allNotes.map(note =>
-                    <div>
-                        <p>{note.name}</p>
-                        <p onClick={() => this.doneTodoItem(note)}>Done item</p>
-                        <p onClick={() => this.favoriteTodoItem(note)}>Favorite item</p>
-                        <p onClick={() => this.deleteTodoItem(note._id)}>Delete item</p>  
+                    <div className="todoItem" id={note._id}>
+                        <div className="wrapper">
+                            <a className="done" onClick={() => this.doneTodoItem(note)}></a>
+                            <p className="todoItemContent">{note.name}</p>
+                            <a className="edit" onClick={() => this.openTodoItem(note._id)}>Edit</a>
+                        </div>
+                        <div className="actionArea">
+                            <a className="favorite" onClick={() => this.favoriteTodoItem(note)}><img src="/img/favorite.svg"></img></a>
+                            <a className="delete" onClick={() => this.deleteTodoItem(note._id)}><img src="/img/close.svg"></img></a> 
+                        </div> 
                     </div>  
                 )}
-               
-              {/* <li class="listElement task:3 favoriteItem opened" id="task:3todoItemsisFav">
-                   <a id="check" class="check" onclick="checkListItem(this)"></a>
-                   <a class="textWrapper">wdqwwq</a><a class="edit" id="edit" onclick="focuseItem(this)">Edit</a>
-                   <a class="actionArea" id="actionArea"><a class="button handle">
-                       <img class="handle light" src="img/handle2.svg">
-                           <img class="handle dark" src="img/dark/handle-dark.svg"></a>
-                           <a id="delete" class="button delete" onclick="removeListItem(this)">
-                               <img class="button light delete" src="img/close2.svg">
-                                   <img class="button delete dark" src="img/dark/close-dark.svg"></a>
-                                   <a id="favorite" onclick="removeFavoriteListItem(this)" class="button favoriteButton">
-                                       <img class="button light favoriteButton" src="img/favorite2.svg">
-                                           <img class="button favoriteButton dark" src="img/dark/favorite-dark.svg"></a></a></li>
-                */}
-                
             </div>
         )
     }
-
-
-
 }
 
 export default TodoItemWrapper
