@@ -14,7 +14,6 @@ const User = require('../models/user');
 // delete setting item handle
 router.post('/create', auth, (req, res) => {
     const decoded = jwtDecode(req.body.token);
-    console.log("Hey " + decoded);
     console.log(req.body);
     User.findOneAndUpdate({_id: decoded}, { $addToSet: { sections: req.body.sectionName } }, function(err,data)
     {
@@ -27,6 +26,13 @@ router.post('/create', auth, (req, res) => {
     });
 });
 
+// delete setting item handle
+router.post('/fetch', auth, (req, res) => {
+    const decoded = jwtDecode(req.body.token);
+    User.find({_id: decoded}.then(todos => {
+        console.log(todos)
+        return res.send(todos)
+}))});
 
 router.post('/delete', auth, (req, res) => {
     console.log(req.user);

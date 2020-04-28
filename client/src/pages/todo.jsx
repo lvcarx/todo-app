@@ -8,9 +8,12 @@ class NotePage extends React.Component {
 
     constructor(props) {
         super(props)
+        this.fetchSettings = this.fetchSettings.bind(this)
         this.state = {
             userEmail: '',
-            userID: ''
+            userID: '',
+            color: '',
+            darkMode: ''
         }
     }
 
@@ -26,12 +29,30 @@ class NotePage extends React.Component {
                     userID: resp.data._id
                 });
             })
+        this.fetchSettings()
+    }
+
+    fetchSettings() {
+        console.log('WORKS?');
+        const token = localStorage.getItem('user-token')
+        const sendToken = {
+            token: token
+        }
+        axios.post('http://localhost:8000/api/settings/fetch', sendToken)
+            .then((resp) => {
+                this.setState({
+                    darkMode: resp.data.darkMode,
+                    color: resp.data.color
+                });
+            })
+            console.log(this.state.darkMode)
+            console.log(this.state.color)
     }
 
     render() {
         return(
-          <div>
-              <Header />
+          <div className={this.state.darkMode == true ? 'dark' : 'light'} id={this.state.color}>
+              <Header fetchSettings={this.fetchSettings} darkMode={this.state.darkMode} color={this.state.color} />
               <Content userID={this.state.userID} userEmail={this.state.userEmail} />
               <Footer />
           </div>  
