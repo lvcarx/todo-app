@@ -57,6 +57,7 @@ class Content extends React.Component {
         const sendToken = {
             token: token
         }
+        
         axios.post('http://localhost:8000/api/todo/fetch', sendToken)
             .then((res) => {
                 console.log(res.data)

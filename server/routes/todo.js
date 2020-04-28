@@ -50,6 +50,7 @@ router.post('/fetch', auth, (req, res) => {
     const decoded = jwtDecode(req.body.token);
     console.log(decoded);
     Todo.find({ author: decoded._id }).then(todos => {
+        console.log(todos)
         return res.send(todos)
         //console.log(todos)
     })
