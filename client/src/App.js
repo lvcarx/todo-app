@@ -65,7 +65,7 @@ class App extends React.Component {
               <LoginPage />
             </Route>
             <Route exact path="/register">
-              <LoginPage />
+              <RegisterPage />
             </Route>
           </Switch>
         </HashRouter>

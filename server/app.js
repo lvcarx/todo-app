@@ -11,6 +11,7 @@ const auth = require('./middleware/auth');
 const users = require('./routes/users.js');
 const todo = require('./routes/todo.js');
 const settings = require('./routes/settings.js');
+const sections = require('./routes/sections.js');
 
 // DB config
 const db = process.env.DB_CONNECTION;
@@ -60,3 +61,4 @@ server.get('/');
 server.use('/api/users', users);
 server.use('/api/todo', todo);
 server.use('/api/settings', settings);
+server.use('/api/sections', sections);

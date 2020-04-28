@@ -20,7 +20,7 @@ router.post('/create', auth, (req, res) => {
     });
     newTodo.save()
         .then(todo => {
-           console.log(todo)
+            console.log(todo)
         })
         .catch(err => console.log(err));
 });
@@ -28,9 +28,8 @@ router.post('/create', auth, (req, res) => {
 // delete todo item handle
 router.post('/delete', auth, (req, res) => {
     const { author, todoItem } = req.body;
-    Todo.findOneAndRemove({_id: todoItem, author: author}, req.body, function(err,data)
-    {
-        if(!err){
+    Todo.findOneAndRemove({ _id: todoItem, author: author }, req.body, function (err, data) {
+        if (!err) {
             console.log("Deleted");
         }
     });
@@ -39,9 +38,8 @@ router.post('/delete', auth, (req, res) => {
 // delete todo item handle
 router.post('/update', auth, (req, res) => {
     const { author, todoItem, favorite, done } = req.body;
-    Todo.findOneAndUpdate({_id: todoItem, author: author}, req.body, function(err,data)
-    {
-        if(!err){
+    Todo.findOneAndUpdate({ _id: todoItem, author: author }, req.body, function (err, data) {
+        if (!err) {
             console.log("Updated");
         }
     });
@@ -55,7 +53,7 @@ router.post('/fetch', auth, (req, res) => {
         return res.send(todos)
         //console.log(todos)
     })
-    .catch(err => console.log(err))
+        .catch(err => console.log(err))
 });
 
 module.exports = router; 

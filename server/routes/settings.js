@@ -12,7 +12,7 @@ const Setting = require('../models/setting');
 // delete setting item handle
 router.post('/update', auth, (req, res) => {
     const decoded = jwtDecode(req.body.token);
-    Setting.findOneAndUpdate({_id: decoded}, req.body, function(err,data)
+    Setting.findOneAndUpdate({userID: decoded}, req.body, function(err,data)
     {
         if(!err){
             console.log("Updated");

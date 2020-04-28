@@ -7,6 +7,7 @@ class Header extends React.Component {
     constructor(props) {
         super(props)
         this.openModal = this.openModal.bind(this)
+        this.fetchSettings = this.fetchSettings.bind(this)
         this.state = {
             showModal: false,
             darkMode: false,
@@ -27,6 +28,10 @@ class Header extends React.Component {
     }
 
     componentDidMount() {
+        this.fetchSettings();
+    }
+
+    fetchSettings() {
         const token = localStorage.getItem('user-token')
         const sendToken = {
             token: token
@@ -45,7 +50,7 @@ class Header extends React.Component {
             <header className="header">
                 <img className="logo" src="/img/logo.svg"></img>
                 <img className="settingsIcon" src="/img/settings.svg" onClick={this.openModal}></img>
-                <SettingsModal closeModal2={() => this.closeModal()} opened = {this.state.showModal} darkMode = {this.state.darkMode} color = {this.state.color} />
+                <SettingsModal fetchSettings = {this.fetchSettings} closeModal2={() => this.closeModal()} opened = {this.state.showModal} darkMode = {this.state.darkMode} color = {this.state.color} />
             </header>
         )
     }

@@ -78,7 +78,7 @@ router.post('/currentUser', auth, (req, res) => {
        }) 
 }) 
 
-router.post('/delete', (req, res) => {
+router.post('/delete', auth, (req, res) => {
     console.log(req.user);
     Note.deleteMany({ "author": req.user.email }, function (err) {
         if (err)
