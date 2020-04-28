@@ -1,23 +1,18 @@
 import React from 'react'
-
+import Header from '../Header.jsx'
 class SettingsModal extends React.Component {
 
     constructor(props) {
         super(props)
-        this.state = {
-
-        }
     }
 
-    
-
     render() {
-        console.log(this.props.darkMode);
-        console.log(this.props.color);
+        
         return (
-            <div className="modal" id="settingsModal">
+            <div className={this.props.opened === true ? 'modal open' : 'modal'} id="settingsModal">
+                <a id="close" onClick={this.props.closeModal2} className="close"><img src="/img/close.svg" className="light"></img></a>
                 <h2>Settings</h2>
-                <div className="content">
+                <div className="">
                     <h3>Appearance</h3>
                     <a className="" id="darkModeToggle">Dark Mode</a>
                     <h4>Colors</h4>
@@ -28,7 +23,7 @@ class SettingsModal extends React.Component {
                     </div>
 
                     <h3>Reset App (Developer)</h3>        
-                    <a onclick="clearLocalStorage()">Delete all data</a>
+                    <a>Delete all data</a>
 
                 </div>
             </div>

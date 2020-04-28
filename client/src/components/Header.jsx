@@ -6,10 +6,24 @@ class Header extends React.Component {
 
     constructor(props) {
         super(props)
+        this.openModal = this.openModal.bind(this)
         this.state = {
+            showModal: false,
             darkMode: false,
             color: ''
         }
+    }
+
+    openModal() {
+        this.setState({
+            showModal: true
+        })
+    }
+
+    closeModal() {
+        this.setState({
+            showModal: false
+        })
     }
 
     componentDidMount() {
@@ -30,8 +44,8 @@ class Header extends React.Component {
         return (
             <header className="header">
                 <img className="logo" src="/img/logo.svg"></img>
-                <img className="settingsIcon" src="/img/settings.svg"></img>
-                <SettingsModal darkMode = {this.state.darkMode} color = {this.state.color} />
+                <img className="settingsIcon" src="/img/settings.svg" onClick={this.openModal}></img>
+                <SettingsModal closeModal2={() => this.closeModal()} opened = {this.state.showModal} darkMode = {this.state.darkMode} color = {this.state.color} />
             </header>
         )
     }

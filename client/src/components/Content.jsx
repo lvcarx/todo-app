@@ -38,7 +38,6 @@ class Content extends React.Component {
         axios.post('http://localhost:8000/api/todo/create', todo)
             .then(this.fetchTodoItems())
             .catch(err => console.log(err))
-        // this.fetchTodoItems()
     }
 
     shouldComponentUpdate(nextState, nextProps) {
@@ -74,7 +73,7 @@ class Content extends React.Component {
     render() {
         return (
             <div className="content">
-                <div>
+                <div className="itemForm">
                     <form id="form">
                         <div className="inputWrapper">
                             <p id="errorNotice"></p>
@@ -87,7 +86,6 @@ class Content extends React.Component {
             </div>
         )
     }
-
 }
 
 export default Content
