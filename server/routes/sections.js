@@ -12,7 +12,7 @@ const auth = require('../middleware/auth');
 const User = require('../models/user');
 
 // delete setting item handle
-router.post('/create', (req, res) => {
+router.post('/create', auth, (req, res) => {
     const decoded = jwtDecode(req.body.token);
     console.log("Hey " + decoded);
     console.log(req.body);
@@ -28,7 +28,7 @@ router.post('/create', (req, res) => {
 });
 
 
-router.post('/delete', (req, res) => {
+router.post('/delete', auth, (req, res) => {
     console.log(req.user);
     Note.deleteMany({ "author": req.user.email }, function (err) {
         if (err)
