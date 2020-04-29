@@ -12,12 +12,21 @@ body {
         min-height: 100vh;
         &#blue {
             background: #f2f9ff;
+            .blue {
+                border: 2px solid #8e8e8e;
+            }
         }
         &#green {
             background: #f2fff4;
+            .green {
+                border: 2px solid #8e8e8e;
+            }
         }
         &#pink {
             background: #fff2f5;
+            .pink {
+                border: 2px solid #8e8e8e;
+            }
         }
     }
     .wrapper {
@@ -156,10 +165,14 @@ body {
                 display: inline-block;
                 border: 1px solid #d3d3d3;
                 border-radius: 25px;
-                padding: 6px 20px;
+                padding: 3px 20px 5px 20px;
                 position: relative;
                 cursor: pointer;
                 margin: 6px 14px 0 0;
+                &.current {
+                    background: #2d67ce;
+                    color: #fff;
+                }
                 img.close {
                     width: 17px;
                     height: 17px;
@@ -222,6 +235,17 @@ body {
         }
         .todoItemWrapper {
             margin: 8px;
+            padding: 20px 0;
+            h2 {
+                display: inline;
+            }
+            #addSections {
+                float: right;
+            }
+            .sections {
+                margin-top: 10px;
+                margin-bottom: 30px;
+            }
         }
         #addSections {
             text-align: left;
@@ -244,6 +268,7 @@ body {
                 display: inline-block;
             }
         }
+        
         .todoItem {
             list-style: none;
             margin: 6px 0;
@@ -315,7 +340,25 @@ body {
                 }
             }
         }
-        
+        .changeSection {
+            .sectionWrapper {
+                margin-top: 20px;
+                span {
+                    background: #fff;
+                    display: inline-block;
+                    border: 1px solid #d3d3d3;
+                    border-radius: 25px;
+                    padding: 3px 20px 5px 20px;
+                    position: relative;
+                    cursor: pointer;
+                    margin: 6px 14px 0 0;
+                    &.current {
+                        background: #2d67ce;
+                        color: #fff;
+                    }
+                }
+            }
+        }
     }
     footer {
         text-align: center;
@@ -478,6 +521,11 @@ body {
             color: #e62525;
             font-weight: 600;
         
+        }
+
+        #addSections {
+            float: none !important;
+            margin-top: 10px;
         }
     }
 

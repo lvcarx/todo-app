@@ -10,10 +10,16 @@ body .light {
   min-height: 100vh; }
   body .light#blue {
     background: #f2f9ff; }
+    body .light#blue .blue {
+      border: 2px solid #8e8e8e; }
   body .light#green {
     background: #f2fff4; }
+    body .light#green .green {
+      border: 2px solid #8e8e8e; }
   body .light#pink {
     background: #fff2f5; }
+    body .light#pink .pink {
+      border: 2px solid #8e8e8e; }
 
 body .wrapper {
   overflow: auto; }
@@ -133,10 +139,13 @@ body .content {
       display: inline-block;
       border: 1px solid #d3d3d3;
       border-radius: 25px;
-      padding: 6px 20px;
+      padding: 3px 20px 5px 20px;
       position: relative;
       cursor: pointer;
       margin: 6px 14px 0 0; }
+      body .content .sections .sectionWrapper.current {
+        background: #2d67ce;
+        color: #fff; }
       body .content .sections .sectionWrapper img.close {
         width: 17px;
         height: 17px;
@@ -188,7 +197,15 @@ body .content {
       body .content .dynamicSection a:hover {
         background: #28345f; }
   body .content .todoItemWrapper {
-    margin: 8px; }
+    margin: 8px;
+    padding: 20px 0; }
+    body .content .todoItemWrapper h2 {
+      display: inline; }
+    body .content .todoItemWrapper #addSections {
+      float: right; }
+    body .content .todoItemWrapper .sections {
+      margin-top: 10px;
+      margin-bottom: 30px; }
   body .content #addSections {
     text-align: left;
     display: inline-block;
@@ -264,6 +281,20 @@ body .content {
       margin-top: 15px;
       opacity: 1;
       transition: all 0.3s ease; }
+  body .content .changeSection .sectionWrapper {
+    margin-top: 20px; }
+    body .content .changeSection .sectionWrapper span {
+      background: #fff;
+      display: inline-block;
+      border: 1px solid #d3d3d3;
+      border-radius: 25px;
+      padding: 3px 20px 5px 20px;
+      position: relative;
+      cursor: pointer;
+      margin: 6px 14px 0 0; }
+      body .content .changeSection .sectionWrapper span.current {
+        background: #2d67ce;
+        color: #fff; }
 
 body footer {
   text-align: center; }
@@ -353,4 +384,7 @@ body .dark {
     padding: 8px; }
   body .content .removeSections {
     color: #e62525;
-    font-weight: 600; } }
+    font-weight: 600; }
+  body #addSections {
+    float: none !important;
+    margin-top: 10px; } }

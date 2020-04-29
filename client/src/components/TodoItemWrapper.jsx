@@ -171,9 +171,19 @@ class TodoItemWrapper extends React.Component {
         if (this.state.currentSection == 'all') {
             return (
                 <div className="todoItemWrapper">
-                    <h2>Today</h2>
+                    <h2>Get stuff done!</h2>
+
+                    <a id="addSections" onClick={this.openSectionDialog}>Add new sections</a>
+                    <div id="dynamicSection" className={this.state.sectionDialogOpen == true ? 'dynamicSection open' : 'dynamicSection'}>
+                        <input id="sectionName" type="text" onChange={this.onChangeSection} placeholder="Add a new task category..."></input>
+                        <a onClick={() => {
+                            this.createSection()
+                            this.closeSectionDialog()
+                        }}>Save and close</a>
+                    </div>
+
                     <div className="sections">
-                    <div className='sectionWrapper'>
+                    <div className={this.state.currentSection == 'all' ? 'sectionWrapper current' : 'sectionWrapper'}>
                             <span className="section" onClick={() => this.chooseSection('all')}>All</span>
                     </div>
                         {this.props.sections.map(section =>          
@@ -183,14 +193,7 @@ class TodoItemWrapper extends React.Component {
                                 </div>
                         )}
                     </div>
-                    <a id="addSections" onClick={this.openSectionDialog}>Add new sections</a>
-                    <div id="dynamicSection" className={this.state.sectionDialogOpen == true ? 'dynamicSection open' : 'dynamicSection'}>
-                        <input id="sectionName" type="text" onChange={this.onChangeSection} placeholder="Add a new task category..."></input>
-                        <a onClick={() => {
-                            this.createSection()
-                            this.closeSectionDialog()
-                        }}>Save and close</a>
-                    </div>
+                    
                     {this.props.allNotes.map(note =>
                         <div className={note.favorite == true ? 'todoItem favorite' : 'todoItem'} id={note._id}>
                             <div className="wrapper">
@@ -209,9 +212,11 @@ class TodoItemWrapper extends React.Component {
                             <div className={this.state.categoryModalOpen == true ? 'changeSection modal open' : 'changeSection modal'} id={note._id}>
                                 <a id="close" onClick={this.closeCategoryDialog} className="close"><img src="/img/close.svg"></img></a>
                                 <h2>Change Section</h2>
+                                <div className="sectionWrapper">
                                 {this.props.sections.map(section => 
-                                <div onClick={() => this.changeSectionInItem(note._id, section)}>{section}</div>
+                                    <span className={note.category == section ? 'current' : ''} onClick={() => this.changeSectionInItem(note._id, section)}>{section}</span>   
                                 )}
+                                </div>
                             </div>
                         </div>  
                     )}
@@ -220,7 +225,17 @@ class TodoItemWrapper extends React.Component {
         } else {
             return (
             <div className="todoItemWrapper">
-                    <h2>Today</h2>
+                    <h2>Get stuff done!</h2>
+
+                    <a id="addSections" onClick={this.openSectionDialog}>Add new sections</a>
+                    <div id="dynamicSection" className={this.state.sectionDialogOpen == true ? 'dynamicSection open' : 'dynamicSection'}>
+                        <input id="sectionName" type="text" onChange={this.onChangeSection} placeholder="Add a new task category..."></input>
+                        <a onClick={() => {
+                            this.createSection()
+                            this.closeSectionDialog()
+                        }}>Save and close</a>
+                    </div>
+
                     <div className="sections">
                     <div className='sectionWrapper'>
                             <span className="section" onClick={() => this.chooseSection('all')}>All</span>
@@ -232,14 +247,7 @@ class TodoItemWrapper extends React.Component {
                                 </div>
                         )}
                     </div>
-                    <a id="addSections" onClick={this.openSectionDialog}>Add new sections</a>
-                    <div id="dynamicSection" className={this.state.sectionDialogOpen == true ? 'dynamicSection open' : 'dynamicSection'}>
-                        <input id="sectionName" type="text" onChange={this.onChangeSection} placeholder="Add a new task category..."></input>
-                        <a onClick={() => {
-                            this.createSection()
-                            this.closeSectionDialog()
-                        }}>Save and close</a>
-                    </div>
+                    
                     {this.props.allNotes.filter(note => note.category == this.state.currentSection).map(note =>
                         <div className={note.favorite == true ? 'todoItem favorite' : 'todoItem'} id={note._id}>
                             <div className="wrapper">
@@ -257,9 +265,11 @@ class TodoItemWrapper extends React.Component {
                             </div> 
                             <div className={this.state.categoryModalOpen == true ? 'changeSection modal open' : 'changeSection modal'} id={note._id}>
                                 <h2>Change Section</h2>
+                                <div className="sectionWrapper">
                                 {this.props.sections.map(section => 
-                                <div onClick={() => this.changeSectionInItem(note._id, section)}>{section}</div>
+                                    <span className={note.category == section ? 'current' : ''} onClick={() => this.changeSectionInItem(note._id, section)}>{section}</span>
                                 )}
+                                </div>
                             </div>
                         </div>  
                     )}
