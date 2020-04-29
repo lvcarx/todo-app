@@ -22,7 +22,7 @@ class NotePage extends React.Component {
         const sendToken = {
             token: token
         }
-        axios.post('http://localhost:8000/api/users/currentUser', sendToken)
+        axios.post('/api/users/currentUser', sendToken)
             .then((resp) => {
                 this.setState({
                     userEmail: resp.data.email,
@@ -33,12 +33,11 @@ class NotePage extends React.Component {
     }
 
     fetchSettings() {
-        console.log('WORKS?');
         const token = localStorage.getItem('user-token')
         const sendToken = {
             token: token
         }
-        axios.post('http://localhost:8000/api/settings/fetch', sendToken)
+        axios.post('/api/settings/fetch', sendToken)
             .then((resp) => {
                 this.setState({
                     darkMode: resp.data.darkMode,

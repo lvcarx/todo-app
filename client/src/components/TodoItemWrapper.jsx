@@ -51,7 +51,7 @@ class TodoItemWrapper extends React.Component {
             todoItem: e,
             done: !e.done
         }
-        axios.post('http://localhost:8000/api/todo/update', todo)
+        axios.post('/api/todo/update', todo)
             .then(this.props.fetchTodoItems())
             .catch(err => console.log(err)) 
             .finally()
@@ -63,7 +63,7 @@ class TodoItemWrapper extends React.Component {
             todoItem: e,
             favorite: !e.favorite
         }
-        axios.post('http://localhost:8000/api/todo/update', todo)
+        axios.post('/api/todo/update', todo)
             .then(this.props.fetchTodoItems())
             .catch(err => console.log(err)) 
             .finally()
@@ -81,7 +81,7 @@ class TodoItemWrapper extends React.Component {
             todoItem: e
         }
         console.log(todo);
-        axios.post('http://localhost:8000/api/todo/delete', todo)
+        axios.post('/api/todo/delete', todo)
             .then(this.props.fetchTodoItems())
             .catch(err => console.log(err)) 
             .finally()
@@ -99,7 +99,7 @@ class TodoItemWrapper extends React.Component {
             token: token,
             sectionName: this.state.sectionName
         }
-        axios.post('http://localhost:8000/api/sections/create', section)
+        axios.post('/api/sections/create', section)
             .then(this.props.fetchSections())
             .catch(err => console.log(err)) 
         this.setState({
@@ -112,7 +112,7 @@ class TodoItemWrapper extends React.Component {
         const section = {
             token: token
         }
-        axios.post('http://localhost:8000/api/sections/fetch', section)
+        axios.post('/api/sections/fetch', section)
             .then((resp) => {
                 console.log(resp);
             })
@@ -149,7 +149,7 @@ class TodoItemWrapper extends React.Component {
             sections: e
         }
         console.log(section);
-        axios.post('http://localhost:8000/api/sections/delete', section)
+        axios.post('/api/sections/delete', section)
             .then(this.props.fetchSections())
             .catch(err => console.log(err)) 
     }
@@ -161,7 +161,7 @@ class TodoItemWrapper extends React.Component {
             category: section
         }
         console.log(todo);
-        axios.post('http://localhost:8000/api/todo/update', todo)
+        axios.post('/api/todo/update', todo)
             .then(this.props.fetchTodoItems())
             .catch(err => console.log(err)) 
             .finally()
