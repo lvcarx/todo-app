@@ -49,35 +49,42 @@ class LoginPage extends React.Component {
 
     render() {
         return (
-            <div>
-                <h1>Login</h1>
-                <form>
-                    <div className="form-group">
-                        <label>Email</label>
-                        <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            className="form-control"
-                            placeholder="Enter Email"
-                            value={this.state.email}
-                            onChange={this.onChangeEmail}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label>Password</label>
-                        <input
-                            type="password"
-                            id="password"
-                            name="password"
-                            className="form-control"
-                            placeholder="Enter Password"
-                            value={this.state.password}
-                            onChange={this.onChangePassword}
-                        />
-                    </div>
-                    <p onClick={this.tryLogin} className="btn btn-primary dark-btn btn-block">Login</p>
-                </form>
+            <div className="login">
+                <img className="logo" src="/img/logo.svg"></img>
+                <div>
+                    <h1>Login</h1>
+                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt
+                         ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et 
+                         justo duo dolores et ea rebum.</p>
+                    <form>
+                        <div className="form-group">
+                            <label>Email</label>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                className="form-control"
+                                placeholder="Enter Email"
+                                value={this.state.email}
+                                onChange={this.onChangeEmail}
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label>Password</label>
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                className="form-control"
+                                placeholder="Enter Password"
+                                value={this.state.password}
+                                onChange={this.onChangePassword}
+                            />
+                        </div>
+                        <p onClick={this.tryLogin} className="btn btn-primary dark-btn btn-block">Login</p>
+                    </form>
+                </div>
+                <p>No account? <a href="/#/register">Register</a></p>
             </div>
         )
     }

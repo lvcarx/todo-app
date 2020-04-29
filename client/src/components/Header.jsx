@@ -31,20 +31,6 @@ class Header extends React.Component {
         this.props.fetchSettings();
     }
 
-    /*fetchSettings() {
-        const token = localStorage.getItem('user-token')
-        const sendToken = {
-            token: token
-        }
-        axios.post('http://localhost:8000/api/settings/fetch', sendToken)
-            .then((resp) => {
-                this.setState({
-                    darkMode: resp.data.darkMode,
-                    color: resp.data.color
-                });
-            })
-    }*/
-
     render() {
         return (
             <header className="header">
