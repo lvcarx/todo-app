@@ -4,7 +4,7 @@ const db_connection = require('dotenv').config()
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const cors = require("cors");
-
+const path = require('path');
 const auth = require('./middleware/auth');
 
 // Load api routes
@@ -49,14 +49,11 @@ server.use(function (req, res, next) {
   next();
 });
 
-server.get('/', auth, (req, res, next) => {
-    res.send('protected');
-    return next();
+// use production build
+server.use(express.static(path.join(__dirname, '../client/build')));
+server.get('/*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
 });
-
-// protect
-server.get('/#/');
-server.get('/');
 
 server.use('/api/users', users);
 server.use('/api/todo', todo);
