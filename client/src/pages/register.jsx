@@ -6,13 +6,21 @@ class RegisterPage extends React.Component {
         super()
         this.onChangeEmail = this.onChangeEmail.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
+        this.onChangeName = this.onChangeName.bind(this);
         this.tryLogin = this.tryLogin.bind(this);
 
         this.state = {
+            name: '',
             email: '',
             password: '',
             loggedIn: false
         }
+    }
+
+    onChangeName(e) {
+        this.setState({
+            name: e.target.value
+       });
     }
 
     onChangeEmail(e) {
@@ -30,6 +38,7 @@ class RegisterPage extends React.Component {
     tryLogin(e) {
         e.preventDefault();
         const user = {
+            name: this.state.name,
             email: this.state.email,
             password: this.state.password
         }
@@ -41,6 +50,7 @@ class RegisterPage extends React.Component {
             })
 
         this.setState({
+            name: '',
             email: '',
             password: ''
         })
@@ -48,13 +58,26 @@ class RegisterPage extends React.Component {
     
     render() {
         return(
-            <div>
-           
-            <div className="wrapper register content">
-                
-                    <h1 className="text-center mb-3">Register</h1>
-                    <h1>Login</h1>
+            <div className="register">
+            <img src="/img/logo.svg" className="logo"></img>
+            <div className="wrapper">  
+              <h1 className="text-center mb-3">Register</h1>
+              <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt
+                         ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et 
+                         justo duo dolores et ea rebum.</p>
               <form>
+                    <div className="form-group">
+                        <label>Name</label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            className="form-control"
+                            placeholder="Enter Email"
+                            value={this.state.name}
+                            onChange={this.onChangeName}
+                        />
+                    </div>
                     <div className="form-group">
                         <label>Email</label>
                         <input
@@ -81,6 +104,7 @@ class RegisterPage extends React.Component {
                     </div>
                     <button onClick={this.tryLogin} type="submit" className="btn btn-primary dark-btn btn-block">Login</button>
                 </form>
+                <p>Already have an account? <a href="/#/login">Login</a></p>
             </div>
             </div>
         );
