@@ -7,7 +7,7 @@
       "node": "12.16.x"
     },
     "scripts": {
-      "start": "node server/app.js",
+      "start": "cd server && npm install && cd client && npm install && node server/app.js",
       "build": "cd client && npm run build"
     },
     "repository": {
