@@ -8,10 +8,13 @@ class Content extends React.Component {
         this.createTodoItem = this.createTodoItem.bind(this)
         this.changeTodoItemText = this.changeTodoItemText.bind(this)
         this.fetchTodoItems = this.fetchTodoItems.bind(this)
+        this.fetchSections = this.fetchSections.bind(this)
+        
         this.state = {
             currentNote: '',
             currentTodo: '',
             notesInDB: [],
+            sectionsInDB: [],
             userID: this.props.userID,
             userEmail: this.props.userEmail
         }
@@ -29,7 +32,6 @@ class Content extends React.Component {
             name: this.state.currentNote,
             author: token
         }
-        console.log(todo);
         this.setState({
             currentTodo: this.state.currentNote
         })
@@ -50,6 +52,7 @@ class Content extends React.Component {
 
     componentDidMount() {
         this.fetchTodoItems();
+        this.fetchSections();
     }
 
     fetchTodoItems() {
@@ -57,14 +60,26 @@ class Content extends React.Component {
         const sendToken = {
             token: token
         }
-        
+
         axios.post('http://localhost:8000/api/todo/fetch', sendToken)
             .then((res) => {
-                console.log(res.data)
                 this.setState({
                     notesInDB: res.data
                 });
-                console.log(this.state.notesInDB);
+            })
+    }
+
+    fetchSections() {
+        const token = localStorage.getItem('user-token')
+        const sendToken = {
+            token: token
+        }
+        
+        axios.post('http://localhost:8000/api/sections/fetch', sendToken)
+            .then((res) => {
+                this.setState({
+                    sectionsInDB: res.data[0].sections
+                });
             })
     }
     
@@ -80,7 +95,7 @@ class Content extends React.Component {
                         </div>
                     </form>
                 </div>
-                <TodoItemWrapper fetchTodoItems={this.fetchTodoItems} author = {this.props.userID} allNotes = {this.state.notesInDB}/>
+                <TodoItemWrapper fetchSections={this.fetchSections} sections = {this.state.sectionsInDB} fetchTodoItems={this.fetchTodoItems} author = {this.props.userID} allNotes = {this.state.notesInDB}/>
             </div>
         )
     }

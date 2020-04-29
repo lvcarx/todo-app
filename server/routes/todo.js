@@ -37,7 +37,7 @@ router.post('/delete', auth, (req, res) => {
 
 // delete todo item handle
 router.post('/update', auth, (req, res) => {
-    const { author, todoItem, favorite, done } = req.body;
+    const { author, todoItem, favorite, done, category } = req.body;
     Todo.findOneAndUpdate({ _id: todoItem, author: author }, req.body, function (err, data) {
         if (!err) {
             console.log("Updated");
@@ -50,9 +50,7 @@ router.post('/fetch', auth, (req, res) => {
     const decoded = jwtDecode(req.body.token);
     console.log(decoded);
     Todo.find({ author: decoded._id }).then(todos => {
-        console.log(todos)
         return res.send(todos)
-        //console.log(todos)
     })
         .catch(err => console.log(err))
 });
