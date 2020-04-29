@@ -34,7 +34,7 @@ class LoginPage extends React.Component {
             email: this.state.email,
             password: this.state.password
         }
-        axios.post('http://localhost:8000/api/users/login', user)
+        axios.post('/api/users/login', user)
             .then((resp) => {
                 if (resp.data) {
                     localStorage.setItem("user-token", resp.data);

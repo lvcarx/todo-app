@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import dotenv from 'dotenv'
 import TodoItemWrapper from './TodoItemWrapper.jsx'
 class Content extends React.Component {
 
@@ -35,7 +36,7 @@ class Content extends React.Component {
         this.setState({
             currentTodo: this.state.currentNote
         })
-        axios.post('http://localhost:8000/api/todo/create', todo)
+        axios.post('/api/todo/create', todo)
             .then(this.fetchTodoItems())
             .catch(err => console.log(err))
     }
@@ -61,7 +62,7 @@ class Content extends React.Component {
             token: token
         }
 
-        axios.post('http://localhost:8000/api/todo/fetch', sendToken)
+        axios.post('/api/todo/fetch', sendToken)
             .then((res) => {
                 this.setState({
                     notesInDB: res.data
@@ -75,7 +76,7 @@ class Content extends React.Component {
             token: token
         }
         
-        axios.post('http://localhost:8000/api/sections/fetch', sendToken)
+        axios.post('/api/sections/fetch', sendToken)
             .then((res) => {
                 this.setState({
                     sectionsInDB: res.data[0].sections
