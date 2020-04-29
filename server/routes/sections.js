@@ -29,27 +29,17 @@ router.post('/create', auth, (req, res) => {
 // delete setting item handle
 router.post('/fetch', auth, (req, res) => {
     const decoded = jwtDecode(req.body.token);
-    User.find({_id: decoded}.then(todos => {
-        console.log(todos)
+    User.find({_id: decoded})
+    .then(todos => {
         return res.send(todos)
-}))});
+})});
 
 router.post('/delete', auth, (req, res) => {
-    console.log(req.user);
-    Note.deleteMany({ "author": req.user.email }, function (err) {
-        if (err)
-            res.send(err);
-        else {
-            console.log('test');
-        }
+    const decoded = jwtDecode(req.body.token);
+    User.updateOne({ _id: decoded }, { "$pull": { "sections": req.body.sections } }, { safe: true, multi: true }, function (err, obj) {
+        //do something smart
     });
-    User.findOneAndRemove({ email: req.user.email }, function (err) {
-        if (err)
-            res.send(err);
-        else {
-            console.log('test');
-        }
-    });
+
 });
 
 module.exports = router; 
