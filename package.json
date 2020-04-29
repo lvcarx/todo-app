@@ -9,7 +9,7 @@
     "scripts": {
       "postinstall": "npm install --prefix ./server && npm install --prefix ./client",
       "start": "node server/app.js",
-      "build": "cd client && npm run build"
+      "build": "npm run build --prefix ./client"
     },
     "repository": {
       "type": "git",
