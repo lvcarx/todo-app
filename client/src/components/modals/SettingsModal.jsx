@@ -45,7 +45,7 @@ class SettingsModal extends React.Component {
                     <h3>Appearance</h3>
                     <a className={this.props.darkMode == true ? 'true' : 'false'} id="darkModeToggle" onClick={this.changeDarkModeSettings}>Dark Mode</a>
                     <h4>Colors</h4>
-                    <div className={this.props.color}>
+                    <div className="wrapper">
                         <a className="color blue" id="blueMode" onClick={() => this.changeColorSettings('blue')}></a>
                         <a className="color green" id="greenMode" onClick={() => this.changeColorSettings('green')}></a>
                         <a className="color pink" id="pinkMode" onClick={() => this.changeColorSettings('pink')}></a>
