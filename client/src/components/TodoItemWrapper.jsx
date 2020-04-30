@@ -161,9 +161,10 @@ class TodoItemWrapper extends React.Component {
     }
 
     changeSectionInItem(todoId, section) {
+        const token = localStorage.getItem('user-token')
         const todo = {
             todoItem: todoId,
-            author: this.props.author,
+            token: token,
             category: section
         }
         console.log(todo);
