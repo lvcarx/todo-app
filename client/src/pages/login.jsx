@@ -38,6 +38,7 @@ class LoginPage extends React.Component {
             .then((resp) => {
                 if (resp.data) {
                     localStorage.setItem("user-token", resp.data);
+                    window.location.reload(false);
                 }
             })
 
