@@ -433,4 +433,21 @@ body .dark {
     font-weight: 600; }
   body #addSections {
     float: none !important;
-    margin-top: 10px; } }
+    margin-top: 10px; }
+  .login, .register {
+    text-align: center;
+    background: #f2f9ff;
+    min-height: 100vh;
+    padding-top: 20px; }
+    .login h1, .register h1 {
+      margin-top: 45px; }
+    .login form, .register form {
+      margin: 50px auto !important;
+      width: 100% !important; }
+      .login form input, .register form input {
+        transition: all .2s ease; }
+      .login form .dark-btn, .register form .dark-btn {
+        transition: all .3s ease; }
+    .login img.logo, .register img.logo {
+      max-width: 170px !important;
+      margin: 0px auto !important; } }
