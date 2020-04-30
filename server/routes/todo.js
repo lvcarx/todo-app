@@ -27,8 +27,9 @@ router.post('/create', auth, (req, res) => {
 
 // delete todo item handle
 router.post('/delete', auth, (req, res) => {
+    const decoded = jwtDecode(req.body.token);
     const { author, todoItem } = req.body;
-    Todo.findOneAndRemove({ _id: todoItem, author: author }, req.body, function (err, data) {
+    Todo.findOneAndRemove({ _id: todoItem, author: decoded._id }, req.body, function (err, data) {
         if (!err) {
             console.log("Deleted");
         }
@@ -37,8 +38,9 @@ router.post('/delete', auth, (req, res) => {
 
 // delete todo item handle
 router.post('/update', auth, (req, res) => {
+    const decoded = jwtDecode(req.body.token);
     const { author, todoItem, favorite, done, category } = req.body;
-    Todo.findOneAndUpdate({ _id: todoItem, author: author }, req.body, function (err, data) {
+    Todo.findOneAndUpdate({ _id: todoItem, author: decoded._id }, req.body, function (err, data) {
         if (!err) {
             console.log("Updated");
         }
