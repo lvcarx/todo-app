@@ -56,7 +56,7 @@ class TodoItemWrapper extends React.Component {
         axios.post('/api/todo/update', todo)
             .then(this.props.fetchTodoItems())
             .catch(err => console.log(err)) 
-            .finally()
+            .finally(this.props.fetchTodoItems())
     }
 
     favoriteTodoItem(e) {
@@ -69,7 +69,7 @@ class TodoItemWrapper extends React.Component {
         axios.post('/api/todo/update', todo)
             .then(this.props.fetchTodoItems())
             .catch(err => console.log(err)) 
-            .finally()
+            .finally(this.props.fetchTodoItems())
     }
 
     handleTodoItem() {
@@ -88,7 +88,7 @@ class TodoItemWrapper extends React.Component {
         axios.post('/api/todo/delete', todo)
             .then(this.props.fetchTodoItems())
             .catch(err => console.log(err)) 
-            .finally()
+            .finally(this.props.fetchTodoItems())
     }
 
     onChangeSection(e) {
@@ -106,6 +106,7 @@ class TodoItemWrapper extends React.Component {
         axios.post('/api/sections/create', section)
             .then(this.props.fetchSections())
             .catch(err => console.log(err)) 
+            .finally(this.props.fetchTodoItems())
         this.setState({
             sectionName: ''
         })
@@ -156,6 +157,7 @@ class TodoItemWrapper extends React.Component {
         axios.post('/api/sections/delete', section)
             .then(this.props.fetchSections())
             .catch(err => console.log(err)) 
+            .finally(this.props.fetchSections())
     }
 
     changeSectionInItem(todoId, section) {
@@ -168,7 +170,7 @@ class TodoItemWrapper extends React.Component {
         axios.post('/api/todo/update', todo)
             .then(this.props.fetchTodoItems())
             .catch(err => console.log(err)) 
-            .finally()
+            .finally(this.props.fetchTodoItems())
     }
 
     render() {
