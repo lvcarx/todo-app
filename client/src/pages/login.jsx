@@ -45,6 +45,7 @@ class LoginPage extends React.Component {
             email: '',
             password: ''
         })
+        window.location.reload(false);
     }
 
     render() {
@@ -53,9 +54,7 @@ class LoginPage extends React.Component {
                 <img className="logo" src="/img/logo.svg"></img>
                 <div>
                     <h1>Login</h1>
-                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt
-                         ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et 
-                         justo duo dolores et ea rebum.</p>
+                    <p>A ToDo Manager that helps scheduling your day!</p>
                     <form>
                         <div className="form-group">
                             <label>Email</label>
