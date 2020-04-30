@@ -21,7 +21,7 @@ class SettingsModal extends React.Component {
         axios.post('/api/settings/update', setting)
             .then(this.props.grandchildFetchSettings())
             .catch(err => console.log(err)) 
-            .finally();
+            .finally(this.props.grandchildFetchSettings());
     }
 
     changeColorSettings(e) {
@@ -33,7 +33,7 @@ class SettingsModal extends React.Component {
         axios.post('/api/settings/update', setting)
             .then(this.props.grandchildFetchSettings())
             .catch(err => console.log(err)) 
-            .finally()
+            .finally(this.props.grandchildFetchSettings());
     }
 
     render() {
