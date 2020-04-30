@@ -45,7 +45,7 @@ class LoginPage extends React.Component {
             email: '',
             password: ''
         })
-        window.location.reload(false);
+        //window.location.reload(false);
     }
 
     render() {
