@@ -48,14 +48,15 @@ class RegisterPage extends React.Component {
                     localStorage.setItem("user-token", resp.data);
                 }
             })
-            .finally(window.location.reload(false))
 
         this.setState({
             name: '',
             email: '',
             password: ''
         })
-        //window.location.reload(false);
+        if (localStorage.getItem("user-token") == true) {
+            window.location.reload(false);
+        }
     }
     
     render() {
