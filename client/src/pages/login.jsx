@@ -45,7 +45,7 @@ class LoginPage extends React.Component {
             email: '',
             password: ''
         })
-        if (localStorage.getItem("user-token") == true) {
+        if (localStorage.getItem("user-token")) {
             window.location.reload(false);
         }
     }
