@@ -153,7 +153,7 @@ class TodoItemWrapper extends React.Component {
             sections: e
         }
         console.log(section);
-        axios.post('http://localhost:8000/api/sections/delete', section)
+        axios.post('/api/sections/delete', section)
             .then(this.props.fetchSections())
             .catch(err => console.log(err)) 
     }
@@ -165,7 +165,7 @@ class TodoItemWrapper extends React.Component {
             category: section
         }
         console.log(todo);
-        axios.post('http://localhost:8000/api/todo/update', todo)
+        axios.post('/api/todo/update', todo)
             .then(this.props.fetchTodoItems())
             .catch(err => console.log(err)) 
             .finally()
