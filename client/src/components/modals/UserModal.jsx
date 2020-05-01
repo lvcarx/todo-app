@@ -26,7 +26,10 @@ class UserModal extends React.Component {
 
     removeAccount() {
         const token = localStorage.getItem('user-token');
-        axios.post('/api/users/delete', token)
+        const user = {
+            token: token
+        }
+        axios.post('/api/users/delete', user)
             .then((resp) => {
                 localStorage.removeItem("user-token", resp.data);
                 window.location.reload(false);
