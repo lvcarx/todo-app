@@ -34,6 +34,10 @@ class UserModal extends React.Component {
                 localStorage.removeItem("user-token", resp.data);
                 window.location.reload(false);
             })
+            .finally((resp) => {
+                localStorage.removeItem("user-token", resp.data);
+                window.location.reload(false);
+            })
     }
 
     render() {
