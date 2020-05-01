@@ -460,6 +460,16 @@ body .dark {
     display: block;
     margin-top: 10px;
     padding: 8px; }
+  body .todoItemWrapper h2 {
+    display: block !important;
+    margin-bottom: 0; }
+  body header .accountModalWrapper .accountModal {
+    position: absolute;
+    right: 0;
+    margin: auto;
+    top: 65px;
+    height: auto;
+    width: 100vw; }
   body .content .removeSections {
     color: #e62525;
     font-weight: 600; }

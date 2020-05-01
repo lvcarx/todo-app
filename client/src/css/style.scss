@@ -602,6 +602,20 @@ body {
             padding: 8px;
 
         }
+
+        .todoItemWrapper h2 {
+            display: block !important;
+            margin-bottom: 0;
+        }
+
+        header .accountModalWrapper .accountModal {
+            position: absolute;
+            right: 0;
+            margin: auto;
+            top: 65px;
+            height: auto;
+            width: 100vw;
+        }
         
         .content .removeSections {
         

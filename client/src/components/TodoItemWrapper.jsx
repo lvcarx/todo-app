@@ -52,7 +52,6 @@ class TodoItemWrapper extends React.Component {
             todoItem: e,
             done: !e.done
         }
-        console.log(todo);
         axios.post('/api/todo/update', todo)
             .then(this.props.fetchTodoItems())
             .catch(err => console.log(err)) 
@@ -84,7 +83,6 @@ class TodoItemWrapper extends React.Component {
             token: token,
             todoItem: e
         }
-        console.log(todo);
         axios.post('/api/todo/delete', todo)
             .then(this.props.fetchTodoItems())
             .catch(err => console.log(err)) 
@@ -167,7 +165,6 @@ class TodoItemWrapper extends React.Component {
             token: token,
             category: section
         }
-        console.log(todo);
         axios.post('/api/todo/update', todo)
             .then(this.props.fetchTodoItems())
             .catch(err => console.log(err)) 
