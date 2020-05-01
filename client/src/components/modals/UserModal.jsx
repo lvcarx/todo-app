@@ -37,9 +37,8 @@ class UserModal extends React.Component {
             <div className="accountModalWrapper">
                    <img onClick={this.openModal} class="accountIcon" src="img/account.svg"></img>
                    <div class={this.state.accountModalOpen == true ? 'accountModal opened' : 'accountModal'}><h3>Hi, yolanda@streber10222.de!</h3>
-                       <li><a class="link">Logout</a></li>
-                       <li><a class="link">Delete your account</a></li>
-                       <p><a class="link" href="/"></a></p>
+                       <li><a onClick={this.tryLogout} class="link">Logout</a></li>
+                       <li><a onClick={this.removeAccount} class="link">Delete your account</a></li>
                     </div>
             </div>
         )
