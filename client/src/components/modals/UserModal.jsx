@@ -7,6 +7,7 @@ class UserModal extends React.Component {
         super(props)
         this.openModal = this.openModal.bind(this)
         this.tryLogout = this.tryLogout.bind(this)
+        this.removeAccount = this.removeAccount.bind(this)
         this.state = {
             accountModalOpen: false
         }
