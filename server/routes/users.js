@@ -10,6 +10,7 @@ const auth = require('../middleware/auth');
 
 // Get User & Settings
 const User = require('../models/user');
+const Todo = require('../models/todo');
 const Setting = require('../models/setting');
 
 // Register handle
@@ -80,14 +81,17 @@ router.post('/currentUser', auth, (req, res) => {
 
 router.post('/delete', auth, (req, res) => {
     console.log(req.user);
-    Note.deleteMany({ "author": req.user.email }, function (err) {
+    const decoded = jwtDecode(req.body.token);
+    Todo.deleteMany({ "author": decoded._id }, function (err) {
         if (err)
             res.send(err);
         else {
             console.log('test');
         }
     });
-    User.findOneAndRemove({ email: req.user.email }, function (err) {
+    
+    console.log(decoded._id);
+    User.findOneAndRemove({ _id: decoded._id }, function (err) {
         if (err)
             res.send(err);
         else {

@@ -151,6 +151,43 @@ body {
                 height: 34px;
                 cursor: pointer;
             }
+            &.accountIcon {
+                position: absolute;
+                top: 21px;
+                right: 75px;
+                width: 34px;
+                height: 34px;
+                cursor: pointer;
+            }
+        }
+        .accountModalWrapper {
+            position: absolute;
+            top: 0;
+            right: 0;
+            .accountModal {
+                position: absolute;
+                right: 65px;
+                top: 65px;
+                width: 330px;
+                background: #fff;
+                text-align: left;
+                border-radius: 5px;
+                padding: 10px 20px;
+                box-shadow: 0 3px 50px 0 rgba(0, 0, 0, 0.14);
+                visibility: hidden;
+                opacity: 0;
+                transition: all 0.3s ease;
+                &.opened {
+                    visibility: visible;
+                    opacity: 1;
+                }
+                li {
+                    list-style: none;
+                    a {
+                        color: #2d67ce;
+                    }
+                }
+            }
         }
     }
     .content {
