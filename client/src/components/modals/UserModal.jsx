@@ -37,7 +37,7 @@ class UserModal extends React.Component {
     }
 
     reloadAfterDeletion() {
-        localStorage.removeItem("user-token", resp.data);
+        localStorage.removeItem("user-token");
         window.location.reload(false);
     }
 
