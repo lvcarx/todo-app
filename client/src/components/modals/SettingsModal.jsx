@@ -50,10 +50,6 @@ class SettingsModal extends React.Component {
                         <a className="color green" id="greenMode" onClick={() => this.changeColorSettings('green')}></a>
                         <a className="color pink" id="pinkMode" onClick={() => this.changeColorSettings('pink')}></a>
                     </div>
-
-                    <h3>Reset App (Developer)</h3>        
-                    <a>Delete all data</a>
-
                 </div>
             </div>
         )

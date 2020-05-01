@@ -1,3 +1,7 @@
+$accent-color: #364684;
+$accent-color: #346abc;
+$accent-color-hover: #485c96;
+
 * {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -12,6 +16,7 @@ body {
         min-height: 100vh;
         &#blue {
             background: #f2f9ff;
+            background: #a6b2c740;
             .blue {
                 border: 2px solid #8e8e8e;
             }
@@ -59,7 +64,7 @@ body {
                 width: 230px;
                 margin-top: 30px;
                 padding: 9px 10px;
-                background: #2d67ce;
+                background: $accent-color;
                 color: #fff;
                 border: none;
                 border: 1px solid rgba(66,93,163,.39);
@@ -123,7 +128,7 @@ body {
             border: 2px solid #f2f2f2;
             cursor: pointer;
             &.blue {
-                background: #364684;
+                background: $accent-color;
             }
             &.green {
                 background: #265f2b;
@@ -183,8 +188,9 @@ body {
                 }
                 li {
                     list-style: none;
+                    line-height: 170%;
                     a {
-                        color: #2d67ce;
+                        color: $accent-color;
                     }
                 }
             }
@@ -221,7 +227,7 @@ body {
                 width: 22%;
                 float: right;
                 padding: 13px 10px;
-                background: #364684;
+                background: $accent-color;
                 color: #fff;
                 border: none;
                 font-weight: 700;
@@ -240,6 +246,9 @@ body {
                     width: 16px;
                     margin: 0 7px -2px 0;
                 }
+                &:hover {
+                    background: $accent-color-hover;
+                }
             }
         }
         .sections {
@@ -257,7 +266,7 @@ body {
                 cursor: pointer;
                 margin: 6px 14px 0 0;
                 &.current {
-                    background: #2d67ce;
+                    background: $accent-color;
                     color: #fff;
                 }
                 img.close {
@@ -305,7 +314,7 @@ body {
                 width: 22%;
                 float: right;
                 padding: 13px 10px;
-                background: #364684;
+                background: $accent-color;
                 color: #fff;
                 border: none;
                 text-align: center;
@@ -316,7 +325,7 @@ body {
                 cursor: pointer;
                 transition: all 0.3s ease;
                 &:hover {
-                    background: #28345f; 
+                    background: $accent-color-hover; 
                 }
             }
         }
@@ -337,7 +346,7 @@ body {
         #addSections {
             text-align: left;
             display: inline-block;
-            color: #364684;
+            color: $accent-color;
             font-weight: 600;
             cursor: pointer;
             margin-bottom: 10px;
@@ -378,7 +387,7 @@ body {
             &.done {
                 opacity: 0.6;
                 .done {
-                    background: #364684;
+                    background: $accent-color;
                 }
             }
             p.todoItemContent {
@@ -393,7 +402,7 @@ body {
                 width: 23px;
                 height: 23px;
                 border-radius: 50%;
-                border: 2px solid #364684;
+                border: 2px solid $accent-color;
                 display: inline-block;
                 margin-right: 15px;
                 float: left;
@@ -440,7 +449,7 @@ body {
                     cursor: pointer;
                     margin: 6px 14px 0 0;
                     &.current {
-                        background: #2d67ce;
+                        background: $accent-color;
                         color: #fff;
                     }
                 }
