@@ -80,7 +80,6 @@ router.post('/currentUser', auth, (req, res) => {
 }) 
 
 router.post('/delete', auth, (req, res) => {
-    console.log(req.user);
     const decoded = jwtDecode(req.body.token);
     /*Todo.deleteMany({ "author": decoded._id }, function (err) {
         if (err)
