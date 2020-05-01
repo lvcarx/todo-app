@@ -39,6 +39,7 @@ class Content extends React.Component {
         axios.post('/api/todo/create', todo)
             .then(this.fetchTodoItems())
             .catch(err => console.log(err))
+            .finally(this.fetchTodoItems());
     }
 
     shouldComponentUpdate(nextState, nextProps) {
@@ -61,7 +62,6 @@ class Content extends React.Component {
         const sendToken = {
             token: token
         }
-
         axios.post('/api/todo/fetch', sendToken)
             .then((res) => {
                 this.setState({
@@ -74,8 +74,7 @@ class Content extends React.Component {
         const token = localStorage.getItem('user-token')
         const sendToken = {
             token: token
-        }
-        
+        }  
         axios.post('/api/sections/fetch', sendToken)
             .then((res) => {
                 this.setState({
