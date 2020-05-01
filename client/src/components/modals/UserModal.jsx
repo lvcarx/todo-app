@@ -8,6 +8,7 @@ class UserModal extends React.Component {
         this.openModal = this.openModal.bind(this)
         this.tryLogout = this.tryLogout.bind(this)
         this.removeAccount = this.removeAccount.bind(this)
+        this.reloadAfterDeletion = this.reloadAfterDeletion.bind(this)
         this.state = {
             accountModalOpen: false
         }
@@ -30,14 +31,14 @@ class UserModal extends React.Component {
             token: token
         }
         axios.post('/api/users/delete', user)
-            .then((resp) => {
-                localStorage.removeItem("user-token", resp.data);
-                window.location.reload(false);
-            })
-            .finally((resp) => {
-                localStorage.removeItem("user-token", resp.data);
-                window.location.reload(false);
-            })
+            .then(this.reloadAfterDeletion)
+            .catch(err => console.log(err))
+            .finally(this.reloadAfterDeletion)
+    }
+
+    reloadAfterDeletion() {
+        localStorage.removeItem("user-token", resp.data);
+        window.location.reload(false);
     }
 
     render() {
