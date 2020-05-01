@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 const TodoSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: true
+        required: true,
+        minlength: 1
     },
     author: {
         type: String,
