@@ -88,6 +88,7 @@ class RegisterPage extends React.Component {
                             placeholder="Enter Email"
                             value={this.state.name}
                             onChange={this.onChangeName}
+                            required
                         />
                     </div>
                     <div className="form-group">
@@ -100,6 +101,7 @@ class RegisterPage extends React.Component {
                             placeholder="Enter Email"
                             value={this.state.email}
                             onChange={this.onChangeEmail}
+                            required
                         />
                     </div>
                     <div className="form-group">
@@ -112,6 +114,7 @@ class RegisterPage extends React.Component {
                             placeholder="Enter Password"
                             value={this.state.password}
                             onChange={this.onChangePassword}
+                            required
                         />
                     </div>
                     <div className="form-group">
@@ -124,9 +127,10 @@ class RegisterPage extends React.Component {
                             placeholder="Confirm Password"
                             value={this.state.password2}
                             onChange={this.onChangePassword2}
+                            required
                         />
                     </div>
-                    <button onClick={this.tryLogin} type="submit" className="btn btn-primary dark-btn btn-block">Login</button>
+                    <button onClick={this.tryLogin} type="submit" className="btn btn-primary dark-btn btn-block">Register</button>
                 </form>
                 <p>Already have an account? <a href="/#/login">Login</a></p>
             </div>
