@@ -23,8 +23,6 @@ mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
 
 mongoose.set('useFindAndModify', false);
 
-const dev = process.env.NODE_ENV !== 'production'
-
 const server = express()
 
 server.listen(process.env.PORT || 3000, (err) => {
