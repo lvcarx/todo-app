@@ -50,7 +50,7 @@ class TodoItemWrapper extends React.Component {
         const todo = {
             token: token,
             todoItem: e,
-            done: !e.done
+            done: !done
         }
         axios.post('/api/todo/update', todo)
             .then(this.props.fetchTodoItems())
