@@ -15,7 +15,13 @@ const Setting = require('../models/setting');
 
 // Register handle
 router.post('/register', (req, res) => {
-    const { name, email, password } = req.body;
+    const { name, email, password, password2 } = req.body;
+    
+    // check passwords match
+    if (password !== password2) {
+        errors.push({ msg: 'Passwords do not match' });
+    }
+
     const newUser = new User({
         name,
         email,
