@@ -332,7 +332,10 @@ body .content {
     body .content .todoItem p.todoItemContent {
       display: inline-block;
       float: left;
-      margin: 0; }
+      margin: 0;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      width: 70%; }
     body .content .todoItem .edit {
       float: right; }
     body .content .todoItem .done {
