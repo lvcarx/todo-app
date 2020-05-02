@@ -395,6 +395,9 @@ body {
                 display: inline-block;
                 float: left;
                 margin: 0;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                width: 70%;
             }
             .edit {
                 float: right;
