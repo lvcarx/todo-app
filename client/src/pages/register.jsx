@@ -130,6 +130,8 @@ class RegisterPage extends React.Component {
                             required
                         />
                     </div>
+                    <label><input type="checkbox" value="dsgvo" name="dsgvo" required></input>I agree to the <a target="_blank" href="https://luca-reichmann.de/datenschutzerklaerung/">Privacy Statement</a> of be productive. by registrating and using the app.
+                    </label>
                     <button onClick={this.tryLogin} type="submit" className="btn btn-primary dark-btn btn-block">Register</button>
                 </form>
                 <p>Already have an account? <a href="/#/login">Login</a></p>
