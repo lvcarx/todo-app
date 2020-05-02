@@ -52,6 +52,7 @@ class TodoItemWrapper extends React.Component {
             todoItem: e,
             done: !e.done
         }
+        console.log(todo)
         axios.post('/api/todo/update', todo)
             .then(this.props.fetchTodoItems())
             .catch(err => console.log(err)) 
@@ -202,10 +203,7 @@ class TodoItemWrapper extends React.Component {
                     {this.props.allNotes.map(note =>
                         <div className={note.favorite == true ? 'todoItem favorite' : 'todoItem'} id={note._id}>
                             <div className="wrapper">
-                                <a className="done" onClick={() => {
-                                    this.doneTodoItem(note)
-                                    this.localDoneTodoItem(note._id)
-                                    }}></a>
+                                <a className="done" onClick={() => this.doneTodoItem(note)}></a>
                                 <p className="todoItemContent">{note.name}</p>
                                 <a className="edit" onClick={() => this.openTodoItem(note._id)}>Edit</a>
                             </div>
