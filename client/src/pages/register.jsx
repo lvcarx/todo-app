@@ -6,6 +6,7 @@ class RegisterPage extends React.Component {
         super()
         this.onChangeEmail = this.onChangeEmail.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
+        this.onChangePassword2 = this.onChangePassword2.bind(this);
         this.onChangeName = this.onChangeName.bind(this);
         this.tryLogin = this.tryLogin.bind(this);
 
@@ -13,6 +14,7 @@ class RegisterPage extends React.Component {
             name: '',
             email: '',
             password: '',
+            password2: '',
             loggedIn: false
         }
     }
@@ -35,12 +37,19 @@ class RegisterPage extends React.Component {
         });
     }
 
+    onChangePassword2(e) {
+        this.setState({
+            password2: e.target.value
+        });
+    }
+
     tryLogin(e) {
         e.preventDefault();
         const user = {
             name: this.state.name,
             email: this.state.email,
-            password: this.state.password
+            password: this.state.password,
+            password2: this.state.password2
         }
         axios.post('/api/users/register', user)
             .then((resp) => {
@@ -53,7 +62,8 @@ class RegisterPage extends React.Component {
         this.setState({
             name: '',
             email: '',
-            password: ''
+            password: '',
+            password2: ''
         })
         if (localStorage.getItem("user-token")) {
             window.location.reload(false);
@@ -102,6 +112,18 @@ class RegisterPage extends React.Component {
                             placeholder="Enter Password"
                             value={this.state.password}
                             onChange={this.onChangePassword}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label>Password</label>
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            className="form-control"
+                            placeholder="Confirm Password"
+                            value={this.state.password2}
+                            onChange={this.onChangePassword2}
                         />
                     </div>
                     <button onClick={this.tryLogin} type="submit" className="btn btn-primary dark-btn btn-block">Login</button>
