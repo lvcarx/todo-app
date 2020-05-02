@@ -1,6 +1,5 @@
 import React from 'react'
 import axios from 'axios'
-import dotenv from 'dotenv'
 import TodoItemWrapper from './TodoItemWrapper.jsx'
 class Content extends React.Component {
 
@@ -95,7 +94,7 @@ class Content extends React.Component {
                         </div>
                     </form>
                 </div>
-                <TodoItemWrapper fetchSections={this.fetchSections} sections = {this.state.sectionsInDB} fetchTodoItems={this.fetchTodoItems} author = {this.props.userID} allNotes = {this.state.notesInDB}/>
+                <TodoItemWrapper fetchSections={this.fetchSections} sections = {this.state.sectionsInDB} fetchTodoItems={this.fetchTodoItems} allNotes = {this.state.notesInDB}/>
             </div>
         )
     }
