@@ -201,7 +201,7 @@ class TodoItemWrapper extends React.Component {
                     </div>
                     
                     {this.props.allNotes.map(note =>
-                        <div className={note.favorite == true ? 'todoItem favorite' : 'todoItem'} id={note._id}>
+                        <div className={note.favorite == true ? 'todoItem favorite' : 'todoItem', note.done == true ? 'done' : ''} id={note._id}>
                             <div className="wrapper">
                                 <a className="done" onClick={() => this.doneTodoItem(note)}></a>
                                 <p className="todoItemContent">{note.name}</p>
@@ -252,7 +252,7 @@ class TodoItemWrapper extends React.Component {
                     </div>
                     
                     {this.props.allNotes.filter(note => note.category == this.state.currentSection).map(note =>
-                        <div className={note.favorite == true ? 'todoItem favorite' : 'todoItem'} id={note._id}>
+                        <div className={note.favorite == true ? 'todoItem favorite' : 'todoItem', note.done == true ? 'done' : ''} id={note._id}>
                             <div className="wrapper">
                                 <a className="done" onClick={() => {
                                     this.doneTodoItem(note)
