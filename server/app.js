@@ -41,14 +41,6 @@ server.use(bodyParser.json());
 
 server.use(cookieParser());
 
-// CORS
-server.use(cors());
-server.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
-
 // use production build
 server.use(express.static(path.join(__dirname, '../client/build')));
 server.get('/*', (req, res) => {
