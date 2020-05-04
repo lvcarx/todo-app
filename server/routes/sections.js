@@ -19,6 +19,7 @@ router.post('/create', auth, (req, res) => {
     {
         if(!err){
             console.log("Updated");
+            res.end();
         }
         if(err) {
             console.log(err);
