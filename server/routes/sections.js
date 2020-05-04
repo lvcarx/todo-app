@@ -38,6 +38,7 @@ router.post('/delete', auth, (req, res) => {
     const decoded = jwtDecode(req.body.token);
     User.updateOne({ _id: decoded }, { "$pull": { "sections": req.body.sections } }, { safe: true, multi: true }, function (err, obj) {
         //do something smart
+        res.end();
     });
 
 });

@@ -16,6 +16,7 @@ router.post('/update', auth, (req, res) => {
     {
         if(!err){
             console.log("Updated");
+            res.end();
         }
     });
 });
