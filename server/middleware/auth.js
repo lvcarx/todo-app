@@ -13,7 +13,6 @@ function auth(req, res, next) {
     catch {
         res.status(400).send('Invalid token');
     }
-    next();
 }
 
 module.exports = auth;
