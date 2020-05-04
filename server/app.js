@@ -43,7 +43,7 @@ server.use(cookieParser());
 server.use(express.static(path.join(__dirname, '../client/build')));
 server.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
-});
+}); 
 
 server.use('/api/users', users);
 server.use('/api/todo', todo);
