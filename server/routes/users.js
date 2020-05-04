@@ -92,6 +92,7 @@ router.post('/delete', auth, (req, res) => {
             res.send(err);
         else {
             console.log('test');
+            res.end();
         }
     });
     
@@ -101,6 +102,7 @@ router.post('/delete', auth, (req, res) => {
             res.send(err);
         else {
             console.log('test');
+            res.end();
         }
     });
 });

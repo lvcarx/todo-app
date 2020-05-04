@@ -21,6 +21,7 @@ router.post('/create', auth, (req, res) => {
     newTodo.save()
         .then(todo => {
             console.log(todo)
+            res.end();
         })
         .catch(err => console.log(err));
 });
@@ -32,7 +33,8 @@ router.post('/delete', auth, (req, res) => {
     Todo.findOneAndRemove({ _id: todoItem, author: decoded._id }, req.body, function (err, data) {
         if (!err) {
             console.log("Deleted");
-        }
+            res.end();
+        } 
     });
 });
 
@@ -43,6 +45,7 @@ router.post('/update', auth, (req, res) => {
     Todo.findOneAndUpdate({ _id: todoItem, author: decoded._id }, req.body, function (err, data) {
         if (!err) {
             console.log("Updated");
+            res.end();
         }
     });
 });
