@@ -25,7 +25,7 @@ body .light {
 
 body .login, body .register {
   text-align: center;
-  background: #f2f9ff;
+  background: #a6b2c740;
   min-height: 100vh; }
   body .login form, body .register form {
     margin: 50px auto !important;
@@ -486,7 +486,7 @@ body .dark {
     margin-top: 10px; }
   .login, .register {
     text-align: center;
-    background: #f2f9ff;
+    background: #a6b2c740;
     min-height: 100vh;
     padding-top: 20px; }
     .login h1, .register h1 {

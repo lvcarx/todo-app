@@ -3,7 +3,7 @@ import axios from 'axios'
 import Header from '../components/Header.jsx'
 import Footer from '../components/Footer.jsx'
 import Content from '../components/Content.jsx'
-import SettingsModal from '../components/modals/SettingsModal.jsx'
+
 class NotePage extends React.Component {
 
     constructor(props) {
