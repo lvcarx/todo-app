@@ -53,7 +53,7 @@ class TodoItemWrapper extends React.Component {
             done: !e.done
         }
         console.log(todo)
-        axios.post('/api/todo/update', todo)
+        axios.post(`${process.env.REACT_APP_TEST}/api/todo/update`, todo)
             .then(this.props.fetchTodoItems())
             .catch(err => console.log(err)) 
             .finally(this.props.fetchTodoItems())
@@ -67,7 +67,7 @@ class TodoItemWrapper extends React.Component {
             favorite: !e.favorite
         }
         console.log(todo)
-        axios.post('/api/todo/update', todo)
+        axios.post(`${process.env.REACT_APP_TEST}/api/todo/update`, todo)
             .then(this.props.fetchTodoItems())
             .catch(err => console.log(err)) 
             .finally(this.props.fetchTodoItems())
@@ -85,7 +85,7 @@ class TodoItemWrapper extends React.Component {
             token: token,
             todoItem: e
         }
-        axios.post('/api/todo/delete', todo)
+        axios.post(`${process.env.REACT_APP_TEST}/api/todo/delete`, todo)
             .then(this.props.fetchTodoItems())
             .catch(err => console.log(err)) 
             .finally(this.props.fetchTodoItems())
@@ -103,7 +103,7 @@ class TodoItemWrapper extends React.Component {
             token: token,
             sectionName: this.state.sectionName
         }
-        axios.post('/api/sections/create', section)
+        axios.post(`${process.env.REACT_APP_TEST}/api/sections/create`, section)
             .then(this.props.fetchSections())
             .catch(err => console.log(err)) 
             .finally(this.props.fetchTodoItems())
@@ -117,7 +117,7 @@ class TodoItemWrapper extends React.Component {
         const section = {
             token: token
         }
-        axios.post('/api/sections/fetch', section)
+        axios.post(`${process.env.REACT_APP_TEST}/api/sections/fetch`, section)
             .then((resp) => {
                 console.log(resp);
             })
@@ -154,7 +154,7 @@ class TodoItemWrapper extends React.Component {
             sections: e
         }
         console.log(section);
-        axios.post('/api/sections/delete', section)
+        axios.post(`${process.env.REACT_APP_TEST}/api/sections/delete`, section)
             .then(this.props.fetchSections())
             .catch(err => console.log(err)) 
             .finally(this.props.fetchSections())
@@ -167,7 +167,7 @@ class TodoItemWrapper extends React.Component {
             token: token,
             category: section
         }
-        axios.post('/api/todo/update', todo)
+        axios.post(`${process.env.REACT_APP_TEST}/api/todo/update`, todo)
             .then(this.props.fetchTodoItems())
             .catch(err => console.log(err)) 
             .finally(this.props.fetchTodoItems())

@@ -51,7 +51,7 @@ class RegisterPage extends React.Component {
             password: this.state.password,
             password2: this.state.password2
         }
-        axios.post('/api/users/register', user)
+        axios.post(`${process.env.REACT_APP_TEST}/api/users/register`, user)
             .then((resp) => {
                 if (resp.data) {
                     localStorage.setItem("user-token", resp.data);
