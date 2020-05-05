@@ -73,10 +73,9 @@ class TodoItemWrapper extends React.Component {
             .finally(this.props.fetchTodoItems())
     }
 
-    handleTodoItem() {
-        this.setState({
-            categoryModalOpen: true
-       });
+    handleTodoItem(e) {
+        const item = document.getElementById(e);
+        item.classList.add('categoryModalOpen')
     }
 
     deleteTodoItem(e) {
@@ -133,12 +132,15 @@ class TodoItemWrapper extends React.Component {
         this.setState({
             sectionDialogOpen: false
         })
+        
     }
 
-    closeCategoryDialog() {
-        this.setState({
+    closeCategoryDialog(e) {
+        /*this.setState({
             categoryModalOpen: false
-        })
+        })*/
+        const item = document.getElementById(e);
+        item.classList.remove('categoryModalOpen')
     }
 
     chooseSection(e) {
@@ -213,7 +215,7 @@ class TodoItemWrapper extends React.Component {
                                 <a className="handle" onClick={() => this.handleTodoItem(note._id)}><img src="/img/handle.svg"></img></a> 
                             </div> 
                             <div className={this.state.categoryModalOpen == true ? 'changeSection modal open' : 'changeSection modal'} id={note._id}>
-                                <a id="close" onClick={this.closeCategoryDialog} className="close"><img src="/img/close.svg"></img></a>
+                                <a id="close" onClick={() => this.closeCategoryDialog(note._id)} className="close"><img src="/img/close.svg"></img></a>
                                 <h2>Change Section</h2>
                                 <div className="sectionWrapper">
                                 {this.props.sections.map(section => 
