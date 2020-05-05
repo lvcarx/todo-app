@@ -329,6 +329,9 @@ body .content {
       opacity: 0.6; }
       body .content .todoItem.done .done {
         background: #346abc; }
+    body .content .todoItem.categoryModalOpen .changeSection {
+      visibility: visible !important;
+      opacity: 1 !important; }
     body .content .todoItem p.todoItemContent {
       display: inline-block;
       float: left;
@@ -359,6 +362,8 @@ body .content {
         body .content .todoItem .actionArea a img {
           width: 29px;
           height: 29px; }
+    body .content .todoItem.opened .edit {
+      color: #346abc; }
     body .content .todoItem.opened .actionArea {
       display: block;
       visibility: visible;

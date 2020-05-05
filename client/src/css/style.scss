@@ -1,4 +1,3 @@
-$accent-color: #364684;
 $accent-color: #346abc;
 $accent-color-hover: #485c96;
 
@@ -391,6 +390,12 @@ body {
                     background: $accent-color;
                 }
             }
+            &.categoryModalOpen {
+                .changeSection {
+                    visibility: visible !important;
+                    opacity: 1 !important;
+                }
+            }
             p.todoItemContent {
                 display: inline-block;
                 float: left;
@@ -429,6 +434,9 @@ body {
                 }
             }
             &.opened {
+                .edit {
+                    color: $accent-color;
+                }
                 .actionArea {
                     display: block;
                     visibility: visible;
