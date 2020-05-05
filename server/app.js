@@ -33,6 +33,14 @@ server.listen(process.env.PORT || 3000, (err) => {
 // Express body parser
 server.use(express.urlencoded({ extended: true }));
 
+// CORS
+server.use(cors());
+server.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 // Body parser
 server.use(express.json());
 server.use(bodyParser.json());
