@@ -35,7 +35,7 @@ class Content extends React.Component {
         this.setState({
             currentTodo: this.state.currentNote
         })
-        axios.post('/api/todo/create', todo)
+        axios.post(`${process.env.REACT_APP_TEST}/api/todo/create`, todo)
             .then(this.fetchTodoItems())
             .catch(err => console.log(err))
             .finally(this.fetchTodoItems());
@@ -61,7 +61,7 @@ class Content extends React.Component {
         const sendToken = {
             token: token
         }
-        axios.post('/api/todo/fetch', sendToken)
+        axios.post(`${process.env.REACT_APP_TEST}/api/todo/fetch`, sendToken)
             .then((res) => {
                 this.setState({
                     notesInDB: res.data
@@ -74,7 +74,7 @@ class Content extends React.Component {
         const sendToken = {
             token: token
         }  
-        axios.post('/api/sections/fetch', sendToken)
+        axios.post(`${process.env.REACT_APP_TEST}/api/sections/fetch`, sendToken)
             .then((res) => {
                 this.setState({
                     sectionsInDB: res.data[0].sections

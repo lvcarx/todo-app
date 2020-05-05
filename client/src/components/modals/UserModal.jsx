@@ -20,7 +20,7 @@ class UserModal extends React.Component {
         const sendToken = {
             token: token
         }
-        axios.post('/api/users/currentUser', sendToken)
+        axios.post(`${process.env.REACT_APP_TEST}/api/users/currentUser`, sendToken)
             .then((resp) => {
                 this.setState({
                     currentEmail: resp.data.email
@@ -44,7 +44,7 @@ class UserModal extends React.Component {
         const user = {
             token: token
         }
-        axios.post('/api/users/delete', user)
+        axios.post(`${process.env.REACT_APP_TEST}/api/users/delete`, user)
             .then(this.reloadAfterDeletion)
             .catch(err => console.log(err))
             .finally(this.reloadAfterDeletion)
