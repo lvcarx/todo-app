@@ -48,7 +48,7 @@ class LoginPage extends React.Component {
                         loginProblems: resp.data
                     });
                 } else {
-                    localStorage.setItem("user-token", resp.data);
+                    localStorage.setItem("user-token", resp.data.token);
                     window.location.reload(false);
                 }
             })

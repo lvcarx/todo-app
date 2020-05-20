@@ -49,11 +49,11 @@ server.use(cookieParser());
 
 // use production build
 server.use(express.static(path.join(__dirname, '../client/build')));
-server.get('/*', (req, res) => {
+server.get('/*', auth, (req, res) => {
     res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
 }); 
 
 server.use('/api/users', users);
-server.use('/api/todo', todo);
-server.use('/api/settings', settings);
-server.use('/api/sections', sections);
+server.use('/api/todo', auth, todo);
+server.use('/api/settings', auth, settings);
+server.use('/api/sections', auth, sections);
