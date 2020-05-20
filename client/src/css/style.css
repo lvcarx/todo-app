@@ -28,13 +28,14 @@ body .login, body .register {
   background: #a6b2c740;
   min-height: 100vh; }
   body .login form, body .register form {
-    margin: 50px auto !important;
+    margin: 40px auto 50px auto !important;
     width: 600px;
     background: #fff;
     border-radius: 8px;
     padding: 10px !important;
     text-align: left;
-    display: inline-block; }
+    display: block;
+    overflow: auto; }
     body .login form input:not([type="checkbox"]), body .register form input:not([type="checkbox"]) {
       padding: 9px;
       width: 100%;
@@ -418,6 +419,15 @@ body .dark {
     background: #333333; }
   body .dark footer a {
     color: #ffffff; }
+
+body .flashMessage {
+  padding: 10px 20px;
+  border-radius: 8px;
+  background: #fff6cc;
+  margin-top: 30px;
+  margin-bottom: -20px;
+  border: 1px solid #ebcc66ba;
+  display: inline-block; }
 
 @media only screen and (max-width: 1080px) {
   body .logo {
