@@ -91,6 +91,20 @@ router.post('/login', (req, res) => {
     }
 );
 
+router.post('/auth', (req, res) => {
+    const decoded = jwtDecode(req.body.token);
+    User.findOne({
+        _id: decoded._id
+    }).then(user => {
+        if (user) {
+            return res.send("valid"); 
+        } else {
+            return res.send("not-valid"); 
+        }
+        
+    }) 
+}) 
+
 router.post('/currentUser', auth, (req, res) => {
     const decoded = jwtDecode(req.body.token);
     console.log(decoded._id);

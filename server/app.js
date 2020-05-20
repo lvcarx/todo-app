@@ -48,9 +48,6 @@ server.use(bodyParser.json());
 
 server.use(cookieParser());
 
-server.get('/', auth, (req, res) => {
-    console.log("test");
-})
 
 // use production build
 server.use(express.static(path.join(__dirname, '../client/build')));
