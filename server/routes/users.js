@@ -17,37 +17,51 @@ const Setting = require('../models/setting');
 router.post('/register', (req, res) => {
     const { name, email, password, password2 } = req.body;
     
+    let errors = []
+
     // check passwords match
+    if (email < 6) {
+        errors.push({ msg: 'E-Mail too short.' });
+        //res.send('E-Mail too short.');
+    }  
+    if (password < 6) {
+        errors.push({ msg: 'Password too short.' });
+        //res.send('Password too short.');
+    }  
     if (password !== password2) {
-        errors.push({ msg: 'Passwords do not match' });
+        errors.push({ msg: 'Passwords do not match.' });
+        //res.send('Passwords do not match.');
+    } 
+    if (errors.length == 0) {
+        const newUser = new User({
+            name,
+            email,
+            password
+        });
+
+        // Hash password
+        bcrypt.genSalt(10, (err, salt) =>
+            bcrypt.hash(newUser.password, salt, (err, hash) => {
+            newUser.password = hash;
+            newUser.save()
+                    .then(user => {    
+                        const newSettings = new Setting({
+                            userID: user._id
+                        });
+                        newSettings.save()
+                            .then(console.log('called'))
+                            .catch(console.log('called'));
+                        const token = jwt.sign({ _id: user._id}, process.env.JWT);
+                        //res.header('x-auth-token', token).send({ _id: user._id, email: user._email});
+                        //res.send({token: token});
+                        res.send(token);
+                    })
+                    .catch(err => console.log(err));      
+            })
+    )} else {
+        res.send("error-occured");
     }
-
-    const newUser = new User({
-        name,
-        email,
-        password
-    });
-
-    // Hash password
-    bcrypt.genSalt(10, (err, salt) =>
-        bcrypt.hash(newUser.password, salt, (err, hash) => {
-           newUser.password = hash;
-           newUser.save()
-                .then(user => {    
-                    const newSettings = new Setting({
-                        userID: user._id
-                    });
-                    newSettings.save()
-                        .then(console.log('called'))
-                        .catch(console.log('called'));
-                    const token = jwt.sign({ _id: user._id}, process.env.JWT);
-                    res.header('x-auth-token', token).send({ _id: user._id, email: user._email});
-                    res.send('User registered!');
-                    
-                })
-                .catch(err => console.log(err));      
-        })
-)});
+});
 
 // Login handle
 router.post('/login', (req, res) => {
@@ -57,6 +71,7 @@ router.post('/login', (req, res) => {
         }).then(user => {
             if (!user) {
                 console.log(null, false, { message: 'That email is not registered' });
+                return res.send("email-not-registered")
             }
             else {
                 bcrypt.compare(password, user.password, (err, isMatch) => {
@@ -66,7 +81,8 @@ router.post('/login', (req, res) => {
                         //res.header('x-auth-token', token).send({ _id: user._id, email: user._email});
                         return res.send({token: token});
                     } else {
-                      console.log(null, false, { message: 'Password incorrect' });
+                        console.log(null, false, { message: 'Password incorrect' });
+                        return res.send("password-incorrect")
                     }
                 });
             }
@@ -101,7 +117,6 @@ router.post('/delete', auth, (req, res) => {
         if (err)
             res.send(err);
         else {
-            console.log('test');
             res.end();
         }
     });

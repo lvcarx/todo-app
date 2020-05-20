@@ -39,13 +39,14 @@ body {
         background: #a6b2c740;
         min-height: 100vh;
         form {
-            margin: 50px auto!important;
+            margin: 40px auto 50px auto!important;
             width: 600px;
             background: #fff;
             border-radius: 8px;
             padding: 10px!important;
             text-align: left;
-            display: inline-block;
+            display: block;
+            overflow: auto;
             input:not([type="checkbox"]) {
                 padding: 9px;
                 width: 100%;
@@ -508,6 +509,16 @@ body {
                 color: #ffffff;
             }
         } 
+    }
+
+    .flashMessage {
+        padding: 10px 20px;
+        border-radius: 8px;
+        background: #fff6cc;
+        margin-top: 30px;
+        margin-bottom: -20px;
+        border: 1px solid #ebcc66ba;
+        display: inline-block;
     }
 }
 

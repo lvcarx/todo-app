@@ -15,7 +15,8 @@ class RegisterPage extends React.Component {
             email: '',
             password: '',
             password2: '',
-            loggedIn: false
+            loggedIn: false,
+            registerProblems: ''
         }
     }
 
@@ -53,7 +54,12 @@ class RegisterPage extends React.Component {
         }
         axios.post(`${process.env.REACT_APP_TEST}/api/users/register`, user)
             .then((resp) => {
-                if (resp.data) {
+                if (resp.data == "error-occured") {
+                    this.setState({
+                        registerProblems: resp.data
+                    });
+                } else {
+                    console.log(resp.data)
                     localStorage.setItem("user-token", resp.data);
                     window.location.reload(false);
                 }
@@ -77,6 +83,11 @@ class RegisterPage extends React.Component {
             <div className="wrapper">  
               <h1 className="text-center mb-3">Register</h1>
               <p>A ToDo Manager that helps scheduling your day!</p>
+              {this.state.loginProblems == "error-occured" &&
+                            <div className="flashMessage">
+                                There was an error during the registration!
+                            </div>
+                }
               <form>
                     <div className="form-group">
                         <label>Name</label>
