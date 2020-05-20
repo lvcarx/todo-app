@@ -64,7 +64,7 @@ router.post('/login', (req, res) => {
                     if (isMatch) {
                         const token = jwt.sign({ _id: user._id}, process.env.JWT);
                         //res.header('x-auth-token', token).send({ _id: user._id, email: user._email});
-                        res.send(token);
+                        return res.send({token: token});
                     } else {
                       console.log(null, false, { message: 'Password incorrect' });
                     }
