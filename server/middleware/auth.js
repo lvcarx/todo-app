@@ -10,19 +10,6 @@ function auth(req, res, next) {
         const decoded = jwt.verify(token, process.env.JWT);
         req.user = decoded;
         next();
-        /*const decoded2 = jwtDecode(token);
-        console.log(decoded2);
-        User.findOne({
-            _id: decoded2
-        }).then(user => {
-            if (!user) {
-                console.log("USER NOT FOUND");
-                             
-            } else {
-                console.log("USER FOUND");
-                next();
-            }
-        })*/
     }
     catch {
         res.status(400).send('Invalid token');

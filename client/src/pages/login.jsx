@@ -38,12 +38,10 @@ class LoginPage extends React.Component {
         axios.post(`${process.env.REACT_APP_TEST}/api/users/login`, user)
             .then((resp) => {
                 if (resp.data == "email-not-registered") {
-                    console.log("not registered!");
                     this.setState({
                         loginProblems: resp.data
                     });
                 } else if(resp.data == "password-incorrect") {
-                    console.log("wrong pw!");
                     this.setState({
                         loginProblems: resp.data
                     });
@@ -113,7 +111,6 @@ class LoginPage extends React.Component {
                     <p>No account? <a href="/#/register">Register</a></p>
                 </div>
             )
-         
     }
 
 }
