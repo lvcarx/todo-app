@@ -12,6 +12,7 @@ const users = require('./routes/users.js');
 const todo = require('./routes/todo.js');
 const settings = require('./routes/settings.js');
 const sections = require('./routes/sections.js');
+const main = require('./routes/main.js');
 
 // DB config
 const db = process.env.DB_CONNECTION;
@@ -47,11 +48,16 @@ server.use(bodyParser.json());
 
 server.use(cookieParser());
 
+server.get('/', auth, (req, res) => {
+    console.log("test");
+})
+
 // use production build
 server.use(express.static(path.join(__dirname, '../client/build')));
 server.get('/*', auth, (req, res) => {
     res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
 }); 
+
 
 server.use('/api/users', users);
 server.use('/api/todo', auth, todo);
