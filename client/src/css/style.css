@@ -5,7 +5,8 @@
   box-sizing: border-box; }
 
 body {
-  max-width: 100%; }
+  max-width: 100%;
+  overflow-x: hidden; }
   body .light {
     background: #f2f9ff;
     background: #a6b2c740;
