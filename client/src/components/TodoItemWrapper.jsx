@@ -136,9 +136,6 @@ class TodoItemWrapper extends React.Component {
     }
 
     closeCategoryDialog(e) {
-        /*this.setState({
-            categoryModalOpen: false
-        })*/
         const item = document.getElementById(e);
         item.classList.remove('categoryModalOpen')
     }
