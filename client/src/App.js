@@ -71,12 +71,27 @@ class App extends React.Component {
           </Switch>
         </HashRouter>
       );
-    } else if (this.state.userIsAuthenticated == false || this.state.isUserValid == false) {
+    } else if (this.state.userIsAuthenticated == false && this.state.isUserValid == false) {
       return (
         <HashRouter>
           <Switch>
             <Route exact path="/">
               <Redirect to='/login' />
+            </Route>
+            <Route path="/login">
+              <LoginPage />
+            </Route>
+            <Route exact path="/register">
+              <RegisterPage />
+            </Route>
+          </Switch>
+        </HashRouter>
+      );
+    } else if (this.state.userIsAuthenticated == true && this.state.isUserValid == false) {
+      return (
+        <HashRouter>
+          <Switch>
+          <Route exact path="/">     
             </Route>
             <Route path="/login">
               <LoginPage />
