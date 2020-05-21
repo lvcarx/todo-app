@@ -92,17 +92,23 @@ router.post('/login', (req, res) => {
 );
 
 router.post('/auth', (req, res) => {
-    const decoded = jwtDecode(req.body.token);
-    User.findOne({
-        _id: decoded._id
-    }).then(user => {
-        if (user) {
-            return res.send("valid"); 
-        } else {
-            return res.send("not-valid"); 
-        }
-        
-    }) 
+    try {
+        var decoded2 = jwt.verify(req.body.token, process.env.JWT);
+        console.log("did " + decoded2);
+        const decoded = jwtDecode(req.body.token);
+        User.findOne({
+            _id: decoded._id
+        }).then(user => {
+            console.log(user.email);
+            if (user == false) {
+                return res.send("not-valid"); 
+            } else {
+                return res.send("valid"); 
+            } 
+        }) 
+      } catch(err) {
+        return res.send("not-valid");
+      }
 }) 
 
 router.post('/currentUser', auth, (req, res) => {
