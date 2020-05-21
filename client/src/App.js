@@ -27,8 +27,8 @@ class App extends React.Component {
   }
 
   componentWillMount() {
-    const token = localStorage.getItem('user-token')
-    const user = {
+    let token = localStorage.getItem('user-token')
+    let user = {
       token: token
     }
     axios.post(`${process.env.REACT_APP_TEST}/api/users/auth`, user)
@@ -38,7 +38,6 @@ class App extends React.Component {
                     this.setState({
                         isUserValid: true
                     });
-                    
                 } else if (resp.data == "not-valid") {
                   this.setState({
                     userIsAuthenticated: false,
@@ -56,7 +55,7 @@ class App extends React.Component {
   }
   
   render() {
-    if (this.state.userIsAuthenticated && this.state.isUserValid) {
+    if (this.state.userIsAuthenticated == true && this.state.isUserValid == true) {
       return (
         <HashRouter>
           <Switch>
