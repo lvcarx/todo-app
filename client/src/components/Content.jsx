@@ -33,12 +33,14 @@ class Content extends React.Component {
             author: token
         }
         this.setState({
-            currentTodo: this.state.currentNote
+            currentTodo: this.state.currentNote,
+            currentNote: ''
         })
         axios.post(`${process.env.REACT_APP_TEST}/api/todo/create`, todo)
             .then(this.fetchTodoItems())
             .catch(err => console.log(err))
             .finally(this.fetchTodoItems());
+        
     }
 
     shouldComponentUpdate(nextState, nextProps) {
@@ -83,20 +85,39 @@ class Content extends React.Component {
     }
     
     render() {
-        return (
-            <div className="content">
-                <div className="itemForm">
-                    <form id="form">
-                        <div className="inputWrapper">
-                            <p id="errorNotice"></p>
-                            <input type="text" id="box" onChange={this.changeTodoItemText} placeholder="Add a task..."></input>
-                            <a type="button" id="submit" value="Add to list" onClick={this.createTodoItem}>Add to list</a>
-                        </div>
-                    </form>
+        if (this.state.currentNote == '') {
+            return (
+                <div className="content">
+                    <div className="itemForm">
+                        <form id="form">
+                            <div className="inputWrapper">
+                                <p id="errorNotice"></p>
+                                <input type="text" id="box" value="" onChange={this.changeTodoItemText} placeholder="Add a task..."></input>
+                                <a type="button" id="submit" value="Add to list" onClick={this.createTodoItem}>Add to list</a>
+                            </div>
+                        </form>
+                    </div>
+                    <TodoItemWrapper fetchSections={this.fetchSections} sections = {this.state.sectionsInDB} fetchTodoItems={this.fetchTodoItems} allNotes = {this.state.notesInDB}/>
                 </div>
-                <TodoItemWrapper fetchSections={this.fetchSections} sections = {this.state.sectionsInDB} fetchTodoItems={this.fetchTodoItems} allNotes = {this.state.notesInDB}/>
-            </div>
-        )
+            )
+        } else {
+            return (
+                <div className="content">
+                    <div className="itemForm">
+                        <form id="form">
+                            <div className="inputWrapper">
+                                <p id="errorNotice"></p>
+                                <input type="text" id="box" defaultValue="" onChange={this.changeTodoItemText} placeholder="Add a task..."></input>
+                                <a type="button" id="submit" value="Add to list" onClick={this.createTodoItem}>Add to list</a>
+                            </div>
+                        </form>
+                    </div>
+                    <TodoItemWrapper fetchSections={this.fetchSections} sections = {this.state.sectionsInDB} fetchTodoItems={this.fetchTodoItems} allNotes = {this.state.notesInDB}/>
+                </div>
+            )
+        }
+
+        
     }
 }
 
