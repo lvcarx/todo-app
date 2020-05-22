@@ -121,6 +121,17 @@ router.post('/currentUser', auth, (req, res) => {
        }) 
 }) 
 
+router.post('/update', auth, (req, res) => {
+    const decoded = jwtDecode(req.body.token);
+    console.log(decoded._id);
+     const { email, password, name } = req.body;
+     User.findOneAndUpdate({ _id: decoded, email: email, password: password }, req.body, function (err, data) {
+        if (!err) {
+            res.end();
+        }
+    });
+}) 
+
 router.post('/delete', auth, (req, res) => {
     const decoded = jwtDecode(req.body.token);
     Todo.deleteMany({ "author": decoded._id }, function (err) {
