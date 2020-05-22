@@ -10,18 +10,19 @@ const auth = require('../middleware/auth');
 const Setting = require('../models/setting');
 
 // delete setting item handle
-router.post('/update', auth, (req, res) => {
+router.post('/update', (req, res) => {
     const decoded = jwtDecode(req.body.token);
     Setting.findOneAndUpdate({userID: decoded}, req.body, function(err,data)
     {
         if(!err){
             console.log("Updated");
+            res.end();
         }
     });
 });
 
 // fetch setting item handle
-router.post('/fetch', auth, (req, res) => {
+router.post('/fetch', (req, res) => {
     const decoded = jwtDecode(req.body.token);
     Setting.findOne({ userID: decoded._id })
         .then(settings => {

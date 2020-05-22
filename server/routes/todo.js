@@ -10,7 +10,7 @@ const auth = require('../middleware/auth');
 const Todo = require('../models/todo');
 
 // create todo item handle
-router.post('/create', auth, (req, res) => {
+router.post('/create', (req, res) => {
     const { name } = req.body;
     const decoded = jwtDecode(req.body.author);
     let author = decoded;
@@ -21,34 +21,37 @@ router.post('/create', auth, (req, res) => {
     newTodo.save()
         .then(todo => {
             console.log(todo)
+            res.end();
         })
         .catch(err => console.log(err));
 });
 
 // delete todo item handle
-router.post('/delete', auth, (req, res) => {
+router.post('/delete', (req, res) => {
     const decoded = jwtDecode(req.body.token);
     const { author, todoItem } = req.body;
     Todo.findOneAndRemove({ _id: todoItem, author: decoded._id }, req.body, function (err, data) {
         if (!err) {
             console.log("Deleted");
-        }
+            res.end();
+        } 
     });
 });
 
 // delete todo item handle
-router.post('/update', auth, (req, res) => {
+router.post('/update', (req, res) => {
     const decoded = jwtDecode(req.body.token);
     const { author, todoItem, favorite, done, category } = req.body;
     Todo.findOneAndUpdate({ _id: todoItem, author: decoded._id }, req.body, function (err, data) {
         if (!err) {
             console.log("Updated");
+            res.end();
         }
     });
 });
 
 // fetch todo item handle
-router.post('/fetch', auth, (req, res) => {
+router.post('/fetch', (req, res) => {
     const decoded = jwtDecode(req.body.token);
     console.log(decoded);
     Todo.find({ author: decoded._id }).then(todos => {

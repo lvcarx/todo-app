@@ -21,24 +21,41 @@ class App extends React.Component {
   constructor() {
     super()
     this.state = {
-      userIsAuthenticated: false
+      userIsAuthenticated: false,
+      isUserValid: false
     }
   }
 
   componentWillMount() {
-    const token = localStorage.getItem('user-token')
+    let token = localStorage.getItem('user-token')
+    let user = {
+      token: token
+    }
+    axios.post(`${process.env.REACT_APP_TEST}/api/users/auth`, user)
+            .then((resp) => {
+                console.log(resp.data);
+                if (resp.data == "valid") {
+                    this.setState({
+                        isUserValid: true
+                    });
+                } else if (resp.data == "not-valid") {
+                  this.setState({
+                    userIsAuthenticated: false,
+                    isUserValid: false
+                  });
+                }
+            }) 
+
     if (token) {
-      this.setState(
-        {
-          userIsAuthenticated: true
-        });
-      console.log('Okay this worked!');
+      this.setState({
+        userIsAuthenticated: true
+      });
       axios.defaults.headers.common['x-auth-token'] = token
     }
   }
   
   render() {
-    if (this.state.userIsAuthenticated) {
+    if (this.state.userIsAuthenticated == true && this.state.isUserValid == true) {
       return (
         <HashRouter>
           <Switch>
@@ -54,12 +71,27 @@ class App extends React.Component {
           </Switch>
         </HashRouter>
       );
-    } else {
+    } else if (this.state.userIsAuthenticated == false && this.state.isUserValid == false) {
       return (
         <HashRouter>
           <Switch>
             <Route exact path="/">
-            <Redirect to='/login'/>
+              <Redirect to='/login' />
+            </Route>
+            <Route path="/login">
+              <LoginPage />
+            </Route>
+            <Route exact path="/register">
+              <RegisterPage />
+            </Route>
+          </Switch>
+        </HashRouter>
+      );
+    } else if (this.state.userIsAuthenticated == true && this.state.isUserValid == false) {
+      return (
+        <HashRouter>
+          <Switch>
+          <Route exact path="/">     
             </Route>
             <Route path="/login">
               <LoginPage />

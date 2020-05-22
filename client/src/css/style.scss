@@ -1,4 +1,3 @@
-$accent-color: #364684;
 $accent-color: #346abc;
 $accent-color-hover: #485c96;
 
@@ -10,11 +9,14 @@ $accent-color-hover: #485c96;
 }
 
 body {
+    max-width: 100%;
+    overflow-x: hidden;
     .light {
         background: #f2f9ff;
         background: #a6b2c740;
         min-width: 100vw;
         min-height: 100vh;
+        padding-bottom: 20px;
         &#blue {
             background: #f2f9ff;
             background: #a6b2c740;
@@ -37,17 +39,18 @@ body {
     }
     .login, .register {
         text-align: center;
-        background: #f2f9ff;
+        background: #a6b2c740;
         min-height: 100vh;
         form {
-            margin: 50px auto!important;
+            margin: 40px auto 50px auto!important;
             width: 600px;
             background: #fff;
             border-radius: 8px;
             padding: 10px!important;
             text-align: left;
-            display: inline-block;
-            input {
+            display: block;
+            overflow: auto;
+            input:not([type="checkbox"]) {
                 padding: 9px;
                 width: 100%;
                 font-size: 16px;
@@ -189,9 +192,14 @@ body {
                 }
                 li {
                     list-style: none;
-                    line-height: 170%;
+                    line-height: 190%;
                     a {
                         color: $accent-color;
+                        cursor: pointer;
+                        transition: all 0.3s ease;
+                        &:hover {
+                            color: $accent-color-hover;
+                        }
                     }
                 }
             }
@@ -391,10 +399,19 @@ body {
                     background: $accent-color;
                 }
             }
+            &.categoryModalOpen {
+                .changeSection {
+                    visibility: visible !important;
+                    opacity: 1 !important;
+                }
+            }
             p.todoItemContent {
                 display: inline-block;
                 float: left;
                 margin: 0;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                width: 70%;
             }
             .edit {
                 float: right;
@@ -426,6 +443,9 @@ body {
                 }
             }
             &.opened {
+                .edit {
+                    color: $accent-color;
+                }
                 .actionArea {
                     display: block;
                     visibility: visible;
@@ -497,6 +517,16 @@ body {
                 color: #ffffff;
             }
         } 
+    }
+
+    .flashMessage {
+        padding: 10px 20px;
+        border-radius: 8px;
+        background: #fff6cc;
+        margin-top: 30px;
+        margin-bottom: -20px;
+        border: 1px solid #ebcc66ba;
+        display: inline-block;
     }
 }
 
@@ -642,7 +672,7 @@ body {
 
     .login, .register {
         text-align: center;
-        background: #f2f9ff;
+        background: #a6b2c740;
         min-height: 100vh;
         padding-top: 20px;
         h1 {

@@ -8,9 +8,11 @@ class UserModal extends React.Component {
         this.openModal = this.openModal.bind(this)
         this.tryLogout = this.tryLogout.bind(this)
         this.removeAccount = this.removeAccount.bind(this)
+        // this.openEditAccount = this.openEditAccount.bind(this)
         this.reloadAfterDeletion = this.reloadAfterDeletion.bind(this)
         this.state = {
             accountModalOpen: false,
+            editAccount: false,
             currentEmail: ''
         }
     }
@@ -20,7 +22,7 @@ class UserModal extends React.Component {
         const sendToken = {
             token: token
         }
-        axios.post('/api/users/currentUser', sendToken)
+        axios.post(`${process.env.REACT_APP_TEST}/api/users/currentUser`, sendToken)
             .then((resp) => {
                 this.setState({
                     currentEmail: resp.data.email
@@ -39,12 +41,14 @@ class UserModal extends React.Component {
         window.location.reload(false);
     }
 
+    
+
     removeAccount() {
         const token = localStorage.getItem('user-token');
         const user = {
             token: token
         }
-        axios.post('/api/users/delete', user)
+        axios.post(`${process.env.REACT_APP_TEST}/api/users/delete`, user)
             .then(this.reloadAfterDeletion)
             .catch(err => console.log(err))
             .finally(this.reloadAfterDeletion)
@@ -58,10 +62,11 @@ class UserModal extends React.Component {
     render() {
         return (
             <div className="accountModalWrapper">
-                   <img onClick={this.openModal} class="accountIcon" src="img/account.svg"></img>
-        <div class={this.state.accountModalOpen == true ? 'accountModal opened' : 'accountModal'}><h3>Hi, {this.state.currentEmail}!</h3>
+                    <img onClick={this.openModal} class="accountIcon" src="img/account.svg"></img>
+                    <div class={this.state.accountModalOpen == true ? 'accountModal opened' : 'accountModal'}><h3>Hi, {this.state.currentEmail}!</h3>
                        <li><a onClick={this.tryLogout} class="link">Logout</a></li>
                        <li><a onClick={this.removeAccount} class="link">Delete your account</a></li>
+                       <li><a onClick={this.props.openEditAccount} class="link">User Settings</a></li>
                     </div>
             </div>
         )

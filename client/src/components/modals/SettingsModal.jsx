@@ -18,7 +18,7 @@ class SettingsModal extends React.Component {
             token: token,
             darkMode: !this.props.darkMode
         }
-        axios.post('/api/settings/update', setting)
+        axios.post(`${process.env.REACT_APP_TEST}/api/settings/update`, setting)
             .then(this.props.grandchildFetchSettings())
             .catch(err => console.log(err)) 
             .finally(this.props.grandchildFetchSettings());
@@ -30,7 +30,7 @@ class SettingsModal extends React.Component {
             token: token,
             color: e
         }
-        axios.post('/api/settings/update', setting)
+        axios.post(`${process.env.REACT_APP_TEST}/api/settings/update`, setting)
             .then(this.props.grandchildFetchSettings())
             .catch(err => console.log(err)) 
             .finally(this.props.grandchildFetchSettings());

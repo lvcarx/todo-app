@@ -3,7 +3,7 @@ import axios from 'axios'
 import Header from '../components/Header.jsx'
 import Footer from '../components/Footer.jsx'
 import Content from '../components/Content.jsx'
-import SettingsModal from '../components/modals/SettingsModal.jsx'
+
 class NotePage extends React.Component {
 
     constructor(props) {
@@ -22,7 +22,7 @@ class NotePage extends React.Component {
         const sendToken = {
             token: token
         }
-        axios.post('/api/users/currentUser', sendToken)
+        axios.post(`${process.env.REACT_APP_TEST}/api/users/currentUser`, sendToken)
             .then((resp) => {
                 this.setState({
                     userEmail: resp.data.email,
@@ -37,7 +37,7 @@ class NotePage extends React.Component {
         const sendToken = {
             token: token
         }
-        axios.post('/api/settings/fetch', sendToken)
+        axios.post(`${process.env.REACT_APP_TEST}/api/settings/fetch`, sendToken)
             .then((resp) => {
                 this.setState({
                     darkMode: resp.data.darkMode,

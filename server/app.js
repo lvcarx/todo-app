@@ -12,6 +12,7 @@ const users = require('./routes/users.js');
 const todo = require('./routes/todo.js');
 const settings = require('./routes/settings.js');
 const sections = require('./routes/sections.js');
+const main = require('./routes/main.js');
 
 // DB config
 const db = process.env.DB_CONNECTION;
@@ -23,8 +24,6 @@ mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
 
 mongoose.set('useFindAndModify', false);
 
-const dev = process.env.NODE_ENV !== 'production'
-
 const server = express()
 
 server.listen(process.env.PORT || 3000, (err) => {
@@ -35,12 +34,6 @@ server.listen(process.env.PORT || 3000, (err) => {
 // Express body parser
 server.use(express.urlencoded({ extended: true }));
 
-// Body parser
-server.use(express.json());
-server.use(bodyParser.json());
-
-server.use(cookieParser());
-
 // CORS
 server.use(cors());
 server.use(function (req, res, next) {
@@ -49,13 +42,20 @@ server.use(function (req, res, next) {
   next();
 });
 
+// Body parser
+server.use(express.json());
+server.use(bodyParser.json());
+
+server.use(cookieParser());
+
 // use production build
 server.use(express.static(path.join(__dirname, '../client/build')));
-server.get('/*', (req, res) => {
+server.get('/*', auth, (req, res) => {
     res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
-});
+}); 
+
 
 server.use('/api/users', users);
-server.use('/api/todo', todo);
-server.use('/api/settings', settings);
-server.use('/api/sections', sections);
+server.use('/api/todo', auth, todo);
+server.use('/api/settings', auth, settings);
+server.use('/api/sections', auth, sections);
