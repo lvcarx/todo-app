@@ -32,6 +32,7 @@ router.post('/register', (req, res) => {
         errors.push({ msg: 'Passwords do not match.' });
         //res.send('Passwords do not match.');
     } 
+
     if (errors.length == 0) {
         const newUser = new User({
             name,
@@ -59,6 +60,7 @@ router.post('/register', (req, res) => {
                     .catch(err => console.log(err));      
             })
     )} else {
+        console.log("error-occured");
         res.send("error-occured");
     }
 });
