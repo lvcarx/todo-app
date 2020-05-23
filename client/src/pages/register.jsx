@@ -8,7 +8,7 @@ class RegisterPage extends React.Component {
         this.onChangePassword = this.onChangePassword.bind(this);
         this.onChangePassword2 = this.onChangePassword2.bind(this);
         this.onChangeName = this.onChangeName.bind(this);
-        this.tryLogin = this.tryLogin.bind(this);
+        this.tryRegister = this.tryRegister.bind(this);
 
         this.state = {
             name: '',
@@ -16,7 +16,7 @@ class RegisterPage extends React.Component {
             password: '',
             password2: '',
             loggedIn: false,
-            registerProblems: ''
+            registerProblems: []
         }
     }
 
@@ -44,7 +44,7 @@ class RegisterPage extends React.Component {
         });
     }
 
-    tryLogin(e) {
+    tryRegister(e) {
         e.preventDefault();
         const user = {
             name: this.state.name,
@@ -54,13 +54,14 @@ class RegisterPage extends React.Component {
         }
         axios.post(`${process.env.REACT_APP_TEST}/api/users/register`, user)
             .then((resp) => {
-                if (resp.data == "error-occured") {
+                if (!resp.data.token) {
                     this.setState({
-                        registerProblems: resp.data
+                        registerProblems: resp.data  
                     });
+                    console.log(resp.data);
                 } else {
                     console.log(resp.data)
-                    localStorage.setItem("user-token", resp.data);
+                    localStorage.setItem("user-token", resp.data.token);
                     window.location.reload(false);
                 }
             })
@@ -83,10 +84,12 @@ class RegisterPage extends React.Component {
             <div className="wrapper">  
               <h1 className="text-center mb-3">Register</h1>
               <p>A ToDo Manager that helps scheduling your day!</p>
-              {this.state.loginProblems == "error-occured" &&
+              {this.state.registerProblems.length != 0 &&
+                    this.state.registerProblems.map(registerProblem =>  
                             <div className="flashMessage">
-                                There was an error during the registration!
+                                {registerProblem.msg}
                             </div>
+                    )
                 }
               <form>
                     <div className="form-group">
@@ -143,7 +146,7 @@ class RegisterPage extends React.Component {
                     </div>
                     <label><input type="checkbox" value="dsgvo" name="dsgvo" required></input>I agree to the <a target="_blank" href="https://luca-reichmann.de/datenschutzerklaerung/">Privacy Statement</a> of be productive. by registrating and using the app.
                     </label>
-                    <button onClick={this.tryLogin} type="submit" className="btn btn-primary dark-btn btn-block">Register</button>
+                    <button onClick={this.tryRegister} type="submit" className="btn btn-primary dark-btn btn-block">Register</button>
                 </form>
                 <p>Already have an account? <a href="/#/login">Login</a></p>
             </div>

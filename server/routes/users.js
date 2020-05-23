@@ -55,13 +55,13 @@ router.post('/register', (req, res) => {
                         const token = jwt.sign({ _id: user._id}, process.env.JWT);
                         //res.header('x-auth-token', token).send({ _id: user._id, email: user._email});
                         //res.send({token: token});
-                        res.send(token);
+                        res.send({token: token});
                     })
                     .catch(err => console.log(err));      
             })
     )} else {
         console.log("error-occured");
-        res.send("error-occured");
+        res.send(errors);
     }
 });
 
