@@ -33,7 +33,7 @@ class EditAccount extends React.Component {
         const token = localStorage.getItem('user-token')
         const sendToken = {
             token: token,
-            mail: newMail
+            mail: this.state.newMail
         }  
         axios.post(`${process.env.REACT_APP_TEST}/api/users/update`, sendToken)
             .then((res) => {
@@ -45,7 +45,7 @@ class EditAccount extends React.Component {
         const token = localStorage.getItem('user-token')
         const sendToken = {
             token: token,
-            password: newPassword
+            password: this.state.newPassword
         }  
         axios.post(`${process.env.REACT_APP_TEST}/api/users/update`, sendToken)
             .then((res) => {
