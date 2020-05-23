@@ -12,8 +12,8 @@ class EditAccount extends React.Component {
         this.state = {
             emailOpen: false,
             passwordOpen: false,
-            newMail,
-            newPassword
+            newMail: '',
+            newPassword: ''
         }
     }
 
