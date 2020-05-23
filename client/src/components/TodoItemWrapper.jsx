@@ -105,7 +105,7 @@ class TodoItemWrapper extends React.Component {
         axios.post(`${process.env.REACT_APP_TEST}/api/sections/create`, section)
             .then(this.props.fetchSections())
             .catch(err => console.log(err)) 
-            .finally(this.props.fetchTodoItems())
+            .finally(this.props.fetchSections())
         this.setState({
             sectionName: ''
         })
