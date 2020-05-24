@@ -12,12 +12,15 @@ const Todo = require('../models/todo');
 // create todo item handle
 router.post('/create', (req, res) => {
     const { name } = req.body;
+    console.log(req.body.author);
     const decoded = jwtDecode(req.body.author);
     let author = decoded;
     const newTodo = new Todo({
         name,
         author
     });
+    console.log(name);
+    console.log(author);
     newTodo.save()
         .then(todo => {
             console.log(todo)
