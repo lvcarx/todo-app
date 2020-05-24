@@ -9,11 +9,16 @@ class EditAccount extends React.Component {
         this.openPasswordDialog = this.openPasswordDialog.bind(this)
         this.changeEmail = this.changeEmail.bind(this)
         this.changePassword = this.changePassword.bind(this)
+        this.isUserAllowedToChangePassword = this.isUserAllowedToChangePassword.bind(this)
+        this.onChangeCurrentPassword = this.onChangeCurrentPassword.bind(this)
+        
         this.state = {
             emailOpen: false,
             passwordOpen: false,
+            currentPassword: '',
             newMail: '',
-            newPassword: ''
+            newPassword: '',
+            allowed: false
         }
     }
 
@@ -27,6 +32,27 @@ class EditAccount extends React.Component {
         this.setState({
             passwordOpen: !this.state.passwordOpen
         })
+    }
+
+    onChangeCurrentPassword(e) {
+        this.setState({
+            currentPassword: e.target.value
+        });
+    }
+
+    isUserAllowedToChangePassword() {
+        const token = localStorage.getItem('user-token')
+        const sendUser = {
+            token: token,
+            password: this.state.currentPassword
+        }  
+        axios.post(`${process.env.REACT_APP_TEST}/api/users/changePassword`, sendUser)
+            .then((res) => {
+                console.log("WORKS? " + res.data.authenticated);
+                this.setState({
+                    allowed: res.data.authenticated
+                });
+            })
     }
 
     changeEmail() {
@@ -64,18 +90,27 @@ class EditAccount extends React.Component {
                 <a onClick={this.openEmailDialog}>Edit</a>
                 {this.state.emailOpen == true &&
                 <div>
-                    <input type="text" name="email" id=""/>
+                    <label>Change your E-Mail
+                    <input type="text" name="email" id="" placeholder="Type your new E-Mail here..."/></label>
                     <a onClick={this.changeEmail}>Save</a>
                 </div>
                 }
                 
                 <h3>Change Password</h3>
-                <a onClick={this.openPasswordDialog}>Edit</a>
+                <a onClick={this.openPasswordDialog}>Change</a>
                 {this.state.passwordOpen == true &&
-                <div>
-                    <input type="text" name="password" id=""/>
-                    <a onClick={this.changePassword}>Save</a>
-                </div>
+                    <div>
+                        <label>Current password
+                        <input type="text" name="password" id="" onChange={this.onChangeCurrentPassword} placeholder="What's your current password?"/></label>
+                        <a onClick={this.isUserAllowedToChangePassword}>Save</a>
+                    </div>
+                }
+                    {this.state.allowed == true &&
+                        <div>
+                            <label>New password
+                            <input type="text" name="password" id="" placeholder=""/></label>
+                            <a onClick={this.changePassword}>Save</a>
+                        </div>
                 }
 
                 <h3>Delete your Account and all personal data</h3>

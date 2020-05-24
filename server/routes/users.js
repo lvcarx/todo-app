@@ -93,10 +93,28 @@ router.post('/login', (req, res) => {
     }
 );
 
+// Login handle
+router.post('/changePassword', (req, res) => {
+    const { password, token } = req.body;
+    const decoded = jwtDecode(token);
+    User.findOne({
+        _id: decoded._id
+        }).then(user => {
+            bcrypt.compare(password, user.password, (err, isMatch) => {
+                if (err) throw err;
+                if (isMatch) {
+                    return res.send({ authenticated: true });
+                } else {
+                    return res.send({ authenticated: false })
+                }
+            });
+    });
+    }
+);
+
 router.post('/auth', (req, res) => {
     try {
         var decoded2 = jwt.verify(req.body.token, process.env.JWT);
-        console.log("did " + decoded2);
         const decoded = jwtDecode(req.body.token);
         User.findOne({
             _id: decoded._id
