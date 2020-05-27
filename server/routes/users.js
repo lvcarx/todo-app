@@ -143,13 +143,37 @@ router.post('/currentUser', auth, (req, res) => {
 
 router.post('/update', auth, (req, res) => {
     const decoded = jwtDecode(req.body.token);
-    console.log(decoded._id);
-     const { email, password, name } = req.body;
-     User.findOneAndUpdate({ _id: decoded, email: email, password: password }, req.body, function (err, data) {
-        if (!err) {
-            res.end();
+    let { email, password, name, password2 } = req.body;
+    let errors = []
+
+    // check passwords match
+    if (email < 6) {
+        errors.push({ msg: 'E-Mail too short.' });
+    }  
+    if (password < 6) {
+        errors.push({ msg: 'Password too short.' });
+    }  
+    if (password !== password2) {
+        errors.push({ msg: 'Passwords do not match.' });
+    } 
+    if (errors.length == 0) {
+        if (req.body.password != null) {
+            const saltRounds = 10;
+            const salt = bcrypt.genSaltSync(saltRounds);
+            const hash = bcrypt.hashSync(req.body.password, salt);
+            req.body.password = hash
         }
-    });
+
+        User.findOneAndUpdate({ _id: decoded}, req.body, function (err, data) {
+            if (!err) {
+                return res.send("User updated!");
+            } else {
+                console.log(err);
+            }
+        });
+    } else {
+        res.send(errors);
+    }
 }) 
 
 router.post('/delete', auth, (req, res) => {

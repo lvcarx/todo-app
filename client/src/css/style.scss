@@ -11,6 +11,25 @@ $accent-color-hover: #485c96;
 body {
     max-width: 100%;
     overflow-x: hidden;
+    a {
+        cursor: pointer;
+    }
+    .button {
+        padding: 10px 40px;
+        background: $accent-color;
+        color: #fff;
+        border: none;
+        font-weight: 700;
+        text-align: center;
+        font-size: 13px;
+        text-transform: uppercase;
+        border-radius: 3px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        &:hover {
+            background: $accent-color-hover;
+        }
+    }
     .light {
         background: #f2f9ff;
         background: #a6b2c740;
@@ -114,6 +133,10 @@ body {
             opacity: 1!important;
             box-shadow: 0 0 15px 1000px rgba(0,0,0,.12);
         }
+        h3 {
+            display: inline-block;
+            margin-right: 10px;
+        }
         .close {
             width: 28px;
             height: 28px;
@@ -140,6 +163,25 @@ body {
             &.pink {
                 background: #65293e;
             }
+        }
+        input {
+            display: block;
+            border: 1px solid #e4e4e4;
+            background: #fbfbfb;
+            padding: 8px 7px;
+            font-size: 17px;
+            width: 300px;
+            border-radius: 3px;
+        }
+        label {
+            input {
+                margin-top: 10px;
+                margin-bottom: 20px;
+            }
+        }
+        .settingContent {
+            display: block;
+            margin-bottom: 30px;
         }
     }
     header {
@@ -554,11 +596,13 @@ body {
         }
 
         .modal {
-
             width: 100%;
             max-width: 100%;
             box-shadow: 0px 10px 3000px 2000px rgba(0,0,0,0.12);
-
+        
+            input {
+                display: block;
+            }
         }
 
         .startModal {
@@ -619,7 +663,6 @@ body {
             min-width: 0;
             padding: 13px 0;
             font-size: 0;
-
 
         }
 
