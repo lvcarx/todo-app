@@ -41,31 +41,12 @@ class UserModal extends React.Component {
         window.location.reload(false);
     }
 
-    
-
-    removeAccount() {
-        const token = localStorage.getItem('user-token');
-        const user = {
-            token: token
-        }
-        axios.post(`${process.env.REACT_APP_TEST}/api/users/delete`, user)
-            .then(this.reloadAfterDeletion)
-            .catch(err => console.log(err))
-            .finally(this.reloadAfterDeletion)
-    }
-
-    reloadAfterDeletion() {
-        localStorage.removeItem("user-token");
-        window.location.reload(false);
-    }
-
     render() {
         return (
             <div className="accountModalWrapper">
                     <img onClick={this.openModal} class="accountIcon" src="img/account.svg"></img>
                     <div class={this.state.accountModalOpen == true ? 'accountModal opened' : 'accountModal'}><h3>Hi, {this.state.currentEmail}!</h3>
                        <li><a onClick={this.tryLogout} class="link">Logout</a></li>
-                       <li><a onClick={this.removeAccount} class="link">Delete your account</a></li>
                        <li><a onClick={this.props.openEditAccount} class="link">User Settings</a></li>
                     </div>
             </div>

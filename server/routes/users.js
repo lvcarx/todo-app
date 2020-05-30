@@ -169,6 +169,7 @@ router.post('/update', auth, (req, res) => {
                 return res.send("User updated!");
             } else {
                 console.log(err);
+                return res.send(errors);
             }
         });
     } else {
