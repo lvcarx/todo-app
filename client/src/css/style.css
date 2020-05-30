@@ -350,10 +350,8 @@ body {
       body .content .todoItem.favorite {
         border: 1px solid #f3e7be;
         background: #fffad6; }
-      body .content .todoItem.done {
-        opacity: 0.6; }
-        body .content .todoItem.done .done {
-          background: #346abc; }
+      body .content .todoItem.done .done {
+        background: #346abc; }
       body .content .todoItem.categoryModalOpen .changeSection {
         visibility: visible !important;
         opacity: 1 !important; }
@@ -431,7 +429,8 @@ body {
     padding: 15px 10px;
     border-radius: 6px;
     width: 100%;
-    margin: 15px 0; }
+    margin: 15px 0;
+    display: block; }
     body .modal .modalSection .opened {
       color: #346abc; }
   body .modal label {
