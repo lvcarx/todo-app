@@ -54,8 +54,8 @@ class UserModal extends React.Component {
                         <a id="close" onClick={this.closeModal} className="close"><img src="/img/close.svg"></img></a>
                         <h3>Hi, {this.state.currentEmail}!</h3>
 
-                       <li><a onClick={this.tryLogout} class="link">Logout</a></li>
-                       <li><a onClick={this.props.openEditAccount} class="link">User Settings</a></li>
+                       <li className=""><a onClick={this.tryLogout} className="link modalSection">Logout</a></li>
+                       <li className=""><a onClick={this.props.openEditAccount} className="link modalSection">User Settings</a></li>
                     </div>
             </div>
         )
