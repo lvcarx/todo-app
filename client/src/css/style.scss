@@ -216,7 +216,7 @@ body {
             top: 0;
             right: 0;
             .accountModal {
-                position: absolute;
+                /*position: absolute;
                 right: 65px;
                 top: 65px;
                 width: 330px;
@@ -226,9 +226,9 @@ body {
                 padding: 10px 20px;
                 box-shadow: 0 3px 50px 0 rgba(0, 0, 0, 0.14);
                 visibility: hidden;
-                opacity: 0;
+                opacity: 0;*/
                 transition: all 0.3s ease;
-                &.opened {
+                &.open {
                     visibility: visible;
                     opacity: 1;
                 }
