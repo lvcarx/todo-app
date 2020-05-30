@@ -216,17 +216,7 @@ body {
             top: 0;
             right: 0;
             .accountModal {
-                /*position: absolute;
-                right: 65px;
-                top: 65px;
-                width: 330px;
-                background: #fff;
-                text-align: left;
-                border-radius: 5px;
-                padding: 10px 20px;
-                box-shadow: 0 3px 50px 0 rgba(0, 0, 0, 0.14);
-                visibility: hidden;
-                opacity: 0;*/
+
                 transition: all 0.3s ease;
                 &.open {
                     visibility: visible;
@@ -729,14 +719,7 @@ body {
             margin-bottom: 0;
         }
 
-        header .accountModalWrapper .accountModal {
-            position: absolute;
-            right: 0;
-            margin: auto;
-            top: 65px;
-            height: auto;
-            width: 100vw;
-        }
+     
         
         .content .removeSections {
         
