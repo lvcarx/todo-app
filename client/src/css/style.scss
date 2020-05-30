@@ -519,6 +519,26 @@ body {
             }
         }
     }
+
+    .modal {
+        .modalSection {
+            background: #f2f2f2;
+            padding: 15px 10px;
+            border-radius: 6px;
+            width: 100%;
+            margin: 15px 0;
+            .opened {
+                color: $accent-color;
+            }
+        }
+        label {
+            display: block;
+        }
+        .flashMessage {
+            margin: 15px 0;
+            display: inline-block;
+        }
+    }
     footer {
         text-align: center;
         a {

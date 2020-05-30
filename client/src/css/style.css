@@ -422,6 +422,19 @@ body {
         body .content .changeSection .sectionWrapper span.current {
           background: #346abc;
           color: #fff; }
+  body .modal .modalSection {
+    background: #f2f2f2;
+    padding: 15px 10px;
+    border-radius: 6px;
+    width: 100%;
+    margin: 15px 0; }
+    body .modal .modalSection .opened {
+      color: #346abc; }
+  body .modal label {
+    display: block; }
+  body .modal .flashMessage {
+    margin: 15px 0;
+    display: inline-block; }
   body footer {
     text-align: center; }
     body footer a {
