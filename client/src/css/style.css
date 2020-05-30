@@ -178,17 +178,6 @@ body {
     top: 0;
     right: 0; }
     body header .accountModalWrapper .accountModal {
-      /*position: absolute;
-                right: 65px;
-                top: 65px;
-                width: 330px;
-                background: #fff;
-                text-align: left;
-                border-radius: 5px;
-                padding: 10px 20px;
-                box-shadow: 0 3px 50px 0 rgba(0, 0, 0, 0.14);
-                visibility: hidden;
-                opacity: 0;*/
       transition: all 0.3s ease; }
       body header .accountModalWrapper .accountModal.open {
         visibility: visible;
@@ -550,13 +539,6 @@ body {
   body .todoItemWrapper h2 {
     display: block !important;
     margin-bottom: 0; }
-  body header .accountModalWrapper .accountModal {
-    position: absolute;
-    right: 0;
-    margin: auto;
-    top: 65px;
-    height: auto;
-    width: 100vw; }
   body .content .removeSections {
     color: #e62525;
     font-weight: 600; }
