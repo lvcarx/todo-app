@@ -95,11 +95,11 @@ class RegisterPage extends React.Component {
                     <div className="form-group">
                         <label>Name</label>
                         <input
-                            type="email"
-                            id="email"
-                            name="email"
+                            type="text"
+                            id="name"
+                            name="name"
                             className="form-control"
-                            placeholder="Enter Email"
+                            placeholder="Enter your name"
                             value={this.state.name}
                             onChange={this.onChangeName}
                             required

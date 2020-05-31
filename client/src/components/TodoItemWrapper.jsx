@@ -176,9 +176,9 @@ class TodoItemWrapper extends React.Component {
         if (this.state.currentSection == 'all') {
             return (
                 <div className="todoItemWrapper">
-                    <h2>Get stuff done!</h2>
+                    <h2>be productive!</h2>
 
-                    <a id="addSections" onClick={this.openSectionDialog}>Add new sections</a>
+                    
                     <div id="dynamicSection" className={this.state.sectionDialogOpen == true ? 'dynamicSection open' : 'dynamicSection'}>
                         <input id="sectionName" type="text" onChange={this.onChangeSection} placeholder="Add a new task category..."></input>
                         <a onClick={() => {
@@ -188,6 +188,7 @@ class TodoItemWrapper extends React.Component {
                     </div>
 
                     <div className="sections">
+                    <a id="addSections" onClick={this.openSectionDialog}></a>
                     <div className={this.state.currentSection == 'all' ? 'sectionWrapper current' : 'sectionWrapper'}>
                             <span className="section" onClick={() => this.chooseSection('all')}>All</span>
                     </div>
@@ -227,9 +228,9 @@ class TodoItemWrapper extends React.Component {
         } else {
             return (
             <div className="todoItemWrapper">
-                    <h2>Get stuff done!</h2>
+                    <h2>be productive!</h2>
 
-                    <a id="addSections" onClick={this.openSectionDialog}>Add new sections</a>
+                   
                     <div id="dynamicSection" className={this.state.sectionDialogOpen == true ? 'dynamicSection open' : 'dynamicSection'}>
                         <input id="sectionName" type="text" onChange={this.onChangeSection} placeholder="Add a new task category..."></input>
                         <a onClick={() => {
@@ -239,6 +240,7 @@ class TodoItemWrapper extends React.Component {
                     </div>
 
                     <div className="sections">
+                    <a id="addSections" onClick={this.openSectionDialog}></a>
                     <div className='sectionWrapper'>
                             <span className="section" onClick={() => this.chooseSection('all')}>All</span>
                     </div>
