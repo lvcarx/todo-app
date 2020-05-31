@@ -546,8 +546,8 @@ body {
     float: none !important;
     margin-top: 10px; }
     body #addSections:before {
-      margin-right: 10px;
-      margin-top: 9px;
+      margin-right: 10px !important;
+      margin-top: 9px !important;
       float: left !important; }
   .login, .register {
     text-align: center;
