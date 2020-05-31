@@ -142,6 +142,7 @@ body {
       border: 1px solid #e4e4e4;
       background: #fbfbfb;
       padding: 8px 7px;
+      -webkit-appearance: none;
       font-size: 17px;
       width: 300px;
       border-radius: 3px; }
@@ -326,11 +327,11 @@ body {
         color: #28345f; }
       body .content #addSections:before {
         content: "";
-        background: url(/img/plus-icon.svg) !important;
+        background: url(/img/plus-icon2.svg) !important;
         background-size: cover;
-        height: 15px;
-        width: 16px;
-        margin: 0 7px -2px 0;
+        height: 27px;
+        width: 27px;
+        margin: 0 0px -4px 0;
         display: inline-block; }
     body .content .todoItem {
       list-style: none;

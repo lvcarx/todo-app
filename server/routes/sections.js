@@ -15,16 +15,20 @@ const User = require('../models/user');
 router.post('/create', (req, res) => {
     const decoded = jwtDecode(req.body.token);
     console.log(req.body);
-    User.findOneAndUpdate({_id: decoded}, { $addToSet: { sections: req.body.sectionName } }, function(err,data)
-    {
-        if(!err){
-            console.log("Updated");
-            res.end();
-        }
-        if(err) {
-            console.log(err);
-        }
-    });
+    if (req.body.sectionName.length > 1) {
+        User.findOneAndUpdate({_id: decoded}, { $addToSet: { sections: req.body.sectionName } }, function(err,data)
+        {
+            if(!err){
+                console.log("Updated");
+                res.end();
+            }
+            if(err) {
+                console.log(err);
+            }
+        });
+    } else {
+        res.send("You have to enter something!");
+    }
 });
 
 // delete setting item handle
