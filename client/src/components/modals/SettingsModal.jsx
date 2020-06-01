@@ -19,7 +19,10 @@ class SettingsModal extends React.Component {
             darkMode: !this.props.darkMode
         }
         axios.post(`${process.env.REACT_APP_TEST}/api/settings/update`, setting)
-            .then(this.props.grandchildFetchSettings())
+            .then((res) => {
+                this.props.grandchildFetchSettings()
+                console.log(res.data)
+            })
             .catch(err => console.log(err)) 
             .finally(this.props.grandchildFetchSettings());
     }
