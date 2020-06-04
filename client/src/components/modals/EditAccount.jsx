@@ -5,6 +5,7 @@ class EditAccount extends React.Component {
 
     constructor(props) {
         super(props)
+        this.openPictureDialog = this.openPictureDialog.bind(this)
         this.openEmailDialog = this.openEmailDialog.bind(this)
         this.openPasswordDialog = this.openPasswordDialog.bind(this)
         this.openDeleteDialog = this.openDeleteDialog.bind(this)
@@ -17,10 +18,11 @@ class EditAccount extends React.Component {
         this.onChangeNewEmail = this.onChangeNewEmail.bind(this)
         this.deleteMyAccount = this.deleteMyAccount.bind(this)
         this.reloadAfterDeletion = this.reloadAfterDeletion.bind(this)
-
+        this.uploadProfileImage = this.uploadProfileImage.bind(this)
 
 
         this.state = {
+            pictureOpen: false,
             emailOpen: false,
             passwordOpen: false,
             deleteOpen: false,
@@ -31,8 +33,16 @@ class EditAccount extends React.Component {
             allowed: false,
             wrongPassword: false,
             updatePasswordSuccessful: false,
-            updateMailSuccessful: false
+            updateMailSuccessful: false,
+            currentFile: null,
+            updatedPictureMessage: false
         }
+    }
+
+    openPictureDialog() {
+        this.setState({
+            pictureOpen: !this.state.pictureOpen
+        })
     }
 
     openEmailDialog() {
@@ -152,11 +162,58 @@ class EditAccount extends React.Component {
         window.location.reload(false);
     }
 
+    onChangeFile(e) {
+        let file = e.target.files[0]
+        this.setState({currentFile: file});
+    }
+
+    uploadProfileImage(e) {
+        //var { updateImage } = this.props;
+        const token = localStorage.getItem('user-token');
+
+        let file = this.state.currentFile
+
+        var form = new FormData();
+
+        form.append('image', file)
+        form.append('token', token);
+        axios.post(`${process.env.REACT_APP_TEST}/api/users/addProfilePicture`, form, {
+       
+        })
+        .then(
+            this.setState({updatedPictureMessage: true}),
+            () => this.props.updateImage()
+        )
+        .catch(err => console.log(err))
+        .finally(() => this.props.updateImage())
+    }
+
+
+
     render() {
+        
         return (
             <div className="editAccountWrapper modal open">
                 <a id="close" onClick={this.props.openEditAccount} className="close"><img src="/img/close.svg"></img></a>
                 <h2>Edit your Account</h2>
+
+                <div className="modalSection">
+                    {this.state.updatedPictureMessage &&
+                        <div className="flashMessage">Picture updated!</div>
+                    }
+                    <div className="wrapper">
+                        <h3>Add/Change a profile picture</h3>
+                        <a onClick={this.openPictureDialog} className={this.state.pictureOpen == true ? 'opened' : ''}>Add</a>
+                    </div>
+                    {this.state.pictureOpen == true &&
+                        <div className="wrapper">
+                            <form>
+                                <input type='file' name='image' onChange={(e)=>this.onChangeFile(e)}/>
+                                <a className="button fLeft" onClick={this.uploadProfileImage}>Upload</a>
+                            </form>
+                        </div>
+                    }
+                </div>
 
                 <div className="modalSection">
                     {this.state.updateMailSuccessful &&

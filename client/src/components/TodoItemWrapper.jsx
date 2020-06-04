@@ -190,7 +190,7 @@ class TodoItemWrapper extends React.Component {
                     <div className="sections">
                     <a id="addSections" onClick={this.openSectionDialog}></a>
                     <div className={this.state.currentSection == 'all' ? 'sectionWrapper current' : 'sectionWrapper'}>
-                            <span className="section" onClick={() => this.chooseSection('all')}>All</span>
+                            <span className="section" onClick={() => this.chooseSection('all')}>Show all</span>
                     </div>
                         {this.props.sections.map(section =>          
                                 <div className={this.state.currentSection == section ? 'sectionWrapper current' : 'sectionWrapper'}>
@@ -216,9 +216,13 @@ class TodoItemWrapper extends React.Component {
                                 <a id="close" onClick={() => this.closeCategoryDialog(note._id)} className="close"><img src="/img/close.svg"></img></a>
                                 <h2>Change Section</h2>
                                 <div className="sectionWrapper">
-                                {this.props.sections.map(section => 
+                                {(this.props.sections.length > 0) &&
+                                this.props.sections.map(section => 
                                     <span className={note.category == section ? 'current' : ''} onClick={() => this.changeSectionInItem(note._id, section)}>{section}</span>   
                                 )}
+                                {(this.props.sections.length == 0) &&
+                                    <p>Keine Kategorien verfügbar.</p>
+                                }
                                 </div>
                             </div>
                         </div>  
@@ -242,7 +246,7 @@ class TodoItemWrapper extends React.Component {
                     <div className="sections">
                     <a id="addSections" onClick={this.openSectionDialog}></a>
                     <div className='sectionWrapper'>
-                            <span className="section" onClick={() => this.chooseSection('all')}>All</span>
+                            <span className="section" onClick={() => this.chooseSection('all')}>Show all</span>
                     </div>
                         {this.props.sections.map(section =>          
                                 <div className={this.state.currentSection == section ? 'sectionWrapper current' : 'sectionWrapper'}>
@@ -270,9 +274,14 @@ class TodoItemWrapper extends React.Component {
                             <div className={this.state.categoryModalOpen == true ? 'changeSection modal open' : 'changeSection modal'} id={note._id}>
                                 <h2>Change Section</h2>
                                 <div className="sectionWrapper">
-                                {this.props.sections.map(section => 
-                                    <span className={note.category == section ? 'current' : ''} onClick={() => this.changeSectionInItem(note._id, section)}>{section}</span>
-                                )}
+                                    
+                                {(this.props.sections.length > 0) &&
+                                    this.props.sections.map(section => 
+                                        <span className={note.category == section ? 'current' : ''} onClick={() => this.changeSectionInItem(note._id, section)}>{section}</span>
+                                    )}
+                                {(this.props.sections.length == 0) &&
+                                    <p>Keine Kategorien verfügbar.</p>
+                                }    
                                 </div>
                             </div>
                         </div>  

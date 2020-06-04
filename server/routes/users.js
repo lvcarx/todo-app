@@ -4,6 +4,9 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const jwtDecode = require('jwt-decode');
+const multer = require('multer');
+const cloudinary = require("cloudinary");
+const  { CloudinaryStorage } = require("multer-storage-cloudinary");
 
 // Authentification middleware
 const auth = require('../middleware/auth');
@@ -137,7 +140,7 @@ router.post('/currentUser', auth, (req, res) => {
     User.findOne({
         _id: decoded._id
     }).then(user => {
-            return res.send({email: user.email, _id: user._id}); 
+            return res.send({email: user.email, _id: user._id, profilePicture: user.picture}); 
        }) 
 }) 
 
@@ -197,5 +200,25 @@ router.post('/delete', auth, (req, res) => {
         }
     });
 });
+
+
+require('../handlers/cloudinary')
+const upload = require('../handlers/multer')
+
+router.post('/addProfilePicture', upload.single('image'), async (req, res) => {
+    const decoded = jwtDecode(req.body.token);
+    const result = await cloudinary.v2.uploader.upload(req.file.path)
+    console.log(decoded._id);
+    User.updateOne({_id: decoded._id}, { 
+        picture: result.secure_url
+    }, function(err, affected, resp) {
+       console.log(resp);
+    })
+    res.send({
+      message: 'Image is updated'
+    })
+  })
+
+
 
 module.exports = router; 
