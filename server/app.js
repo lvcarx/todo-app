@@ -6,6 +6,9 @@ const cookieParser = require('cookie-parser')
 const cors = require("cors");
 const path = require('path');
 const auth = require('./middleware/auth');
+const multer = require('multer');
+const cloudinary = require("cloudinary");
+const  { CloudinaryStorage } = require("multer-storage-cloudinary");
 
 // Load api routes
 const users = require('./routes/users.js');
@@ -54,6 +57,9 @@ server.get('/*', auth, (req, res) => {
     res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
 }); 
 
+
+
+  
 
 server.use('/api/users', users);
 server.use('/api/todo', auth, todo);

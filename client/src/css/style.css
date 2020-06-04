@@ -192,6 +192,17 @@ body {
           transition: all 0.3s ease; }
           body header .accountModalWrapper .accountModal li a:hover {
             color: #485c96; }
+  body header .profileSection {
+    margin-bottom: 35px;
+    padding: 20px 0; }
+    body header .profileSection .profilePicture {
+      border-radius: 50%;
+      width: 70px;
+      height: 70px;
+      float: left;
+      margin-right: 20px; }
+  body header .fLeft {
+    float: right; }
   body .content {
     display: block;
     margin: 100px auto;

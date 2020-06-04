@@ -1,25 +1,30 @@
 {
-    "name": "be-productive",
-    "version": "1.0.0",
-    "description": "Lorem ipsum.",
-    "main": "server/app.js",
-    "engines": {
-      "node": "14.x"
-    },
-    "scripts": {
-      "postinstall": "npm install --prefix ./server && npm install --prefix ./client && npm run build --prefix ./client",
-      "start": "node server/app.js"
-    },
-    "repository": {
-      "type": "git",
-      "url": "git+https://github.com/reallucareichmann/simple-note-taking-app.git"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "bugs": {
-      "url": "https://github.com/reallucareichmann/simple-note-taking-app/issues"
-    },
-    "dev": "webpack-dev-server --open",
-    "homepage": "https://github.com/reallucareichmann/simple-note-taking-app#readme"
+  "name": "be-productive",
+  "version": "1.0.0",
+  "description": "Lorem ipsum.",
+  "main": "server/app.js",
+  "engines": {
+    "node": "14.x"
+  },
+  "scripts": {
+    "postinstall": "npm install --prefix ./server && npm install --prefix ./client && npm run build --prefix ./client",
+    "start": "node server/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reallucareichmann/simple-note-taking-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/reallucareichmann/simple-note-taking-app/issues"
+  },
+  "dev": "webpack-dev-server --open",
+  "homepage": "https://github.com/reallucareichmann/simple-note-taking-app#readme",
+  "dependencies": {
+    "cloudinary": "^1.21.0",
+    "multer": "^1.4.2",
+    "multer-storage-cloudinary": "^4.0.0"
   }
+}
