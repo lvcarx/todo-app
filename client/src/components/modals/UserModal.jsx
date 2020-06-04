@@ -73,7 +73,9 @@ class UserModal extends React.Component {
                         
                         <div className="wrapper profileSection">
                             {this.state.profilePicture &&
-                            <img className="profilePicture" src={this.state.profilePicture}></img>
+                            <div className="profilePictureWrapper">
+                                <img className="profilePicture" src={this.state.profilePicture}></img>
+                            </div>
                             }
                             <h3>Hi, {this.state.currentEmail}!</h3>
                         </div>

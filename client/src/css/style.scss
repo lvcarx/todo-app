@@ -240,12 +240,17 @@ body {
         .profileSection {
             margin-bottom: 35px;
             padding: 20px 0;
-            .profilePicture {
+            .profilePictureWrapper {
                 border-radius: 50%;
                 width: 70px;
                 height: 70px;
                 float: left;
                 margin-right: 20px;
+                overflow: hidden;
+                img {
+                    width: auto;
+                    height: 100%;
+                }
             }
             
         }
