@@ -72,7 +72,7 @@ class UserModal extends React.Component {
                         <a id="close" onClick={this.closeModal} className="close"><img src="/img/close.svg"></img></a>
                         
                         <div className="wrapper profileSection">
-                            {this.state.profilePicture.length > 3 &&
+                            {this.state.profilePicture &&
                             <img className="profilePicture" src={this.state.profilePicture}></img>
                             }
                             <h3>Hi, {this.state.currentEmail}!</h3>
