@@ -261,7 +261,7 @@ body {
       body .content .sections .sectionWrapper {
         background: #fff;
         display: inline-block;
-        border: 1px solid #d3d3d3;
+        border: 1px solid #3656a0;
         border-radius: 25px;
         padding: 3px 20px 5px 20px;
         position: relative;
@@ -416,7 +416,7 @@ body {
       body .content .changeSection .sectionWrapper span {
         background: #fff;
         display: inline-block;
-        border: 1px solid #d3d3d3;
+        border: 1px solid #3656a0;
         border-radius: 25px;
         padding: 3px 20px 5px 20px;
         position: relative;
